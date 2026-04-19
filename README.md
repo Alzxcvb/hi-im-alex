@@ -11,11 +11,8 @@ open index.html
 ```
 Or: `python3 -m http.server 8000` then visit http://localhost:8000
 
-## Deploy options (pick one)
-- **Vercel** (recommended): `vercel --prod` from this folder. Add `hiimalex.ai` in the dashboard and update nameservers at your registrar.
-- **Netlify**: drag & drop the folder, or `netlify deploy --prod`.
-- **GitHub Pages**: push to a repo, enable Pages on `main` / root.
-- **Cloudflare Pages**: connect the repo, auto-deploys on push.
+## Deploy
+Auto-deploys on push to `main` via Vercel Git integration. Production domain: hiimalex.ai.
 
 ## Placeholders to fill in before launch
 - `YOUR-CALENDLY-HANDLE` → real Calendly URL
