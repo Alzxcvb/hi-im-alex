@@ -37,6 +37,9 @@
   .nav a{margin-left:18px;color:var(--ink-dim);font-size:14px}
   .nav a:hover{color:var(--ink);text-decoration:none}
   .hero{padding:72px 0 40px}
+  .hero .wrap{display:grid;grid-template-columns:1fr auto;gap:48px;align-items:center}
+  .hero-photo{width:220px;height:220px;border-radius:50%;object-fit:cover;border:3px solid var(--line);box-shadow:0 16px 48px rgba(0,0,0,.35);justify-self:end}
+  @media(max-width:720px){.hero .wrap{grid-template-columns:1fr;gap:24px}.hero-photo{width:128px;height:128px;order:-1;justify-self:start}}
   .eyebrow{display:inline-block;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);background:rgba(255,122,26,.1);border:1px solid rgba(255,122,26,.25);padding:6px 10px;border-radius:999px;margin-bottom:20px}
   h1{font-size:clamp(34px,5.2vw,56px);line-height:1.08;letter-spacing:-.02em;margin:0 0 16px;font-weight:800}
   h1 .accent{color:var(--accent)}
@@ -97,14 +100,17 @@
 
 <section class="hero">
   <div class="wrap">
-    <span class="eyebrow">Claude Code Expert · Available Now</span>
-    <h1>I get <span class="accent">Claude</span> running for your business.</h1>
-    <p class="lede">Not theory — real workflows, real automation, real results. I help individuals and small businesses go from "I've heard of Claude" to "this just saved me 8 hours a week."</p>
-    <div class="cta-row">
-      <a class="btn btn-primary" href="https://calendly.com/calendly-email-77tk/30min" target="_blank" rel="noopener">Book a call →</a>
-      <a class="btn btn-secondary" href="#services">See services</a>
+    <div class="hero-text">
+      <span class="eyebrow">Claude Code Expert · Available Now</span>
+      <h1>I get <span class="accent">Claude</span> running for your business.</h1>
+      <p class="lede">Not theory — real workflows, real automation, real results. I help individuals and small businesses go from "I've heard of Claude" to "this just saved me 8 hours a week."</p>
+      <div class="cta-row">
+        <a class="btn btn-primary" href="https://calendly.com/calendly-email-77tk/30min" target="_blank" rel="noopener">Book a call →</a>
+        <a class="btn btn-secondary" href="#services">See services</a>
+      </div>
+      <p class="trust">Taught <b>Claude Code</b> at <b>Network School</b> (Balaji Srinivasan's program) · Claude Certified Architect candidate</p>
     </div>
-    <p class="trust">Taught <b>Claude Code</b> at <b>Network School</b> (Balaji Srinivasan's program) · Claude Certified Architect candidate</p>
+    <img class="hero-photo" src="alex.jpg" alt="Alex Coffman" width="220" height="220">
   </div>
 </section>
 
