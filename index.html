@@ -76,6 +76,16 @@
   .book{background:linear-gradient(135deg,rgba(255,122,26,.08),rgba(255,122,26,.02));border:1px solid rgba(255,122,26,.25);border-radius:var(--radius);padding:32px;text-align:center}
   .book h2{margin-bottom:10px}
   .book p{color:var(--ink-dim);margin:0 auto 22px;max-width:520px}
+  .magnet{background:var(--bg-elev);border:1px solid var(--line);border-radius:var(--radius);padding:28px;display:grid;grid-template-columns:1.2fr 1fr;gap:28px;align-items:center}
+  .magnet-text h3{margin:0 0 8px;font-size:22px;letter-spacing:-.01em}
+  .magnet-text p{color:var(--ink-dim);margin:0 0 6px;font-size:15px}
+  .magnet-text ul{margin:8px 0 0;padding-left:18px;color:var(--ink-dim);font-size:14.5px}
+  .magnet-form{display:flex;flex-direction:column;gap:10px}
+  .magnet-form input[type=email]{width:100%;padding:13px 14px;border-radius:10px;border:1px solid var(--line);background:var(--bg);color:var(--ink);font-size:15px;font-family:inherit}
+  .magnet-form input[type=email]:focus{outline:none;border-color:var(--accent)}
+  .magnet-form button{width:100%}
+  .magnet-form .fineprint{font-size:12px;color:var(--ink-dim);text-align:center;margin:4px 0 0}
+  @media(max-width:720px){.magnet{grid-template-columns:1fr;gap:20px}}
   footer{padding:40px 0 60px;color:var(--ink-dim);font-size:14px;border-top:1px solid var(--line)}
   footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px;align-items:center}
   footer a{color:var(--ink-dim)}
@@ -90,6 +100,7 @@
   <div class="wrap">
     <div class="brand"><span class="wave">👋</span> Hi, I'm Alex</div>
     <nav class="nav">
+      <a href="#starter-guide">Free guide</a>
       <a href="#services">Services</a>
       <a href="#proof">Why me</a>
       <a href="#book">Book</a>
@@ -110,6 +121,39 @@
       <p class="trust">Taught <b>Claude Code</b> at <b>Network School</b> (Balaji Srinivasan's program) · Claude Certified Architect candidate</p>
     </div>
     <img class="hero-photo" src="alex.jpg" alt="Alex Coffman" width="220" height="220">
+  </div>
+</section>
+
+<section id="starter-guide">
+  <div class="wrap">
+    <div class="magnet">
+      <div class="magnet-text">
+        <h3>Free: The Claude Code Starter Guide</h3>
+        <p>A short PDF showing exactly what Claude Code is, three things it can automate this week for a small business, and how to get it installed without breaking anything.</p>
+        <ul>
+          <li>What Claude Code actually is, in plain English</li>
+          <li>3 high-leverage automations you can run today</li>
+          <li>The exact install steps I walk every client through</li>
+        </ul>
+      </div>
+      <!--
+        TODO — wire to Kit (kit.com):
+          1. Register at kit.com (free up to 10K subs)
+          2. Create a "Newsletter" or "Form" → grab the form's action URL + UID
+          3. Replace `action="mailto:..."` below with the Kit form action
+          4. Replace `data-pdf-url` value with the public link to the PDF (Google Drive, Dropbox, or repo URL)
+          5. Optional: add Kit's hidden fields for tags/tracking
+      -->
+      <form class="magnet-form"
+            action="mailto:hiimalex.ai@email.acoffman.org"
+            method="post"
+            enctype="text/plain"
+            data-pdf-url="">
+        <input type="email" name="email" placeholder="you@company.com" required aria-label="Email address">
+        <button class="btn btn-primary" type="submit">Send me the guide →</button>
+        <p class="fineprint">No spam. Unsubscribe anytime.</p>
+      </form>
+    </div>
   </div>
 </section>
 
