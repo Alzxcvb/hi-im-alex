@@ -136,53 +136,11 @@
           <li>The exact install steps for Mac and Windows</li>
         </ul>
       </div>
-      <form class="magnet-form" id="starter-guide-form"
-            action="https://app.kit.com/forms/9414472/subscriptions"
-            method="post">
+      <form class="magnet-form" id="starter-guide-form" action="/api/subscribe" method="post">
         <input type="email" name="email_address" placeholder="you@company.com" required aria-label="Email address">
         <button class="btn btn-primary" type="submit">Get the guide →</button>
         <p class="fineprint">Instant access. No spam. Unsubscribe anytime.</p>
       </form>
-      <script>
-      (function(){
-        var form = document.getElementById('starter-guide-form');
-        if(!form) return;
-        form.addEventListener('submit', function(e){
-          e.preventDefault();
-          var btn = form.querySelector('button[type=submit]');
-          if(btn) btn.textContent = 'Loading guide…';
-
-          // Build url-encoded body (matches what a native form submit sends —
-          // which is the format Kit's endpoint accepts).
-          var formData = new FormData(form);
-          var body = new URLSearchParams(formData).toString();
-
-          // sendBeacon is built for fire-and-forget POSTs that survive page navigation.
-          var sent = false;
-          if (navigator.sendBeacon) {
-            try {
-              var blob = new Blob([body], { type: 'application/x-www-form-urlencoded' });
-              sent = navigator.sendBeacon(form.action, blob);
-            } catch (err) { sent = false; }
-          }
-          // Fallback: keepalive fetch (also designed to survive navigation).
-          if (!sent) {
-            try {
-              fetch(form.action, {
-                method: 'POST',
-                mode: 'no-cors',
-                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-                body: body,
-                keepalive: true
-              });
-            } catch (err) {}
-          }
-
-          // Navigate to the guide immediately — the POST keeps flying to Kit in the background.
-          window.location.href = '/starter-guide.html';
-        });
-      })();
-      </script>
     </div>
   </div>
 </section>
