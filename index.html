@@ -136,9 +136,11 @@
           <li>The exact install steps for Mac and Windows</li>
         </ul>
       </div>
+      <iframe name="kit-submit-target" id="kit-submit-target" style="display:none" aria-hidden="true" tabindex="-1"></iframe>
       <form class="magnet-form" id="starter-guide-form"
             action="https://app.kit.com/forms/9414472/subscriptions"
-            method="post">
+            method="post"
+            target="kit-submit-target">
         <input type="email" name="email_address" placeholder="you@company.com" required aria-label="Email address">
         <button class="btn btn-primary" type="submit">Get the guide →</button>
         <p class="fineprint">Instant access. No spam. Unsubscribe anytime.</p>
@@ -147,20 +149,16 @@
       (function(){
         var form = document.getElementById('starter-guide-form');
         if(!form) return;
-        form.addEventListener('submit', function(e){
-          e.preventDefault();
+        form.addEventListener('submit', function(){
+          // Native submit fires to the hidden iframe (so Kit captures
+          // the email exactly the same way as a normal form post).
+          // We just relabel the button and redirect the visible page
+          // to the guide so the user gets value instantly.
           var btn = form.querySelector('button[type=submit]');
           if(btn) btn.textContent = 'Loading guide…';
-          var data = new FormData(form);
-          // Fire-and-forget submission to Kit (no-cors so the browser
-          // doesn't block on response). Email lands in your Kit list
-          // either way; user gets the guide instantly via redirect.
-          var send = fetch(form.action, { method:'POST', mode:'no-cors', body:data });
-          send.finally(function(){
+          setTimeout(function(){
             window.location.href = '/starter-guide.html';
-          });
-          // Belt-and-suspenders: if fetch hangs for any reason, redirect anyway after 1.5s.
-          setTimeout(function(){ window.location.href = '/starter-guide.html'; }, 1500);
+          }, 700);
         });
       })();
       </script>
