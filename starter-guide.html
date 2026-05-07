@@ -1,0 +1,196 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>The Claude Code Starter Guide — Hi, I'm Alex</title>
+<meta name="description" content="A short field guide for getting Claude Code working in your business this week. By Alex Coffman.">
+<style>
+  :root{
+    --ink:#1a1d22;
+    --ink-soft:#404652;
+    --ink-dim:#6b7280;
+    --accent:#d65a14;
+    --accent-soft:#ff7a1a;
+    --line:#e5e7eb;
+    --bg:#fdfdfd;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0;background:#f4f4f4;color:var(--ink);font-family:Georgia,"Times New Roman",serif;line-height:1.55;-webkit-font-smoothing:antialiased}
+  .page{
+    background:var(--bg);
+    max-width:820px;
+    margin:24px auto;
+    padding:64px 72px;
+    box-shadow:0 4px 24px rgba(0,0,0,.06);
+    page-break-after:always;
+  }
+  .page:last-child{page-break-after:auto}
+  h1{font-family:ui-sans-serif,-apple-system,BlinkMacSystemFont,"Inter","Segoe UI",sans-serif;font-size:34px;line-height:1.15;letter-spacing:-.01em;margin:0 0 8px;color:var(--ink);font-weight:800}
+  h1 .accent{color:var(--accent)}
+  h2{font-family:ui-sans-serif,-apple-system,BlinkMacSystemFont,"Inter","Segoe UI",sans-serif;font-size:22px;letter-spacing:-.01em;margin:0 0 14px;color:var(--ink);font-weight:700}
+  h3{font-family:ui-sans-serif,-apple-system,BlinkMacSystemFont,"Inter","Segoe UI",sans-serif;font-size:17px;margin:22px 0 6px;color:var(--ink);font-weight:700}
+  h3 em{color:var(--accent);font-style:normal;font-weight:600;font-size:14px;display:block;margin-top:2px}
+  p{margin:0 0 12px;color:var(--ink-soft);font-size:15.5px}
+  .lede{font-style:italic;color:var(--ink-dim);font-size:15px;margin-bottom:24px}
+  .byline{font-family:ui-sans-serif,sans-serif;font-size:13px;letter-spacing:.04em;color:var(--ink-dim);text-transform:uppercase;margin-bottom:36px;border-bottom:1px solid var(--line);padding-bottom:14px}
+  .byline a{color:var(--accent);text-decoration:none}
+  ul{margin:6px 0 14px;padding-left:22px;color:var(--ink-soft);font-size:15.5px}
+  li{margin:0 0 6px}
+  ol{margin:6px 0 14px;padding-left:22px;color:var(--ink-soft);font-size:15.5px}
+  ol li{margin:0 0 8px}
+  code{font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace;font-size:13px;background:#f4f1ec;padding:2px 6px;border-radius:4px;color:var(--ink);border:1px solid #ece7df;word-break:break-all}
+  pre{background:#1a1d22;color:#eaeaea;padding:14px 16px;border-radius:6px;font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace;font-size:12.5px;overflow-x:auto;margin:8px 0 14px;line-height:1.5}
+  .cta{background:linear-gradient(135deg,#fff5ec,#ffe9d3);border:1px solid var(--accent);border-left:4px solid var(--accent);border-radius:6px;padding:18px 22px;margin:18px 0}
+  .cta h3{margin-top:0;color:var(--ink)}
+  .cta a{color:var(--accent);font-weight:700;text-decoration:none}
+  .footer{margin-top:42px;padding-top:18px;border-top:1px solid var(--line);font-family:ui-sans-serif,sans-serif;font-size:12px;color:var(--ink-dim);display:flex;justify-content:space-between}
+  .footer a{color:var(--accent);text-decoration:none}
+  .pagenum{color:var(--ink-dim)}
+  .small{font-size:13.5px;color:var(--ink-dim)}
+  hr{border:none;border-top:1px solid var(--line);margin:24px 0}
+
+  @media print{
+    html,body{background:white}
+    .page{margin:0;box-shadow:none;max-width:none;padding:48px 56px;page-break-after:always}
+    .page:last-child{page-break-after:auto}
+    @page{size:letter;margin:0}
+  }
+</style>
+</head>
+<body>
+
+<!-- PAGE 1 -->
+<section class="page">
+  <h1>The Claude Code <span class="accent">Starter Guide</span></h1>
+  <p class="lede">A short field guide for getting AI actually working in your business this week. Not theory — real workflows you can run by Friday.</p>
+  <div class="byline">By Alex Coffman · <a href="https://hiimalex.ai">hiimalex.ai</a></div>
+
+  <h2>What Claude Code actually is</h2>
+  <p>Claude Code is an AI assistant from Anthropic that runs on your computer and does work — not just answers questions, <em>does</em> work. It can read your files, write documents, search the web, draft emails, edit spreadsheets, and run automations across your whole system.</p>
+  <p>The closest comparison: imagine if a smart, fast intern lived in your terminal. You tell it what you want done, and it does it. The difference from ChatGPT or Claude.ai (the website) is that Claude Code can <em>take actions</em> on your machine, not just produce text in a chat window.</p>
+  <p>A few things people use it for in their first week:</p>
+  <ul>
+    <li>Drafting client emails with full context from past threads</li>
+    <li>Turning meeting recordings into action items, automatically</li>
+    <li>Pulling data out of PDFs and into a clean spreadsheet</li>
+    <li>Replying to support tickets in their own voice</li>
+    <li>Generating proposals, quotes, and reports from a one-line prompt</li>
+  </ul>
+  <p>It's the most leveraged tool I've worked with. The catch: most people never get past the install step, and the ones who do don't know which workflows to start with. That's what this guide is for.</p>
+
+  <h2 style="margin-top:28px">Who I am</h2>
+  <p>I'm Alex. I taught Claude Code at Network School in Malaysia (Balaji Srinivasan's program) and have done one-on-one setups for dozens of small businesses across the US, Australia, and Southeast Asia. Claude Certified Architect candidate. I get Claude actually running for your business — not theory, real workflows.</p>
+  <p>This guide is the install path I walk every client through. If you'd rather skip ahead and do it together on a call, the link is at the end.</p>
+
+  <div class="footer">
+    <span>The Claude Code Starter Guide</span>
+    <span class="pagenum">1 / 4</span>
+  </div>
+</section>
+
+<!-- PAGE 2 -->
+<section class="page">
+  <h2>3 high-leverage automations you can run this week</h2>
+  <p class="small">Pick the one that sounds most painful and start there. You don't need all three. You need <em>one</em> running by Friday.</p>
+
+  <h3>1. The Inbox Triage <em>If you spend more than 30 min/day on email.</em></h3>
+  <p>Claude Code reads your inbox, drafts replies in your voice for the boring 60% (status updates, scheduling, polite no's), and flags the 10% that actually need your attention. You review drafts and click send. Most operators save 4–8 hours per week.</p>
+  <p class="small"><b>You'll need:</b> a Gmail or Outlook account, and 30 minutes of past replies for it to learn your voice.</p>
+
+  <h3>2. The Meeting Memory <em>If you take more than 3 calls a week.</em></h3>
+  <p>Drop a recording — Zoom, Google Meet, phone — into a folder. Claude Code transcribes it, extracts decisions and action items, files them by project, and emails participants the recap before they've left their seats. The "what did we decide on Tuesday?" problem goes away forever.</p>
+  <p class="small"><b>You'll need:</b> Zoom/Meet/Otter exports or any audio file you can save to disk.</p>
+
+  <h3>3. The Repetitive Document <em>If you ever write the same kind of doc over and over.</em></h3>
+  <p>Proposals, quotes, reports, follow-ups, onboarding emails. Claude Code reads your last 10 of those documents, learns your structure and your voice, and generates new ones from a one-line prompt. <code>Draft a proposal for [client] for [scope].</code> 30 seconds, 90% of the way there. You edit and send. Done.</p>
+  <p class="small"><b>You'll need:</b> 5–10 examples of the document type to train on.</p>
+
+  <hr>
+  <p>These are the three I install on Day 1 with most clients. Pick the one that maps to where you bleed time. Don't pick all three at once — get one running, prove the value, expand from there.</p>
+
+  <div class="footer">
+    <span>The Claude Code Starter Guide</span>
+    <span class="pagenum">2 / 4</span>
+  </div>
+</section>
+
+<!-- PAGE 3 -->
+<section class="page">
+  <h2>How to install Claude Code (Mac &amp; Windows)</h2>
+  <p>The fastest path is to walk through this with me on a call — most install errors I've seen fifty times. But here's the path if you want to try yourself first.</p>
+
+  <h3>On Mac</h3>
+  <ol>
+    <li>Open <b>Terminal</b> (Cmd+Space, type <code>terminal</code>, hit enter).</li>
+    <li>If you don't have Homebrew, paste this and hit enter:
+      <pre>/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"</pre>
+    </li>
+    <li>Install Node:
+      <pre>brew install node</pre>
+    </li>
+    <li>Install Claude Code:
+      <pre>npm install -g @anthropic-ai/claude-code</pre>
+    </li>
+    <li>Run it: type <code>claude</code> and hit enter.</li>
+    <li>Follow the login prompts to sign into your Anthropic account.</li>
+  </ol>
+
+  <h3>On Windows</h3>
+  <ol>
+    <li>Install Node.js from <code>nodejs.org</code> (the LTS version).</li>
+    <li>Open <b>PowerShell as Administrator</b>.</li>
+    <li>Install Claude Code:
+      <pre>npm install -g @anthropic-ai/claude-code</pre>
+    </li>
+    <li>Run it: <code>claude</code>.</li>
+    <li>Follow the login prompts.</li>
+  </ol>
+
+  <hr>
+  <p><b>If a step throws an error:</b> don't reinstall the OS. Book a call below — fixing a broken install is much faster with someone who's seen the same error before. Most issues are permissions, Node version mismatches, or PATH problems, and they fix in minutes.</p>
+
+  <div class="footer">
+    <span>The Claude Code Starter Guide</span>
+    <span class="pagenum">3 / 4</span>
+  </div>
+</section>
+
+<!-- PAGE 4 -->
+<section class="page">
+  <h2>What to do next</h2>
+  <p>You have three options. Pick one this week.</p>
+
+  <h3>1. Try one automation yourself</h3>
+  <p>Pick the inbox, the meeting memory, or the repetitive doc. Spend two hours. Either you'll have it working, or you'll have a clear list of specific blockers. Both are wins. Most people get stuck somewhere in step 3 — totally normal.</p>
+
+  <h3>2. Book a Quick Start call with me</h3>
+  <p>60–90 minutes over Zoom. By the end, Claude is installed, configured for <em>your</em> machine, and running one real workflow on <em>your actual work</em> — not a demo, not a tutorial. You also leave with a personalized cheat sheet and 7 days of email follow-up.</p>
+  <p><b>Guarantee:</b> if Claude isn't running on your machine by the end of the call, I keep working at no charge until it is.</p>
+
+  <div class="cta">
+    <h3 style="margin-bottom:6px">Book a call</h3>
+    <p style="margin-bottom:0">→ <a href="https://calendly.com/hiimalexllc/30min">calendly.com/hiimalexllc/30min</a></p>
+  </div>
+
+  <h3>3. Email me a question</h3>
+  <p>Send anything — install errors, "could Claude do X for my business?", or "I just want to talk it through." I read everything.</p>
+  <p>→ <a href="mailto:hiimalex.ai@email.acoffman.org" style="color:var(--accent);text-decoration:none"><b>hiimalex.ai@email.acoffman.org</b></a></p>
+
+  <hr>
+  <p class="small">Whichever path you pick — Claude Code is the most leveraged tool I've found in years. The difference between people who get value from AI and people who don't isn't intelligence or budget. It's whether they got the install over with and put it on a real workflow this week.</p>
+  <p class="small">Get it running. The rest gets easier.</p>
+
+  <div style="margin-top:42px;font-family:ui-sans-serif,sans-serif">
+    <div style="font-size:14px;color:var(--ink);font-weight:700">— Alex</div>
+    <div style="font-size:13px;color:var(--ink-dim);margin-top:2px"><a href="https://hiimalex.ai" style="color:var(--accent);text-decoration:none">hiimalex.ai</a> · Claude Code Expert · Wyoming LLC</div>
+  </div>
+
+  <div class="footer">
+    <span>The Claude Code Starter Guide</span>
+    <span class="pagenum">4 / 4</span>
+  </div>
+</section>
+
+</body>
+</html>

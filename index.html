@@ -136,20 +136,15 @@
           <li>The exact install steps I walk every client through</li>
         </ul>
       </div>
-      <!--
-        TODO — wire to Kit (kit.com):
-          1. Register at kit.com (free up to 10K subs)
-          2. Create a "Newsletter" or "Form" → grab the form's action URL + UID
-          3. Replace `action="mailto:..."` below with the Kit form action
-          4. Replace `data-pdf-url` value with the public link to the PDF (Google Drive, Dropbox, or repo URL)
-          5. Optional: add Kit's hidden fields for tags/tracking
-      -->
-      <form class="magnet-form"
-            action="mailto:hiimalex.ai@email.acoffman.org"
+      <script async src="https://f.convertkit.com/ckjs/ck.5.js"></script>
+      <form class="magnet-form formkit-form"
+            action="https://app.kit.com/forms/9414472/subscriptions"
             method="post"
-            enctype="text/plain"
-            data-pdf-url="">
-        <input type="email" name="email" placeholder="you@company.com" required aria-label="Email address">
+            data-sv-form="9414472"
+            data-uid="564bed749d"
+            data-format="inline"
+            data-version="5">
+        <input type="email" name="email_address" placeholder="you@company.com" required aria-label="Email address">
         <button class="btn btn-primary" type="submit">Send me the guide →</button>
         <p class="fineprint">No spam. Unsubscribe anytime.</p>
       </form>
