@@ -34,7 +34,7 @@ export default async function handler(req, res) {
     console.error('Kit forward failed:', err && err.message);
   }
 
-  // Send the visitor to the guide regardless of Kit's response.
-  res.writeHead(302, { Location: '/starter-guide.html' });
+  // Send the visitor straight to the PDF — instant deliverable.
+  res.writeHead(302, { Location: '/starter-guide.pdf' });
   res.end();
 }
