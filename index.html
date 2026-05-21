@@ -3,10 +3,10 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Hi, I'm Alex — Your Claude Code Expert</title>
-<meta name="description" content="I help individuals and small businesses get Claude AI running and automate their workflows. Personalized setup, real results, taught at Network School.">
-<meta property="og:title" content="Hi, I'm Alex — Your Claude Code Expert">
-<meta property="og:description" content="I get Claude running for your business. Not theory — real workflows, real automation, real results.">
+<title>Hi, I'm Alex — Get Claude saving you 8+ hours a week, running by the end of one call</title>
+<meta name="description" content="I install Claude on your machine and build a real automation around a task that eats your week — live, on one call. It's running by the end, or I don't stop until it is. $200.">
+<meta property="og:title" content="Get Claude saving you 8+ hours a week — running by the end of one call">
+<meta property="og:description" content="Not theory, not a course. One call: I install Claude and build a real automation around your actual work. It runs by the end, or I don't stop until it does. $200.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://hiimalex.ai">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E👋%3C/text%3E%3C/svg%3E">
@@ -34,8 +34,11 @@
   .brand{font-weight:700;letter-spacing:-.01em}
   .brand .wave{display:inline-block;transform-origin:70% 70%;animation:wave 2.4s ease-in-out infinite}
   @keyframes wave{0%,60%,100%{transform:rotate(0)}10%{transform:rotate(14deg)}20%{transform:rotate(-8deg)}30%{transform:rotate(14deg)}40%{transform:rotate(-4deg)}50%{transform:rotate(10deg)}}
+  .nav{display:flex;align-items:center}
   .nav a{margin-left:18px;color:var(--ink-dim);font-size:14px}
   .nav a:hover{color:var(--ink);text-decoration:none}
+  .nav a.nav-cta{color:var(--accent);font-weight:600}
+  @media(max-width:560px){.nav a:not(.nav-cta){display:none}}
   .hero{padding:72px 0 40px}
   .hero .wrap{display:grid;grid-template-columns:1fr auto;gap:48px;align-items:center}
   .hero-photo{width:220px;height:220px;border-radius:50%;object-fit:cover;border:3px solid var(--line);box-shadow:0 16px 48px rgba(0,0,0,.35);justify-self:end}
@@ -51,31 +54,86 @@
   .btn-primary:hover{background:var(--accent-soft);text-decoration:none}
   .btn-secondary{background:transparent;color:var(--ink);border-color:var(--line)}
   .btn-secondary:hover{border-color:var(--ink-dim);text-decoration:none}
+  .btn-lg{padding:16px 26px;font-size:16px}
+  .micro{font-size:13px;color:var(--ink-dim);margin-top:10px}
   .trust{margin-top:28px;font-size:14px;color:var(--ink-dim)}
   .trust b{color:var(--ink);font-weight:600}
   section{padding:56px 0;border-top:1px solid var(--line)}
   h2{font-size:clamp(24px,3vw,32px);letter-spacing:-.01em;margin:0 0 10px;font-weight:700}
   .section-lede{color:var(--ink-dim);max-width:620px;margin:0 0 32px}
-  .services{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
-  .card{background:var(--bg-elev);border:1px solid var(--line);border-radius:var(--radius);padding:22px;transition:border-color .2s,transform .2s}
-  .card:hover{border-color:rgba(255,122,26,.4);transform:translateY(-2px)}
-  .card .tag{font-size:12px;color:var(--accent);letter-spacing:.08em;text-transform:uppercase;font-weight:600;margin-bottom:8px}
-  .card h3{margin:0 0 8px;font-size:18px;font-weight:700}
-  .card p{margin:0 0 12px;color:var(--ink-dim);font-size:14.5px}
-  @media(max-width:720px){.services{grid-template-columns:1fr}}
+  /* problem */
+  .pains{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:24px}
+  .pain{background:var(--bg-elev);border:1px solid var(--line);border-radius:var(--radius);padding:20px;color:var(--ink-dim);font-size:15px}
+  .pain b{color:var(--ink);display:block;margin-bottom:6px;font-size:15px}
+  @media(max-width:720px){.pains{grid-template-columns:1fr}}
+  /* offer / how it works */
+  .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:8px}
+  .step{background:var(--bg-elev);border:1px solid var(--line);border-radius:var(--radius);padding:22px;position:relative}
+  .step .num{font-family:var(--mono);font-size:13px;color:var(--accent);font-weight:700;letter-spacing:.05em}
+  .step h3{margin:8px 0 8px;font-size:18px;font-weight:700}
+  .step p{margin:0;color:var(--ink-dim);font-size:14.5px}
+  @media(max-width:720px){.steps{grid-template-columns:1fr}}
+  /* value stack */
+  .offer-box{background:linear-gradient(135deg,rgba(255,122,26,.07),rgba(255,122,26,.015));border:1px solid rgba(255,122,26,.28);border-radius:var(--radius);padding:28px;margin-top:8px}
+  .offer-box h3{margin:0 0 4px;font-size:20px;letter-spacing:-.01em}
+  .offer-box .sub{color:var(--ink-dim);margin:0 0 18px;font-size:14.5px}
+  .stack{list-style:none;margin:0;padding:0}
+  .stack li{display:flex;align-items:baseline;gap:10px;padding:11px 0;border-bottom:1px dashed var(--line);font-size:15px}
+  .stack li:last-of-type{border-bottom:0}
+  .stack .it{flex:1}
+  .stack .it b{color:var(--ink);font-weight:600}
+  .stack .it span{color:var(--ink-dim);display:block;font-size:13px;margin-top:2px}
+  .stack .val{color:var(--ink-dim);font-variant-numeric:tabular-nums;white-space:nowrap;font-size:14px}
+  .stack .check{color:var(--accent);font-weight:700}
+  .totals{margin-top:18px;padding-top:18px;border-top:1px solid var(--line)}
+  .totals .row{display:flex;justify-content:space-between;align-items:baseline;font-size:15px;margin-bottom:6px}
+  .totals .anchor{color:var(--ink-dim)}
+  .totals .anchor s{opacity:.7}
+  .totals .price{font-size:clamp(22px,3vw,28px);font-weight:800;color:var(--ink)}
+  .totals .price .accent{color:var(--accent)}
+  .offer-cta{margin-top:22px;text-align:center}
+  /* guarantee */
+  .guarantee{display:flex;gap:18px;align-items:flex-start;background:var(--bg-elev);border:1px solid rgba(255,122,26,.3);border-left:3px solid var(--accent);border-radius:var(--radius);padding:24px;margin-top:8px}
+  .guarantee .seal{font-size:34px;line-height:1}
+  .guarantee h3{margin:0 0 6px;font-size:19px}
+  .guarantee p{margin:0;color:var(--ink-dim);font-size:15px}
+  @media(max-width:560px){.guarantee{flex-direction:column;gap:12px}}
+  /* proof */
   .pillars{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:24px}
   .pillar{background:var(--bg-elev);border:1px solid var(--line);border-radius:var(--radius);padding:16px}
   .pillar b{display:block;color:var(--accent);font-size:13px;letter-spacing:.05em;text-transform:uppercase;margin-bottom:4px}
   .pillar span{color:var(--ink-dim);font-size:14px}
   @media(max-width:720px){.pillars{grid-template-columns:repeat(2,1fr)}}
-  .testimonials{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+  .stats{display:flex;flex-wrap:wrap;gap:14px;margin-top:18px}
+  .stat{flex:1;min-width:140px;background:var(--bg-elev);border:1px solid var(--line);border-radius:var(--radius);padding:18px;text-align:center}
+  .stat b{display:block;font-size:26px;font-weight:800;color:var(--ink);letter-spacing:-.01em}
+  .stat span{color:var(--ink-dim);font-size:13.5px}
+  /* testimonials */
+  .testimonials{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-top:8px}
   .quote{background:var(--bg-elev);border:1px solid var(--line);border-radius:var(--radius);padding:22px;color:var(--ink-dim);font-style:italic}
-  .quote.placeholder{border-style:dashed;color:#6b7480;text-align:center}
+  .quote.placeholder{border-style:dashed;color:#6b7480;text-align:center;font-style:normal}
   .quote cite{display:block;margin-top:12px;font-style:normal;color:var(--ink);font-weight:600;font-size:14px}
   @media(max-width:720px){.testimonials{grid-template-columns:1fr}}
+  /* after the call */
+  .after{background:var(--bg-elev);border:1px solid var(--line);border-radius:var(--radius);padding:26px}
+  .after p{color:var(--ink-dim);margin:0 0 12px;font-size:15.5px}
+  .after p:last-child{margin-bottom:0}
+  .after b{color:var(--ink)}
+  /* faq */
+  .faq{margin-top:8px}
+  .faq details{border-bottom:1px solid var(--line);padding:6px 0}
+  .faq summary{cursor:pointer;list-style:none;padding:14px 0;font-weight:600;font-size:16px;color:var(--ink);display:flex;justify-content:space-between;align-items:center;gap:12px}
+  .faq summary::-webkit-details-marker{display:none}
+  .faq summary::after{content:"+";color:var(--accent);font-weight:700;font-size:20px;line-height:1}
+  .faq details[open] summary::after{content:"–"}
+  .faq p{margin:0 0 16px;color:var(--ink-dim);font-size:15px}
+  /* book */
   .book{background:linear-gradient(135deg,rgba(255,122,26,.08),rgba(255,122,26,.02));border:1px solid rgba(255,122,26,.25);border-radius:var(--radius);padding:32px;text-align:center}
   .book h2{margin-bottom:10px}
   .book p{color:var(--ink-dim);margin:0 auto 22px;max-width:520px}
+  .book .recap{display:inline-block;text-align:left;margin:0 auto 22px;color:var(--ink-dim);font-size:14.5px;line-height:1.85}
+  .book .recap b{color:var(--ink)}
+  /* magnet */
   .magnet{background:var(--bg-elev);border:1px solid var(--line);border-radius:var(--radius);padding:28px;display:grid;grid-template-columns:1.2fr 1fr;gap:28px;align-items:center}
   .magnet-text h3{margin:0 0 8px;font-size:22px;letter-spacing:-.01em}
   .magnet-text p{color:var(--ink-dim);margin:0 0 6px;font-size:15px}
@@ -100,10 +158,10 @@
   <div class="wrap">
     <div class="brand"><span class="wave">👋</span> Hi, I'm Alex</div>
     <nav class="nav">
-      <a href="#services">Services</a>
+      <a href="#how">How it works</a>
       <a href="#proof">Why me</a>
-      <a href="#book">Book</a>
-      <a href="#starter-guide">Free guide</a>
+      <a href="#faq">FAQ</a>
+      <a class="nav-cta" href="https://calendly.com/hiimalexllc/30min" target="_blank" rel="noopener">Book — $200 →</a>
     </nav>
   </div>
 </header>
@@ -111,38 +169,85 @@
 <section class="hero">
   <div class="wrap">
     <div class="hero-text">
-      <span class="eyebrow">Claude Code Expert · Available Now</span>
-      <h1>I get <span class="accent">Claude</span> running for your business.</h1>
-      <p class="lede">Not theory — real workflows, real automation, real results. I help individuals and small businesses go from "I've heard of Claude" to "this just saved me 8 hours a week."</p>
+      <span class="eyebrow">Claude Code, set up for your business · Done with you, on one call</span>
+      <h1>Get <span class="accent">Claude</span> saving you 8+ hours a week — running by the end of one call.</h1>
+      <p class="lede">Not theory. Not a course. Not a folder of prompts you'll never open. We hop on one call, I install Claude on your machine, and we build a real automation around a task that's eating your week — together, live. It's working by the time we hang up, or I don't stop until it is.</p>
       <div class="cta-row">
-        <a class="btn btn-primary" href="https://calendly.com/hiimalexllc/30min" target="_blank" rel="noopener">Book a call →</a>
-        <a class="btn btn-secondary" href="#services">See services</a>
+        <a class="btn btn-primary btn-lg" href="https://calendly.com/hiimalexllc/30min" target="_blank" rel="noopener">Book your Quick Start — $200 →</a>
+        <a class="btn btn-secondary btn-lg" href="#how">See how it works</a>
       </div>
-      <p class="trust">Taught <b>Claude Code</b> at <b>Network School</b> (Balaji Srinivasan's program) · Claude Certified Architect candidate</p>
+      <p class="micro">60–90 minutes · 1:1 over Zoom · it runs by the end or I keep working free.</p>
+      <p class="trust">I taught <b>Claude Code at Network School</b> (Balaji Srinivasan's program) — <b>300+ founders trained, 50+ done-with-you setups.</b></p>
     </div>
     <img class="hero-photo" src="alex.jpg" alt="Alex Coffman" width="220" height="220">
   </div>
 </section>
 
-<section id="services">
+<section id="problem">
   <div class="wrap">
-    <h2>What I do</h2>
-    <p class="section-lede">Pick the entry point that matches where you are. Every engagement ends with Claude actually running in your workflow — not a pile of notes.</p>
-    <div class="services">
-      <div class="card">
-        <div class="tag">Tier 1</div>
-        <h3>Quick Start Session</h3>
-        <p>60–90 min 1:1 over Zoom. I install Claude, configure it for your machine, and walk you through a workflow that solves a real task you do every week. You leave with Claude working, a personalized cheat sheet, and 7 days of email follow-up. <b>If Claude isn't running on your machine by the end of the call, I keep working at no extra charge until it is.</b></p>
+    <h2>You don't have an AI problem. You have a "now what?" problem.</h2>
+    <p class="section-lede">You've seen what AI can do. Maybe you even opened Claude or ChatGPT, poked around for ten minutes… and then the tab closed and your week looked exactly the same. The gap was never the technology. It's that nobody sat down and wired it into how <em>you</em> actually work.</p>
+    <div class="pains">
+      <div class="pain"><b>"Where do I even start?"</b>Endless videos and threads, zero of it pointed at your business.</div>
+      <div class="pain"><b>"I set it up and… nothing."</b>The app's installed, but your real work still gets done by hand.</div>
+      <div class="pain"><b>"I don't have time to learn this."</b>So the highest-leverage tool of the decade sits on the shelf.</div>
+    </div>
+  </div>
+</section>
+
+<section id="how">
+  <div class="wrap">
+    <h2>One thing, done right: the Quick Start.</h2>
+    <p class="section-lede">No tiers to decode. No packages to compare. Every Quick Start is built from scratch around your business and the one task quietly eating your week — then we make Claude do it for you, while you watch.</p>
+    <div class="steps">
+      <div class="step">
+        <div class="num">01</div>
+        <h3>We find the bottleneck</h3>
+        <p>First few minutes: we pick the repetitive, time-sucking task with the highest payoff to automate. Your call, your business.</p>
       </div>
-      <div class="card">
-        <div class="tag">Tier 2</div>
-        <h3>Workflow Audit &amp; Build</h3>
-        <p>I sit with you and your team, map how work actually flows today, then deliver a written report with the 3–5 automations that would save you the most hours per week. Optional follow-on: I build 1–2 of them, train your team, and stay on email support for two weeks. Pricing scoped on the call.</p>
+      <div class="step">
+        <div class="num">02</div>
+        <h3>I get Claude running</h3>
+        <p>I install and configure Claude on your machine, with your tools — no "go watch this and figure it out." You're set up correctly the first time.</p>
       </div>
-      <div class="card">
-        <div class="tag">Tier 3</div>
-        <h3>Custom Builds &amp; Retainers</h3>
-        <p>For teams that need ongoing Claude expertise: custom agents, deeper automation, priority support. Starts with a paid discovery that produces a Statement of Work — exact scope, deliverables, and price agreed before any build begins. Monthly retainers available for existing clients. Pricing scoped on the call.</p>
+      <div class="step">
+        <div class="num">03</div>
+        <h3>We build it live</h3>
+        <p>We build the automation together so you can run it again Monday morning. You leave with it working — not with homework.</p>
+      </div>
+    </div>
+
+    <div class="offer-box">
+      <h3>What you walk away with</h3>
+      <p class="sub">One 60–90 minute call. Everything below is yours to keep.</p>
+      <ul class="stack">
+        <li><span class="it"><b>Claude installed &amp; configured</b><span>On your machine, wired to your tools — done right the first time.</span></span><span class="val">$300 value</span></li>
+        <li><span class="it"><b>One real automation, built live</b><span>Around a task you actually do every week — not a demo.</span></span><span class="val">$500 value</span></li>
+        <li><span class="it"><b>A cheat sheet for your exact setup</b><span>So you can run it again — and go further — on your own.</span></span><span class="val">$150 value</span></li>
+        <li><span class="it"><b>7 days of email follow-up</b><span>Hit a snag after the call? Reply and I help you through it.</span></span><span class="val">$200 value</span></li>
+        <li><span class="it"><b>The Claude Code Quick Start guide</b><span>The same playbook I walk every client through, in PDF.</span></span><span class="val">$50 value</span></li>
+        <li><span class="it"><b>The "it runs or I don't stop" guarantee</b><span>You never pay for a maybe.</span></span><span class="val check">included</span></li>
+      </ul>
+      <div class="totals">
+        <div class="row anchor"><span>Total value</span><span><s>$1,200+</s></span></div>
+        <div class="row"><span class="price">Your price today</span><span class="price"><span class="accent">$200</span></span></div>
+      </div>
+      <div class="offer-cta">
+        <a class="btn btn-primary btn-lg" href="https://calendly.com/hiimalexllc/30min" target="_blank" rel="noopener">Book your Quick Start — $200 →</a>
+        <p class="micro">I take a handful of these each week so every setup gets my full focus.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="guarantee">
+  <div class="wrap">
+    <h2>You take zero risk. I do.</h2>
+    <div class="guarantee">
+      <div class="seal">🛡️</div>
+      <div>
+        <h3>The "It Runs Or I Don't Stop" Guarantee</h3>
+        <p>If Claude isn't installed, configured, and running a real workflow on your machine by the end of our call, I keep working — on my clock, at no extra charge — until it is. You're not paying for advice or a maybe. You're paying for it to actually work.</p>
       </div>
     </div>
   </div>
@@ -151,7 +256,12 @@
 <section id="proof">
   <div class="wrap">
     <h2>Why me</h2>
-    <p class="section-lede">There are a lot of people talking about AI. I'm one of a small number worldwide who has installed, configured, and shipped real Claude Code solutions for non-technical businesses.</p>
+    <p class="section-lede">There's a lot of people <em>talking</em> about AI. I'm one of a small number worldwide who has actually installed, configured, and shipped Claude Code for non-technical businesses — not posted about it, shipped it.</p>
+    <div class="stats">
+      <div class="stat"><b>300+</b><span>founders trained at Network School</span></div>
+      <div class="stat"><b>50+</b><span>done-with-you 1:1 setups</span></div>
+      <div class="stat"><b>1 call</b><span>from "heard of it" to "it's running"</span></div>
+    </div>
     <div class="pillars">
       <div class="pillar"><b>Practical</b><span>I open a terminal and make it work.</span></div>
       <div class="pillar"><b>Patient</b><span>I've taught complete beginners — no jargon.</span></div>
@@ -164,10 +274,49 @@
 <section id="testimonials">
   <div class="wrap">
     <h2>What clients say</h2>
-    <p class="section-lede">Fresh out of the gate — more testimonials landing every week.</p>
+    <p class="section-lede">I'm early and honest about it — client quotes are landing as the first cohort wraps. Want your name here? Be one of the first.</p>
     <div class="testimonials">
-      <div class="quote placeholder">Your testimonial could go here.<br>Work with me and let's change that.</div>
-      <div class="quote placeholder">Client testimonial · coming soon</div>
+      <div class="quote placeholder">Your result could go here.<br>Book a Quick Start and let's make one.</div>
+      <div class="quote placeholder">Client testimonial · landing soon</div>
+    </div>
+  </div>
+</section>
+
+<section id="after">
+  <div class="wrap">
+    <h2>Most people don't stop at the Quick Start.</h2>
+    <div class="after">
+      <p>Once Claude is running and you've felt it save you real hours, the next question is always the same: <b>"okay — what else can this do?"</b></p>
+      <p>That's where the bespoke work begins — custom agents, deeper automations across your team, an ongoing build partner who keeps shipping. There's no menu and no package to pick from: we scope it together on the call, built around your business, and only if it actually makes sense for you.</p>
+      <p>And if it doesn't? The Quick Start stands completely on its own. <b>No pressure, no upsell trap — you get a working setup either way.</b></p>
+    </div>
+  </div>
+</section>
+
+<section id="faq">
+  <div class="wrap">
+    <h2>Questions, answered</h2>
+    <div class="faq">
+      <details>
+        <summary>I'm not technical at all. Will I be lost?</summary>
+        <p>That's exactly who this is built for. I've taught complete beginners who'd never opened a terminal — and they left with Claude running. No jargon, no "you should already know this." I do the technical part; you watch and learn the parts that matter for your work.</p>
+      </details>
+      <details>
+        <summary>Will this actually work for <em>my</em> business?</summary>
+        <p>Every Quick Start is built around your specific workflow — we start by finding the highest-leverage task <em>you</em> do, then automate that one. Whether you're in finance, real estate, agencies, e-commerce, or something niche, the approach is the same: point Claude at real, repetitive work and make it disappear.</p>
+      </details>
+      <details>
+        <summary>What if it doesn't work by the end of the call?</summary>
+        <p>Then I keep working — at no extra charge — until it does. If Claude isn't installed, configured, and running a real workflow on your machine by the end, you haven't gotten what you paid for, and I treat it that way.</p>
+      </details>
+      <details>
+        <summary>What does it cost after the call? Am I signing up for something?</summary>
+        <p>No. $200 is the whole thing — one call, everything above, done. Ongoing work (custom builds, retainers) only happens if you want it and we scope it together. The Quick Start is complete on its own.</p>
+      </details>
+      <details>
+        <summary>What do I need before we start?</summary>
+        <p>Just your laptop and one task that eats your time every week. That's it — I'll handle the rest on the call.</p>
+      </details>
     </div>
   </div>
 </section>
@@ -175,19 +324,19 @@
 <section id="book">
   <div class="wrap">
     <div class="book">
-      <h2>Ready to get Claude running?</h2>
-      <p>By the end of one call, Claude is installed, configured, and running a real workflow on your machine — not theory, not screenshots, your actual setup doing your actual work.</p>
-      <p style="margin-top:14px">Here's what's included:</p>
-      <ul style="text-align:left;max-width:560px;margin:10px auto 0;line-height:1.65">
-        <li>60–90 min 1:1 over Zoom — install + configure on your machine</li>
-        <li>One real workflow built around a task you do every week</li>
-        <li>Personalized cheat sheet you keep</li>
-        <li>7 days of email follow-up after the call</li>
-        <li><b>Guarantee:</b> if Claude isn't running by end of call, I keep working at no charge until it is</li>
-      </ul>
-      <p style="margin-top:18px">I take a limited number of these each week. Book a call and I'll confirm the slot.</p>
-      <a class="btn btn-primary" href="https://calendly.com/hiimalexllc/30min" target="_blank" rel="noopener">Book a call →</a>
-      <p style="margin-top:18px;font-size:13px">Or email me: <a href="mailto:hiimalex.ai@email.acoffman.org">hiimalex.ai@email.acoffman.org</a></p>
+      <h2>Ready to get Claude actually running?</h2>
+      <p>By the end of one call, Claude is installed, configured, and doing real work on your machine — not theory, not screenshots, your actual setup doing your actual work.</p>
+      <div class="recap">
+        ✅ <b>60–90 min 1:1 over Zoom</b> — install + configure on your machine<br>
+        ✅ <b>One real automation</b> built live around your weekly task<br>
+        ✅ <b>Personalized cheat sheet</b> you keep<br>
+        ✅ <b>7 days of email follow-up</b> after the call<br>
+        ✅ <b>Guarantee:</b> it runs by the end, or I keep working free
+      </div>
+      <div>
+        <a class="btn btn-primary btn-lg" href="https://calendly.com/hiimalexllc/30min" target="_blank" rel="noopener">Book your Quick Start — $200 →</a>
+      </div>
+      <p style="margin-top:18px;font-size:13px">I take a limited number each week. Prefer email? <a href="mailto:hiimalex.ai@email.acoffman.org">hiimalex.ai@email.acoffman.org</a></p>
     </div>
   </div>
 </section>
