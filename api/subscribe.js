@@ -1,8 +1,14 @@
-// Vercel serverless function: receives the lead-magnet form post from
-// hiimalex.ai, forwards the email to Kit (server-to-server, no CORS),
-// then redirects the visitor to the guide page.
+// Vercel serverless function for the lead-magnet form on hiimalex.ai.
+// The form (index.html) POSTs `email_address` here. We:
+//   1. Save the email durably (Vercel KV / Upstash REST if configured),
+//   2. Always fall back to a log line so nothing is ever silently lost,
+//   3. Redirect the visitor straight to the guide PDF.
 //
-// Form on the site posts to /api/subscribe with `email_address`.
+// Why not just write a file? Vercel serverless has an ephemeral filesystem — a
+// file written here disappears on the next invocation. Durable storage needs a
+// store. Connect a Vercel KV store to the project and KV_REST_API_URL /
+// KV_REST_API_TOKEN get injected automatically; until then, every lead still
+// lands in the function logs.
 
 export default async function handler(req, res) {
   if (req.method !== 'POST') {
@@ -10,31 +16,39 @@ export default async function handler(req, res) {
     return;
   }
 
-  // Vercel auto-parses url-encoded and JSON bodies into req.body
-  const email = (req.body && req.body.email_address || '').trim();
-  if (!email || !email.includes('@')) {
-    res.status(400).send('Invalid email');
-    return;
-  }
+  const email = ((req.body && req.body.email_address) || '').trim();
+  const valid = email && /.+@.+\..+/.test(email);
 
-  // Forward to Kit's public form endpoint.
-  // Same endpoint the embedded Kit form uses; no auth required.
-  try {
-    await fetch('https://app.kit.com/forms/9414472/subscriptions', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/x-www-form-urlencoded',
-        'Accept': 'application/json',
-        'User-Agent': 'hiimalex.ai/lead-magnet'
-      },
-      body: new URLSearchParams({ email_address: email }).toString()
+  if (valid) {
+    const record = JSON.stringify({
+      email,
+      ts: new Date().toISOString(),
+      ua: req.headers['user-agent'] || '',
+      ref: req.headers['referer'] || ''
     });
-  } catch (err) {
-    // Don't block the visitor on a Kit hiccup — log and continue to the guide.
-    console.error('Kit forward failed:', err && err.message);
+
+    const url = process.env.KV_REST_API_URL;
+    const token = process.env.KV_REST_API_TOKEN;
+
+    if (url && token) {
+      try {
+        // Append to a Redis list "leads" via Upstash REST (no npm deps needed).
+        const r = await fetch(`${url}/rpush/leads/${encodeURIComponent(record)}`, {
+          headers: { Authorization: `Bearer ${token}` }
+        });
+        if (!r.ok) console.error('KV save non-OK:', r.status, '| LEAD:', record);
+      } catch (err) {
+        console.error('KV save failed:', err && err.message, '| LEAD:', record);
+      }
+    } else {
+      // No store connected yet — capture it in the function logs at minimum.
+      console.log('LEAD:', record);
+    }
+  } else {
+    console.warn('Subscribe: invalid or missing email');
   }
 
-  // Send the visitor straight to the PDF — instant deliverable.
+  // Visitor always gets the guide, regardless of save outcome.
   res.writeHead(302, { Location: '/starter-guide.pdf' });
   res.end();
 }
