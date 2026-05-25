@@ -1,14 +1,4 @@
-// Vercel serverless function for the lead-magnet form on hiimalex.ai.
-// The form (index.html) POSTs `email_address` here. We:
-//   1. Save the email durably (Vercel KV / Upstash REST if configured),
-//   2. Always fall back to a log line so nothing is ever silently lost,
-//   3. Redirect the visitor straight to the guide PDF.
-//
-// Why not just write a file? Vercel serverless has an ephemeral filesystem — a
-// file written here disappears on the next invocation. Durable storage needs a
-// store. Connect a Vercel KV store to the project and KV_REST_API_URL /
-// KV_REST_API_TOKEN get injected automatically; until then, every lead still
-// lands in the function logs.
+import nodemailer from 'nodemailer';
 
 export default async function handler(req, res) {
   if (req.method !== 'POST') {
@@ -20,29 +10,28 @@ export default async function handler(req, res) {
   const valid = email && /.+@.+\..+/.test(email);
 
   if (valid) {
-    const record = JSON.stringify({
-      email,
-      ts: new Date().toISOString(),
-      ua: req.headers['user-agent'] || '',
-      ref: req.headers['referer'] || ''
-    });
+    const record = { email, ts: new Date().toISOString() };
+    // Always log — Vercel retains function logs
+    console.log('LEAD:', JSON.stringify(record));
 
-    const url = process.env.KV_REST_API_URL;
-    const token = process.env.KV_REST_API_TOKEN;
-
-    if (url && token) {
+    // Email notification to your inbox if Gmail creds are set
+    const gmailUser = process.env.GMAIL_USER;
+    const gmailPass = process.env.GMAIL_APP_PASSWORD;
+    if (gmailUser && gmailPass) {
       try {
-        // Append to a Redis list "leads" via Upstash REST (no npm deps needed).
-        const r = await fetch(`${url}/rpush/leads/${encodeURIComponent(record)}`, {
-          headers: { Authorization: `Bearer ${token}` }
+        const transporter = nodemailer.createTransport({
+          service: 'gmail',
+          auth: { user: gmailUser, pass: gmailPass }
         });
-        if (!r.ok) console.error('KV save non-OK:', r.status, '| LEAD:', record);
+        await transporter.sendMail({
+          from: gmailUser,
+          to: gmailUser,
+          subject: `New lead: ${email}`,
+          text: `Email: ${email}\nTime: ${record.ts}\nSource: hiimalex.ai free guide`
+        });
       } catch (err) {
-        console.error('KV save failed:', err && err.message, '| LEAD:', record);
+        console.error('Email notify failed:', err && err.message);
       }
-    } else {
-      // No store connected yet — capture it in the function logs at minimum.
-      console.log('LEAD:', record);
     }
   } else {
     console.warn('Subscribe: invalid or missing email');
