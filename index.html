@@ -139,8 +139,8 @@
   .magnet-text p{color:var(--ink-dim);margin:0 0 6px;font-size:15px}
   .magnet-text ul{margin:8px 0 0;padding-left:18px;color:var(--ink-dim);font-size:14.5px}
   .magnet-form{display:flex;flex-direction:column;gap:10px}
-  .magnet-form input[type=email]{width:100%;padding:13px 14px;border-radius:10px;border:1px solid var(--line);background:var(--bg);color:var(--ink);font-size:15px;font-family:inherit}
-  .magnet-form input[type=email]:focus{outline:none;border-color:var(--accent)}
+  .magnet-form input[type=email],.magnet-form input[type=text]{width:100%;padding:13px 14px;border-radius:10px;border:1px solid var(--line);background:var(--bg);color:var(--ink);font-size:15px;font-family:inherit}
+  .magnet-form input:focus{outline:none;border-color:var(--accent)}
   .magnet-form button{width:100%}
   .magnet-form .fineprint{font-size:12px;color:var(--ink-dim);text-align:center;margin:4px 0 0}
   @media(max-width:720px){.magnet{grid-template-columns:1fr;gap:20px}}
@@ -353,10 +353,12 @@
           <li>The exact install steps for Mac and Windows</li>
         </ul>
       </div>
-      <div class="magnet-form">
-        <a class="btn btn-secondary" href="https://docs.google.com/forms/d/e/1FAIpQLScU9XIiJYrDDp0v9H0oobnZj2mXQbO4qS8aBzVrcP4sNEvuJA/viewform?usp=header" target="_blank" rel="noopener"><span>Sign up to receive this →</span></a>
-        <p class="fineprint">Opens Google Form. Instant access. No spam.</p>
-      </div>
+      <form class="magnet-form" action="/api/subscribe" method="POST">
+        <input type="text" name="name" placeholder="Your name" autocomplete="name" required />
+        <input type="email" name="email_address" placeholder="you@work.com" autocomplete="email" required />
+        <button class="btn btn-secondary" type="submit"><span>Send me the guide →</span></button>
+        <p class="fineprint">Instant access. No spam.</p>
+      </form>
     </div>
   </div>
 </section>
