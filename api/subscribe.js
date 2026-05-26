@@ -40,11 +40,20 @@ export default async function handler(req, res) {
     if (name) params.set(GFORM_NAME_ENTRY, name);
     params.set(GFORM_EMAIL_ENTRY, email);
     params.set('emailAddress', email);
-    fetch(GFORM_URL, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-      body: params.toString(),
-    }).catch(err => console.error('GForm submit failed:', err && err.message));
+    try {
+      const gres = await fetch(GFORM_URL, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded',
+          'User-Agent': 'Mozilla/5.0 (hi-im-alex lead capture)',
+        },
+        body: params.toString(),
+        redirect: 'manual',
+      });
+      console.log(JSON.stringify({ type: 'gform_result', status: gres.status, email }));
+    } catch (err) {
+      console.error('GForm submit failed:', err && err.message);
+    }
   }
 
   res.writeHead(302, { Location: '/starter-guide.pdf' });
