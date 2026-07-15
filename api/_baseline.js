@@ -1,0 +1,57 @@
+// Baseline of 50 common roles scored with the same rubric used in api/score.js.
+// Used for the honest percentile claim: "more automatable than N of 50 common roles".
+// Scores = estimated % of a typical week's tasks that current AI tools can already
+// handle with realistic setup effort. Calibration anchors are marked below and
+// repeated in the scoring prompt so runtime scores sit on the same scale.
+export const BASELINE = [
+  { role: 'Transcriptionist', score: 95 },
+  { role: 'Data entry clerk', score: 93 }, // anchor
+  { role: 'Invoice and billing clerk', score: 90 },
+  { role: 'Bookkeeper', score: 88 },
+  { role: 'Proofreader', score: 88 },
+  { role: 'Scheduling coordinator', score: 87 },
+  { role: 'Translator', score: 85 },
+  { role: 'Insurance claims processor', score: 84 },
+  { role: 'Customer support rep, email and chat', score: 82 },
+  { role: 'Telemarketer', score: 80 },
+  { role: 'Copywriter', score: 78 },
+  { role: 'Travel agent', score: 78 },
+  { role: 'Junior data analyst', score: 77 },
+  { role: 'Tax preparer', score: 76 },
+  { role: 'Research assistant', score: 75 },
+  { role: 'Social media manager', score: 74 },
+  { role: 'Paralegal', score: 73 },
+  { role: 'Executive assistant', score: 72 },
+  { role: 'SEO specialist', score: 71 },
+  { role: 'Loan processor', score: 70 },
+  { role: 'Technical writer', score: 68 },
+  { role: 'Accountant', score: 64 },
+  { role: 'Financial analyst', score: 62 },
+  { role: 'Recruiter', score: 58 },
+  { role: 'Office manager', score: 56 },
+  { role: 'Marketing manager', score: 55 }, // anchor
+  { role: 'Inside sales rep', score: 54 },
+  { role: 'Software developer', score: 53 },
+  { role: 'Journalist', score: 51 },
+  { role: 'Management consultant', score: 50 },
+  { role: 'HR generalist', score: 49 },
+  { role: 'Customer success manager', score: 47 },
+  { role: 'Graphic designer', score: 46 },
+  { role: 'Video editor', score: 45 },
+  { role: 'Lawyer', score: 44 },
+  { role: 'Project manager', score: 43 },
+  { role: 'Product manager', score: 42 },
+  { role: 'Real estate agent', score: 40 },
+  { role: 'Pharmacist', score: 36 },
+  { role: 'Teacher', score: 33 },
+  { role: 'Nurse', score: 15 },
+  { role: 'Veterinarian', score: 14 },
+  { role: 'Dentist', score: 12 },
+  { role: 'Auto mechanic', score: 11 },
+  { role: 'Chef', score: 10 },
+  { role: 'Physical therapist', score: 9 },
+  { role: 'Electrician', score: 8 },
+  { role: 'Plumber', score: 7 }, // anchor
+  { role: 'Landscaper', score: 6 },
+  { role: 'Hair stylist', score: 4 },
+];
