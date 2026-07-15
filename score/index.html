@@ -1,0 +1,311 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>What's your Automation Score? · Hi, I'm Alex</title>
+<meta name="description" content="Paste a job description or list what fills your week. Claude scores how much of it AI can already do, task by task. Free, no signup, about 15 seconds.">
+<meta property="og:title" content="What's your Automation Score?">
+<meta property="og:description" content="Paste a job description or list what fills your week. Claude scores how much of it AI can already do, task by task. Free, no signup, about 15 seconds.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://hiimalex.ai/score">
+<meta property="og:image" content="https://hiimalex.ai/alex.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="What's your Automation Score?">
+<meta name="twitter:description" content="Paste a job description or list what fills your week. Claude scores how much of it AI can already do, task by task. Free, no signup, about 15 seconds.">
+<meta name="twitter:image" content="https://hiimalex.ai/alex.jpg">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%E2%9A%A1%3C/text%3E%3C/svg%3E">
+<!-- Vercel Web Analytics -->
+<script>window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };</script>
+<script defer src="/_vercel/insights/script.js"></script>
+<!-- Microsoft Clarity -->
+<script type="text/javascript">
+    (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "wyicp6lzyo");
+</script>
+<style>
+  :root{
+    --bg:#0b0d10;
+    --bg-elev:#12161b;
+    --ink:#f5f6f7;
+    --ink-dim:#a8b0b8;
+    --line:#1f262e;
+    --accent:#ff7a1a;
+    --accent-soft:#ffb37a;
+    --radius:14px;
+    --maxw:760px;
+    --font:ui-sans-serif,-apple-system,BlinkMacSystemFont,"Inter","Segoe UI",Roboto,sans-serif;
+    --mono:ui-monospace,"SF Mono",Menlo,Consolas,monospace;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0;background:var(--bg);color:var(--ink);font-family:var(--font);-webkit-font-smoothing:antialiased;line-height:1.55}
+  a{color:var(--accent-soft);text-decoration:none}
+  a:hover{color:var(--accent);text-decoration:underline}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px}
+  header.top{padding:22px 0;border-bottom:1px solid var(--line);position:sticky;top:0;background:rgba(11,13,16,.85);backdrop-filter:blur(8px);z-index:10}
+  header.top .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px}
+  .brand{font-weight:700;letter-spacing:-.01em}
+  .brand a{color:var(--ink)}
+  .brand a:hover{text-decoration:none}
+  .nav a{margin-left:18px;color:var(--accent);font-size:14px;font-weight:600}
+  .hero{padding:56px 0 12px;text-align:center}
+  .eyebrow{display:inline-block;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);background:rgba(255,122,26,.1);border:1px solid rgba(255,122,26,.25);padding:6px 10px;border-radius:999px;margin-bottom:20px}
+  h1{font-size:clamp(32px,5.2vw,52px);line-height:1.08;letter-spacing:-.02em;margin:0 0 16px;font-weight:800}
+  h1 .accent{color:var(--accent)}
+  .lede{font-size:clamp(16px,2vw,19px);color:var(--ink-dim);max-width:600px;margin:0 auto 8px}
+  .tool{padding:28px 0 48px}
+  .tool-box{background:var(--bg-elev);border:1px solid var(--line);border-radius:var(--radius);padding:22px}
+  textarea{width:100%;min-height:170px;resize:vertical;padding:14px;border-radius:10px;border:1px solid var(--line);background:var(--bg);color:var(--ink);font-size:15px;font-family:inherit;line-height:1.5}
+  textarea:focus{outline:none;border-color:var(--accent)}
+  .tool-row{display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between;margin-top:14px}
+  .btn{display:inline-flex;align-items:center;gap:8px;padding:14px 22px;border-radius:10px;font-weight:600;font-size:15px;border:1px solid transparent;transition:transform .08s ease,background .2s;cursor:pointer;font-family:inherit}
+  .btn:active{transform:translateY(1px)}
+  .btn:disabled{opacity:.55;cursor:wait}
+  .btn-primary{background:var(--accent);color:#0b0d10}
+  .btn-primary:hover{background:var(--accent-soft);text-decoration:none}
+  .btn-secondary{background:transparent;color:var(--ink);border-color:var(--line)}
+  .btn-secondary:hover{border-color:var(--ink-dim);text-decoration:none}
+  .micro{font-size:13px;color:var(--ink-dim);margin:0}
+  .err{display:none;margin-top:14px;padding:12px 14px;border-radius:10px;border:1px solid rgba(255,90,90,.4);background:rgba(255,90,90,.08);color:#ffb0b0;font-size:14px}
+  /* result */
+  #result{display:none;padding:8px 0 48px}
+  .score-box{background:var(--bg-elev);border:1px solid rgba(255,122,26,.28);border-radius:var(--radius);padding:30px;text-align:center}
+  .score-role{font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-dim);margin:0 0 6px}
+  .score-num{font-size:clamp(72px,14vw,120px);font-weight:800;line-height:1;letter-spacing:-.03em}
+  .score-num .pct{color:var(--accent);font-size:.55em}
+  .score-bar{width:100%;height:14px;background:var(--bg);border:1px solid var(--line);border-radius:8px;margin:20px 0 10px;overflow:hidden}
+  .score-bar-fill{height:100%;width:0;background:var(--accent);border-radius:8px;transition:width .9s ease}
+  .score-compare{font-size:14px;color:var(--ink-dim);margin:0 0 16px}
+  .score-verdict{font-size:clamp(17px,2.4vw,21px);color:var(--ink);margin:0;font-weight:600}
+  .share-row{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin-top:22px}
+  .cols{display:grid;grid-template-columns:1.4fr 1fr;gap:16px;margin-top:16px}
+  @media(max-width:640px){.cols{grid-template-columns:1fr}}
+  .panel{background:var(--bg-elev);border:1px solid var(--line);border-radius:var(--radius);padding:20px}
+  .panel h3{margin:0 0 14px;font-size:15px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-dim);font-weight:700}
+  .task{margin-bottom:14px}
+  .task:last-child{margin-bottom:0}
+  .task-head{display:flex;justify-content:space-between;gap:10px;font-size:14.5px;margin-bottom:5px}
+  .task-head b{color:var(--ink);font-weight:600}
+  .task-head span{color:var(--accent);font-family:var(--mono);font-size:13.5px;white-space:nowrap}
+  .task-bar{height:6px;background:var(--bg);border-radius:4px;overflow:hidden;margin-bottom:5px}
+  .task-bar-fill{height:100%;background:var(--accent);opacity:.85;border-radius:4px}
+  .task-how{font-size:13px;color:var(--ink-dim);margin:0}
+  .human-list{list-style:none;margin:0;padding:0}
+  .human-list li{padding:9px 0;border-bottom:1px dashed var(--line);font-size:14.5px;color:var(--ink-dim)}
+  .human-list li:last-child{border-bottom:0}
+  .human-list li::before{content:"🤝 ";margin-right:4px}
+  .cta-box{background:linear-gradient(135deg,rgba(255,122,26,.08),rgba(255,122,26,.02));border:1px solid rgba(255,122,26,.25);border-radius:var(--radius);padding:30px;text-align:center;margin-top:16px}
+  .cta-box h2{font-size:clamp(21px,3vw,27px);letter-spacing:-.01em;margin:0 0 10px;font-weight:700}
+  .cta-box p{color:var(--ink-dim);margin:0 auto 20px;max-width:480px;font-size:15px}
+  footer{padding:36px 0 56px;color:var(--ink-dim);font-size:13.5px;border-top:1px solid var(--line);text-align:center}
+  footer p{margin:0 0 6px}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap">
+    <div class="brand"><a href="/"><span>👋</span> Hi, I'm Alex</a></div>
+    <nav class="nav">
+      <a href="https://calendly.com/hiimalexllc/quickstart" target="_blank" rel="noopener">Book the Quick Start →</a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap">
+    <span class="eyebrow">Free · No signup · About 15 seconds</span>
+    <h1>What's your <span class="accent">Automation Score?</span></h1>
+    <p class="lede">Paste a job description, or just list what you (or your business) do all day. Claude breaks it into tasks and scores how much of it AI can already handle.</p>
+  </div>
+</section>
+
+<section class="tool">
+  <div class="wrap">
+    <div class="tool-box">
+      <textarea id="input" maxlength="4000" placeholder="Example: I run a small marketing agency. My week is client emails, writing social posts, monthly performance reports, invoicing, scheduling calls, and chasing late payments."></textarea>
+      <div class="tool-row">
+        <p class="micro">Scored by Claude against 50 common roles. No account, nothing to install.</p>
+        <button id="go" class="btn btn-primary">Get my Automation Score →</button>
+      </div>
+      <div id="err" class="err"></div>
+    </div>
+  </div>
+</section>
+
+<section id="result">
+  <div class="wrap">
+    <div class="score-box">
+      <p class="score-role" id="r-role"></p>
+      <div class="score-num"><span id="r-score">0</span><span class="pct">%</span></div>
+      <div class="score-bar"><div class="score-bar-fill" id="r-bar"></div></div>
+      <p class="score-compare" id="r-compare"></p>
+      <p class="score-verdict" id="r-verdict"></p>
+      <div class="share-row">
+        <button id="copy" class="btn btn-secondary">Copy my score link</button>
+        <button id="share" class="btn btn-secondary" style="display:none">Share</button>
+      </div>
+    </div>
+
+    <div class="cols">
+      <div class="panel">
+        <h3>Task by task</h3>
+        <div id="r-tasks"></div>
+      </div>
+      <div class="panel">
+        <h3>What stays yours</h3>
+        <ul class="human-list" id="r-human"></ul>
+      </div>
+    </div>
+
+    <div class="cta-box">
+      <h2>Make that <span id="r-score2">0</span>% work <em>for</em> you, not instead of you.</h2>
+      <p>The score is the easy part. On one Zoom call I install Claude on your machine and we build a real automation around the work above, live. It runs by the end, or I keep going free.</p>
+      <a class="btn btn-primary" href="https://calendly.com/hiimalexllc/quickstart" target="_blank" rel="noopener">Book your Quick Start for $200 →</a>
+      <p class="micro" style="margin-top:12px"><a href="https://calendly.com/hiimalexllc/new-meeting" target="_blank" rel="noopener">Prefer a free 15 min call first? →</a></p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <p>Scores are estimates from an AI model, made for comparison and conversation, not career advice.</p>
+    <p><a href="/">hiimalex.ai</a> · Claude installed and doing real work, in one call.</p>
+  </div>
+</footer>
+
+<script>
+(function () {
+  var goBtn = document.getElementById('go');
+  var input = document.getElementById('input');
+  var errBox = document.getElementById('err');
+  var result = document.getElementById('result');
+  var copyBtn = document.getElementById('copy');
+  var shareBtn = document.getElementById('share');
+  var shareUrl = '';
+  var shareText = '';
+
+  function showError(msg) {
+    errBox.textContent = msg;
+    errBox.style.display = 'block';
+  }
+
+  function countUp(elId, target) {
+    var elNode = document.getElementById(elId);
+    var start = null;
+    var dur = 900;
+    function step(ts) {
+      if (!start) start = ts;
+      var t = Math.min(1, (ts - start) / dur);
+      elNode.textContent = String(Math.round(target * (1 - Math.pow(1 - t, 3))));
+      if (t < 1) requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+  }
+
+  function render(data) {
+    document.getElementById('r-role').textContent = data.role_label;
+    document.getElementById('r-verdict').textContent = data.verdict;
+    document.getElementById('r-compare').textContent =
+      'More automatable than ' + data.below + ' of ' + data.n + ' common roles';
+
+    countUp('r-score', data.score);
+    countUp('r-score2', data.score);
+
+    var tasksBox = document.getElementById('r-tasks');
+    tasksBox.textContent = '';
+    data.tasks.forEach(function (t) {
+      var task = document.createElement('div');
+      task.className = 'task';
+      var head = document.createElement('div');
+      head.className = 'task-head';
+      var name = document.createElement('b');
+      name.textContent = t.task;
+      var pct = document.createElement('span');
+      pct.textContent = t.pct + '%';
+      head.appendChild(name);
+      head.appendChild(pct);
+      var bar = document.createElement('div');
+      bar.className = 'task-bar';
+      var fill = document.createElement('div');
+      fill.className = 'task-bar-fill';
+      fill.style.width = Math.max(2, t.pct) + '%';
+      bar.appendChild(fill);
+      var how = document.createElement('p');
+      how.className = 'task-how';
+      how.textContent = t.how;
+      task.appendChild(head);
+      task.appendChild(bar);
+      task.appendChild(how);
+      tasksBox.appendChild(task);
+    });
+
+    var humanBox = document.getElementById('r-human');
+    humanBox.textContent = '';
+    (data.human.length ? data.human : ['Judgment calls and relationships.']).forEach(function (h) {
+      var li = document.createElement('li');
+      li.textContent = h;
+      humanBox.appendChild(li);
+    });
+
+    shareUrl = location.origin + '/s?d=' + encodeURIComponent(data.share);
+    shareText = 'My Automation Score is ' + data.score + '%. ' + data.verdict + ' What is yours?';
+    if (navigator.share) shareBtn.style.display = 'inline-flex';
+
+    result.style.display = 'block';
+    setTimeout(function () {
+      document.getElementById('r-bar').style.width = Math.max(2, data.score) + '%';
+      result.scrollIntoView({ behavior: 'smooth' });
+    }, 60);
+  }
+
+  goBtn.addEventListener('click', function () {
+    var text = input.value.trim();
+    errBox.style.display = 'none';
+    if (text.length < 20) {
+      showError('Give me a bit more to work with. A sentence or two about what fills your week is enough.');
+      return;
+    }
+    goBtn.disabled = true;
+    goBtn.textContent = 'Scoring your week…';
+    fetch('/api/score', {
+      method: 'POST',
+      headers: { 'content-type': 'application/json' },
+      body: JSON.stringify({ text: text }),
+    })
+      .then(function (r) { return r.json().then(function (j) { return { status: r.status, body: j }; }); })
+      .then(function (resp) {
+        if (!resp.body.ok) {
+          showError(resp.body.error || 'Something went wrong. Try again.');
+          return;
+        }
+        render(resp.body);
+      })
+      .catch(function () {
+        showError('Could not reach the scoring engine. Check your connection and try again.');
+      })
+      .finally(function () {
+        goBtn.disabled = false;
+        goBtn.textContent = 'Get my Automation Score →';
+      });
+  });
+
+  copyBtn.addEventListener('click', function () {
+    if (!shareUrl) return;
+    navigator.clipboard.writeText(shareUrl).then(function () {
+      copyBtn.textContent = 'Copied ✓';
+      setTimeout(function () { copyBtn.textContent = 'Copy my score link'; }, 2000);
+    });
+  });
+
+  shareBtn.addEventListener('click', function () {
+    if (!shareUrl) return;
+    navigator.share({ title: 'My Automation Score', text: shareText, url: shareUrl }).catch(function () {});
+  });
+})();
+</script>
+</body>
+</html>
