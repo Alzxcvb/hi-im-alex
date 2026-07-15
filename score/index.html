@@ -80,7 +80,10 @@
   .score-bar-fill{height:100%;width:0;background:var(--accent);border-radius:8px;transition:width .9s ease}
   .score-compare{font-size:14px;color:var(--ink-dim);margin:0 0 16px}
   .score-verdict{font-size:clamp(17px,2.4vw,21px);color:var(--ink);margin:0;font-weight:600}
-  .share-row{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin-top:22px}
+  .share-row{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin-top:16px}
+  .post-box{background:var(--bg);border:1px dashed var(--line);border-radius:10px;padding:18px;margin-top:24px;text-align:left}
+  .post-label{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-dim);margin:0 0 8px;font-weight:700}
+  .post-text{font-size:15px;color:var(--ink);margin:0;line-height:1.6}
   .cols{display:grid;grid-template-columns:1.4fr 1fr;gap:16px;margin-top:16px}
   @media(max-width:640px){.cols{grid-template-columns:1fr}}
   .panel{background:var(--bg-elev);border:1px solid var(--line);border-radius:var(--radius);padding:20px}
@@ -144,9 +147,16 @@
       <div class="score-bar"><div class="score-bar-fill" id="r-bar"></div></div>
       <p class="score-compare" id="r-compare"></p>
       <p class="score-verdict" id="r-verdict"></p>
-      <div class="share-row">
-        <button id="copy" class="btn btn-secondary">Copy my score link</button>
-        <button id="share" class="btn btn-secondary" style="display:none">Share</button>
+      <div class="post-box">
+        <p class="post-label">Your post, ready to go. Edit it or send it as is:</p>
+        <p class="post-text" id="post-text"></p>
+        <div class="share-row">
+          <button id="share-li" class="btn btn-primary">Share on LinkedIn</button>
+          <button id="share-x" class="btn btn-secondary">Post on X</button>
+          <button id="share-wa" class="btn btn-secondary">WhatsApp</button>
+          <button id="copy" class="btn btn-secondary">Copy link</button>
+        </div>
+        <p class="micro" id="share-hint" style="margin-top:10px"></p>
       </div>
     </div>
 
@@ -184,9 +194,12 @@
   var errBox = document.getElementById('err');
   var result = document.getElementById('result');
   var copyBtn = document.getElementById('copy');
-  var shareBtn = document.getElementById('share');
+  var liBtn = document.getElementById('share-li');
+  var xBtn = document.getElementById('share-x');
+  var waBtn = document.getElementById('share-wa');
+  var shareHint = document.getElementById('share-hint');
   var shareUrl = '';
-  var shareText = '';
+  var postText = '';
 
   function showError(msg) {
     errBox.textContent = msg;
@@ -252,8 +265,10 @@
     });
 
     shareUrl = location.origin + '/s?d=' + encodeURIComponent(data.share);
-    shareText = 'My Automation Score is ' + data.score + '%. ' + data.verdict + ' What is yours?';
-    if (navigator.share) shareBtn.style.display = 'inline-flex';
+    postText = 'I just found out that my work (' + data.role_label + ') is ' + data.score +
+      '% automatable. It even told me which tasks AI takes first. See how replaceable you are:';
+    document.getElementById('post-text').textContent = postText;
+    shareHint.textContent = '';
 
     result.style.display = 'block';
     setTimeout(function () {
@@ -295,15 +310,31 @@
 
   copyBtn.addEventListener('click', function () {
     if (!shareUrl) return;
-    navigator.clipboard.writeText(shareUrl).then(function () {
+    navigator.clipboard.writeText(postText + ' ' + shareUrl).then(function () {
       copyBtn.textContent = 'Copied ✓';
-      setTimeout(function () { copyBtn.textContent = 'Copy my score link'; }, 2000);
+      shareHint.textContent = 'Post and link copied. Paste anywhere.';
+      setTimeout(function () { copyBtn.textContent = 'Copy link'; }, 2000);
     });
   });
 
-  shareBtn.addEventListener('click', function () {
+  liBtn.addEventListener('click', function () {
     if (!shareUrl) return;
-    navigator.share({ title: 'My Automation Score', text: shareText, url: shareUrl }).catch(function () {});
+    // LinkedIn attaches the link as a card itself, so the clipboard gets text only.
+    navigator.clipboard.writeText(postText).catch(function () {});
+    shareHint.textContent = 'Your post text is on the clipboard. Paste it into the LinkedIn window that just opened.';
+    window.open('https://www.linkedin.com/sharing/share-offsite/?url=' + encodeURIComponent(shareUrl),
+      '_blank', 'noopener');
+  });
+
+  xBtn.addEventListener('click', function () {
+    if (!shareUrl) return;
+    window.open('https://twitter.com/intent/tweet?text=' + encodeURIComponent(postText) +
+      '&url=' + encodeURIComponent(shareUrl), '_blank', 'noopener');
+  });
+
+  waBtn.addEventListener('click', function () {
+    if (!shareUrl) return;
+    window.open('https://wa.me/?text=' + encodeURIComponent(postText + ' ' + shareUrl), '_blank', 'noopener');
   });
 })();
 </script>
