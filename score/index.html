@@ -320,8 +320,12 @@
   liBtn.addEventListener('click', function () {
     if (!shareUrl) return;
     // LinkedIn attaches the link as a card itself, so the clipboard gets text only.
+    // LinkedIn blocks ALL apps from prefilling post text, so the user must paste.
     navigator.clipboard.writeText(postText).catch(function () {});
-    shareHint.textContent = 'Your post text is on the clipboard. Paste it into the LinkedIn window that just opened.';
+    liBtn.textContent = 'Text copied ✓ paste it in LinkedIn (Cmd+V)';
+    shareHint.textContent = 'LinkedIn does not let any app prefill a post. Your text is on the clipboard: click "Share your thoughts" in the LinkedIn window and paste.';
+    shareHint.style.color = '#ffb37a';
+    setTimeout(function () { liBtn.textContent = 'Share on LinkedIn'; }, 8000);
     window.open('https://www.linkedin.com/sharing/share-offsite/?url=' + encodeURIComponent(shareUrl),
       '_blank', 'noopener');
   });
