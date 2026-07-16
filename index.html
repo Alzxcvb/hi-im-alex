@@ -4,15 +4,15 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Hi, I'm Alex: Get AI handling your repetitive work, installed and running, in one call</title>
-<meta name="description" content="I install Claude on your machine and build a real automation around the task that eats your week, live, on one call. It runs by the end, or I don't stop. $200.">
-<meta property="og:title" content="Get Claude handling your repetitive work. Installed, running, done. One call.">
-<meta property="og:description" content="Not theory, not a course. One Zoom call: I install Claude and build a real automation around your actual work. It runs by the end, or I don't stop until it does. $200.">
+<meta name="description" content="I install Claude on your machine and build your own AI agent around the task that eats your week, live, on one call. It runs by the end, or I don't stop. $300.">
+<meta property="og:title" content="Walk away with your own AI agent. Built live, running, done. One call.">
+<meta property="og:description" content="Not theory, not a course. One Zoom call: I install Claude and build your own AI agent around your actual work. It runs by the end, or I don't stop until it does. $300.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://hiimalex.ai">
 <meta property="og:image" content="https://hiimalex.ai/alex.jpg">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Get Claude handling your repetitive work. Installed, running, done. One call.">
-<meta name="twitter:description" content="Not theory, not a course. One Zoom call: I install Claude and build a real automation around your actual work. It runs by the end, or I don't stop until it does. $200.">
+<meta name="twitter:title" content="Walk away with your own AI agent. Built live, running, done. One call.">
+<meta name="twitter:description" content="Not theory, not a course. One Zoom call: I install Claude and build your own AI agent around your actual work. It runs by the end, or I don't stop until it does. $300.">
 <meta name="twitter:image" content="https://hiimalex.ai/alex.jpg">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E👋%3C/text%3E%3C/svg%3E">
 <!-- Vercel Web Analytics -->
@@ -130,6 +130,16 @@
   .quote.placeholder{border-style:dashed;color:#6b7480;text-align:center;font-style:normal}
   .quote cite{display:block;margin-top:12px;font-style:normal;color:var(--ink);font-weight:600;font-size:14px}
   @media(max-width:720px){.testimonials{grid-template-columns:1fr}}
+  /* reviews carousel */
+  .reviews-strip{display:flex;gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;padding:8px 2px 18px;-webkit-overflow-scrolling:touch;scrollbar-width:thin}
+  .review{flex:0 0 320px;scroll-snap-align:start;background:var(--bg-elev);border:1px solid var(--line);border-radius:var(--radius);padding:20px;font-size:14.5px;color:var(--ink-dim);display:flex;flex-direction:column}
+  @media(max-width:560px){.review{flex-basis:270px}}
+  .review p{margin:0 0 14px;flex:1;font-style:italic}
+  .review cite{font-style:normal;color:var(--ink);font-weight:600;font-size:13.5px}
+  .review .role{display:block;color:var(--ink-dim);font-weight:400;font-size:12.5px;margin-top:2px}
+  .reviews-nav{display:flex;gap:10px;justify-content:flex-end;margin-top:4px}
+  .reviews-nav button{background:var(--bg-elev);border:1px solid var(--line);color:var(--ink);border-radius:8px;padding:8px 16px;cursor:pointer;font-size:16px}
+  .reviews-nav button:hover{border-color:var(--accent)}
   /* after the call */
   .after{background:var(--bg-elev);border:1px solid var(--line);border-radius:var(--radius);padding:26px}
   .after p{color:var(--ink-dim);margin:0 0 12px;font-size:15.5px}
@@ -175,7 +185,7 @@
     <div class="brand"><span class="wave">👋</span> Hi, I'm Alex</div>
     <nav class="nav">
       <a href="#how">How it works</a>
-      <a href="#proof">Why me</a>
+      <a href="#reviews">Reviews</a>
       <a href="/score">Automation Score</a>
       <a href="#faq">FAQ</a>
       <a class="nav-cta" href="https://calendly.com/hiimalexllc/quickstart" target="_blank" rel="noopener">Book the Quick Start →</a>
@@ -187,12 +197,12 @@
   <div class="wrap">
     <div class="hero-text">
       <span class="eyebrow">Claude Code · Done with you · One call, 90 minutes</span>
-      <h1>Get AI handling the work that's eating your week. <span class="accent">Installed, running, done.</span> One call.</h1>
-      <p class="lede">Most people who try Claude poke around for ten minutes and close the tab. Nothing changes. This is different: we get on Zoom, I install Claude on your machine, and we build a real automation around the task that's actually eating your week. Together, live. It's running by the time we hang up, or I keep going free.</p>
+      <h1>Walk away with your own AI agent doing the work that's eating your week. <span class="accent">Built live, running, done.</span> One call.</h1>
+      <p class="lede">Most people who try Claude poke around for ten minutes and close the tab. Nothing changes. This is different: we get on Zoom, I install Claude on your machine, and we build your own AI agent around the task that's actually eating your week. Together, live. It's running by the time we hang up, or I keep going free.</p>
       <div class="cta-row">
-        <a class="btn btn-primary btn-lg" href="https://calendly.com/hiimalexllc/quickstart" target="_blank" rel="noopener">Book your Quick Start for $200 →</a>
+        <a class="btn btn-primary btn-lg" href="https://calendly.com/hiimalexllc/quickstart" target="_blank" rel="noopener">Book your Quick Start for $300 →</a>
       </div>
-      <p class="micro">One Zoom call, 90 minutes. Claude installed, one real automation built, cheat sheet yours to keep. It runs by the end or I don't stop. <a href="https://calendly.com/hiimalexllc/new-meeting" target="_blank" rel="noopener">Want to talk first? Free 15 min call →</a></p>
+      <p class="micro">One Zoom call, 90 minutes. Claude installed, your own AI agent built, cheat sheet yours to keep. It runs by the end or I don't stop. <a href="https://calendly.com/hiimalexllc/new-meeting" target="_blank" rel="noopener">Want to talk first? Free 15 min call →</a></p>
       <p class="trust">I taught <b>Claude Code at Network School</b> (Balaji Srinivasan's program). <b>300+ founders trained, 50+ done-with-you setups.</b></p>
     </div>
     <img class="hero-photo" src="alex.jpg" alt="Alex Coffman" width="220" height="220">
@@ -213,8 +223,8 @@
 
 <section id="how">
   <div class="wrap">
-    <h2>One thing, done right: the Quick Start.</h2>
-    <p class="section-lede">No tiers to decode. No packages to compare. Every Quick Start is built from scratch around your business and the one task quietly eating your week. Then we make Claude do it for you, while you watch.</p>
+    <h2>Start here: the Quick Start.</h2>
+    <p class="section-lede">Every Quick Start is built from scratch around your business and the one task quietly eating your week. Then we build an AI agent that does it for you, while you watch.</p>
     <div class="steps">
       <div class="step">
         <div class="num">01</div>
@@ -228,8 +238,8 @@
       </div>
       <div class="step">
         <div class="num">03</div>
-        <h3>We build it live</h3>
-        <p>We build the automation together so you can run it again Monday morning. You leave with it working, not with homework.</p>
+        <h3>We build your agent live</h3>
+        <p>We build your AI agent together so you can run it again Monday morning. You leave with it working, not with homework.</p>
       </div>
     </div>
 
@@ -238,19 +248,19 @@
       <p class="sub">One call, up to 90 minutes. Everything below is yours to keep.</p>
       <ul class="stack">
         <li><span class="it"><b>Claude installed &amp; configured</b><span>On your machine, wired to your tools, done right the first time.</span></span><span class="val">$300 value</span></li>
-        <li><span class="it"><b>One real automation, built live</b><span>Around a task you actually do every week, not a demo.</span></span><span class="val">$500 value</span></li>
+        <li><span class="it"><b>Your own AI agent, built live</b><span>Around a task you actually do every week, not a demo.</span></span><span class="val">$750 value</span></li>
         <li><span class="it"><b>A cheat sheet for your exact setup</b><span>So you can run it again, and go further, on your own.</span></span><span class="val">$150 value</span></li>
         <li><span class="it"><b>7 days of email follow-up</b><span>Hit a snag after the call? Reply and I help you through it.</span></span><span class="val">$200 value</span></li>
         <li><span class="it"><b>The Claude Code Quick Start guide</b><span>The same playbook I walk every client through, in PDF.</span></span><span class="val">$50 value</span></li>
         <li><span class="it"><b>The "it runs or I don't stop" guarantee</b><span>You never pay for a maybe.</span></span><span class="val check">included</span></li>
       </ul>
       <div class="totals">
-        <div class="row anchor"><span>Total value</span><span><s>$1,200+</s></span></div>
-        <div class="row"><span class="price">Your price today</span><span class="price"><span class="accent">$200</span></span></div>
+        <div class="row anchor"><span>Total value</span><span><s>$1,450+</s></span></div>
+        <div class="row"><span class="price">Your price today</span><span class="price"><span class="accent">$300</span></span></div>
       </div>
       <div class="offer-cta">
         <div class="cta-row" style="justify-content:center">
-          <a class="btn btn-primary btn-lg" href="https://calendly.com/hiimalexllc/quickstart" target="_blank" rel="noopener">Book your Quick Start for $200 →</a>
+          <a class="btn btn-primary btn-lg" href="https://calendly.com/hiimalexllc/quickstart" target="_blank" rel="noopener">Book your Quick Start for $300 →</a>
         </div>
         <p class="micro">I take a handful each week so every setup gets my full focus. <a href="https://calendly.com/hiimalexllc/new-meeting" target="_blank" rel="noopener">Prefer a free 15 min call first? →</a></p>
       </div>
@@ -266,6 +276,32 @@
       <div>
         <h3>The "It Runs Or I Don't Stop" Guarantee</h3>
         <p>If Claude isn't installed, configured, and running a real workflow on your machine by the end of our call, I keep working on my clock, at no extra charge, until it is. You're not paying for advice or a maybe. You're paying for it to actually work.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="agent-build">
+  <div class="wrap">
+    <h2>Want it done <em>for</em> you instead? The Agent Build.</h2>
+    <p class="section-lede">The Quick Start is done with you. The Agent Build is done for you: I design, build, and hand over a complete AI agent around your highest value workflow.</p>
+    <div class="offer-box">
+      <h3>The Agent Build</h3>
+      <p class="sub">Scoped together on a free call. Delivered within a week.</p>
+      <ul class="stack">
+        <li><span class="it"><b>Everything in the Quick Start</b><span>Install, configuration, cheat sheet, the guarantee.</span></span><span class="val check">included</span></li>
+        <li><span class="it"><b>One complete AI agent, built for you</b><span>I do the building around the workflow that matters most. You get the working result.</span></span><span class="val check">included</span></li>
+        <li><span class="it"><b>A live handover session</b><span>You and your team see exactly how to run it and how to change it.</span></span><span class="val check">included</span></li>
+        <li><span class="it"><b>30 days of email support</b><span>Anything breaks or needs a tweak, I handle it.</span></span><span class="val check">included</span></li>
+      </ul>
+      <div class="totals">
+        <div class="row"><span class="price">The Agent Build</span><span class="price"><span class="accent">$1,000</span></span></div>
+      </div>
+      <div class="offer-cta">
+        <div class="cta-row" style="justify-content:center">
+          <a class="btn btn-primary btn-lg" href="https://calendly.com/hiimalexllc/new-meeting" target="_blank" rel="noopener">Book a free 15 min scoping call →</a>
+        </div>
+        <p class="micro">We scope it together first, so you know exactly what you're getting before you pay anything.</p>
       </div>
     </div>
   </div>
@@ -290,6 +326,51 @@
 </section>
 
 
+<section id="reviews">
+  <div class="wrap">
+    <h2>What clients say</h2>
+    <p class="section-lede">Straight from LinkedIn, in their own words. Swipe through, or <a href="https://www.linkedin.com/in/alexdcoffman/details/recommendations/" target="_blank" rel="noopener">read the full versions on LinkedIn →</a></p>
+    <div class="reviews-strip" id="reviews-strip">
+      <div class="review">
+        <p>"Today, two months later, AI is the foundation of my business operations and has fundamentally changed how I work, with nearly 60-80% of my workdays spent directly in Claude. Absolutely revolutionary. … I would highly recommend his services."</p>
+        <cite>Brandon Rall<span class="role">Founder, Novellus (digital marketing)</span></cite>
+      </div>
+      <div class="review">
+        <p>"One of the best overviews I have seen on practical AI. … If you are a business owner who wants to understand how AI tools can work for you and how to get the most out of your AI subscriptions Alex is the one."</p>
+        <cite>Stephen Roberts<span class="role">Managing Partner, ESO Venture Fund</span></cite>
+      </div>
+      <div class="review">
+        <p>"He taught me how to use agents to manage repetitive research projects necessary for outreach with my company … very practical about what's possible and what isn't."</p>
+        <cite>Bailey Lammon<span class="role">Author and Travel Advisor</span></cite>
+      </div>
+      <div class="review">
+        <p>"He's genuinely great to learn from if you're overwhelmed with Claude. … If you're looking for someone to help with Claude automation/workflows, Alex is the one."</p>
+        <cite>Shriti Singh<span class="role">Ghostwriter, Personal Branding</span></cite>
+      </div>
+      <div class="review">
+        <p>"He has a rare ability to explain a technical topic in a way that feels clear and genuinely approachable. … I'd highly recommend Alex to anyone looking to understand AI agents and their practical applications."</p>
+        <cite>Patricia de Llano<span class="role">Principal Product Designer</span></cite>
+      </div>
+      <div class="review">
+        <p>"Alex gave solid strategies to be able to use Claude efficiently and effectively. As a power user, it is very easy to burn out your tokens quickly and he shows you ways to be able to stretch out your credits much longer."</p>
+        <cite>Stephen Yeh<span class="role">VP, Debt Capital Markets, Kadenwood Group</span></cite>
+      </div>
+      <div class="review">
+        <p>"Full of very useful info on multiple best practice principles. Like context separation, memory, token usage. I would highly recommend it for anyone looking to use Claude."</p>
+        <cite>Peter Donaldson<span class="role">Founder, Web3 Business Development</span></cite>
+      </div>
+      <div class="review">
+        <p>"He did an incredible job … how to prompt better to claude so that it understands the context better."</p>
+        <cite>Insha Ramin<span class="role">Growth Marketer</span></cite>
+      </div>
+    </div>
+    <div class="reviews-nav">
+      <button id="rev-prev" aria-label="Previous reviews">←</button>
+      <button id="rev-next" aria-label="Next reviews">→</button>
+    </div>
+  </div>
+</section>
+
 <section id="faq">
   <div class="wrap">
     <h2>Questions, answered</h2>
@@ -308,15 +389,15 @@
       </details>
       <details>
         <summary>What does it cost after the call? Am I signing up for something?</summary>
-        <p>No. $200 is the whole thing: one call, everything above, done. Ongoing work (custom builds, retainers) only happens if you want it and we scope it together. The Quick Start is complete on its own.</p>
+        <p>No. $300 is the whole thing: one call, everything above, done. Ongoing work (the Agent Build, retainers) only happens if you want it and we scope it together. The Quick Start is complete on its own.</p>
       </details>
       <details>
         <summary>What do I need before we start?</summary>
         <p>Just your laptop and one task that eats your time every week. That's it. I'll handle the rest on the call.</p>
       </details>
       <details>
-        <summary>Why $200 and not free?</summary>
-        <p>Because your time is worth something and so is mine. A free session is easy to book and easier to skip. At $200, you show up ready, we get the real work done, and you walk away with Claude actually running. Not notes from a "discovery call" you never act on. It's also priced to be a no-brainer compared to hiring an IT consultant for a day.</p>
+        <summary>Why $300 and not free?</summary>
+        <p>Because your time is worth something and so is mine. A free session is easy to book and easier to skip. At $300, you show up ready, we get the real work done, and you walk away with your own AI agent actually running. Not notes from a "discovery call" you never act on. It's also a fraction of what an IT consultant charges for a single day.</p>
       </details>
       <details>
         <summary>What happens after the Quick Start?</summary>
@@ -334,13 +415,13 @@
       <div class="recap">
         What the Quick Start includes:<br>
         ✅ <b>Up to 90 min 1:1 over Zoom</b>, install + configure on your machine<br>
-        ✅ <b>One real automation</b> built live around your weekly task<br>
+        ✅ <b>Your own AI agent</b> built live around your weekly task<br>
         ✅ <b>Personalized cheat sheet</b> you keep<br>
         ✅ <b>7 days of email follow-up</b> after the call<br>
         ✅ <b>Guarantee:</b> it runs by the end, or I keep working free
       </div>
       <div class="cta-row" style="justify-content:center">
-        <a class="btn btn-primary btn-lg" href="https://calendly.com/hiimalexllc/quickstart" target="_blank" rel="noopener">Book your Quick Start for $200 →</a>
+        <a class="btn btn-primary btn-lg" href="https://calendly.com/hiimalexllc/quickstart" target="_blank" rel="noopener">Book your Quick Start for $300 →</a>
       </div>
       <p style="margin-top:14px;font-size:13px"><a href="https://calendly.com/hiimalexllc/new-meeting" target="_blank" rel="noopener">Prefer a free 15 min call first? →</a></p>
       <p style="margin-top:12px;font-size:13px">I take a limited number each week. Prefer email? <a href="mailto:hiimalex.ai@email.acoffman.org">hiimalex.ai@email.acoffman.org</a></p>
@@ -383,6 +464,14 @@
   </div>
 </footer>
 
-<script>document.getElementById('yr').textContent=new Date().getFullYear()</script>
+<script>
+document.getElementById('yr').textContent=new Date().getFullYear();
+(function(){
+  var strip=document.getElementById('reviews-strip');
+  if(!strip)return;
+  document.getElementById('rev-prev').addEventListener('click',function(){strip.scrollBy({left:-340,behavior:'smooth'})});
+  document.getElementById('rev-next').addEventListener('click',function(){strip.scrollBy({left:340,behavior:'smooth'})});
+})();
+</script>
 </body>
 </html>

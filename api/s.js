@@ -72,7 +72,7 @@ export default async function handler(req, res) {
   <h1>How much of <em>your</em> work can AI already do?</h1>
   <p class="sub">Someone scored ${s}%. Paste your job description or list what fills your week, and find out where you land. Free, 60 seconds, no signup.</p>
   <a class="btn btn-primary" href="/score">Get your Automation Score →</a>
-  <p class="micro">Want AI doing that work for you instead? <a href="https://calendly.com/hiimalexllc/quickstart" target="_blank" rel="noopener">Book a Quick Start for $200 →</a></p>
+  <p class="micro">Want AI doing that work for you instead? <a href="https://calendly.com/hiimalexllc/quickstart" target="_blank" rel="noopener">Book a Quick Start for $300 →</a></p>
 </div>
 </body>
 </html>`;
