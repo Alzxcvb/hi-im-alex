@@ -154,6 +154,8 @@
           <button id="share-li" class="btn btn-primary">Share on LinkedIn</button>
           <button id="share-x" class="btn btn-secondary">Post on X</button>
           <button id="share-wa" class="btn btn-secondary">WhatsApp</button>
+          <button id="dl" class="btn btn-secondary">Download card</button>
+          <button id="native" class="btn btn-secondary" style="display:none">More apps</button>
           <button id="copy" class="btn btn-secondary">Copy link</button>
         </div>
         <p class="micro" id="share-hint" style="margin-top:10px"></p>
@@ -197,9 +199,13 @@
   var liBtn = document.getElementById('share-li');
   var xBtn = document.getElementById('share-x');
   var waBtn = document.getElementById('share-wa');
+  var dlBtn = document.getElementById('dl');
+  var nativeBtn = document.getElementById('native');
   var shareHint = document.getElementById('share-hint');
   var shareUrl = '';
+  var cardUrl = '';
   var postText = '';
+  var lastScore = 0;
 
   function showError(msg) {
     errBox.textContent = msg;
@@ -265,10 +271,13 @@
     });
 
     shareUrl = location.origin + '/s?d=' + encodeURIComponent(data.share);
+    cardUrl = location.origin + '/api/card?d=' + encodeURIComponent(data.share);
+    lastScore = data.score;
     postText = 'I just found out that my work (' + data.role_label + ') is ' + data.score +
       '% automatable. It even told me which tasks AI takes first. See how replaceable you are:';
     document.getElementById('post-text').textContent = postText;
     shareHint.textContent = '';
+    if (navigator.share) nativeBtn.style.display = 'inline-flex';
 
     result.style.display = 'block';
     setTimeout(function () {
@@ -339,6 +348,32 @@
   waBtn.addEventListener('click', function () {
     if (!shareUrl) return;
     window.open('https://wa.me/?text=' + encodeURIComponent(postText + ' ' + shareUrl), '_blank', 'noopener');
+  });
+
+  dlBtn.addEventListener('click', function () {
+    if (!cardUrl) return;
+    // Copy the post text too, so the image post flow is one paste away.
+    navigator.clipboard.writeText(postText + ' ' + shareUrl).catch(function () {});
+    fetch(cardUrl)
+      .then(function (r) { return r.blob(); })
+      .then(function (blob) {
+        var a = document.createElement('a');
+        a.href = URL.createObjectURL(blob);
+        a.download = 'automation-score-' + lastScore + '.png';
+        document.body.appendChild(a);
+        a.click();
+        a.remove();
+        shareHint.style.color = '#ffb37a';
+        shareHint.textContent = 'Card saved. Best reach on LinkedIn: post the image, paste your text (already copied), and put the link in the first comment.';
+      })
+      .catch(function () {
+        window.open(cardUrl, '_blank', 'noopener');
+      });
+  });
+
+  nativeBtn.addEventListener('click', function () {
+    if (!shareUrl) return;
+    navigator.share({ title: 'My Automation Score', text: postText, url: shareUrl }).catch(function () {});
   });
 })();
 </script>
