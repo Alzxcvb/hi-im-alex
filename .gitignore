@@ -1,1 +1,6 @@
 .vercel
+.env*
+
+# never ship internal docs to the public repo / live site
+private/
+Alex_Claude_Code_Business_Plan.pdf
