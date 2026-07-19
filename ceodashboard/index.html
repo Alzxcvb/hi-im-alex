@@ -1,0 +1,318 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>The CEO Dashboard: your company, your people, and your life on one screen</title>
+<meta name="description" content="A private dashboard built around one CEO. It reads your inbox, watches your projects and your people, and keeps your family and your health in view. $1,000 setup, $200 a month.">
+<meta name="robots" content="noindex">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E👋%3C/text%3E%3C/svg%3E">
+<!-- Vercel Web Analytics -->
+<script>window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };</script>
+<script defer src="/_vercel/insights/script.js"></script>
+<style>
+  :root{
+    --bg:#0b0d10;
+    --bg-elev:#12161b;
+    --ink:#f5f6f7;
+    --ink-dim:#a8b0b8;
+    --line:#1f262e;
+    --accent:#ff7a1a;
+    --accent-soft:#ffb37a;
+    --radius:14px;
+    --maxw:880px;
+    --font:ui-sans-serif,-apple-system,BlinkMacSystemFont,"Inter","Segoe UI",Roboto,sans-serif;
+    --mono:ui-monospace,"SF Mono",Menlo,Consolas,monospace;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0;background:var(--bg);color:var(--ink);font-family:var(--font);-webkit-font-smoothing:antialiased;line-height:1.55}
+  a{color:var(--accent-soft);text-decoration:none}
+  a:hover{color:var(--accent);text-decoration:underline}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px}
+  header.top{padding:22px 0;border-bottom:1px solid var(--line);position:sticky;top:0;background:rgba(11,13,16,.85);backdrop-filter:blur(8px);z-index:10}
+  header.top .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px}
+  .brand{font-weight:700;letter-spacing:-.01em}
+  .brand .wave{display:inline-block;transform-origin:70% 70%;animation:wave 2.4s ease-in-out infinite}
+  @keyframes wave{0%,60%,100%{transform:rotate(0)}10%{transform:rotate(14deg)}20%{transform:rotate(-8deg)}30%{transform:rotate(14deg)}40%{transform:rotate(-4deg)}50%{transform:rotate(10deg)}}
+  .preview-chip{font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-dim);border:1px dashed var(--line);padding:6px 12px;border-radius:999px}
+  .hero{padding:64px 0 40px}
+  .eyebrow{display:inline-block;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);background:rgba(255,122,26,.1);border:1px solid rgba(255,122,26,.25);padding:6px 10px;border-radius:999px;margin-bottom:20px}
+  h1{font-size:clamp(34px,5.2vw,54px);line-height:1.08;letter-spacing:-.02em;margin:0 0 16px;font-weight:800}
+  h1 .accent{color:var(--accent)}
+  .lede{font-size:clamp(17px,2.1vw,20px);color:var(--ink-dim);max-width:660px;margin:0 0 28px}
+  .cta-row{display:flex;flex-wrap:wrap;gap:12px;margin-top:10px}
+  .btn{display:inline-flex;align-items:center;gap:8px;padding:13px 20px;border-radius:10px;font-weight:600;font-size:15px;border:1px solid transparent;transition:transform .08s ease,background .2s;cursor:pointer}
+  .btn:active{transform:translateY(1px)}
+  .btn-primary{background:var(--accent);color:#0b0d10}
+  .btn-primary:hover{background:var(--accent-soft);text-decoration:none}
+  .btn-lg{padding:16px 26px;font-size:16px}
+  .micro{font-size:13px;color:var(--ink-dim);margin-top:10px}
+  section{padding:56px 0;border-top:1px solid var(--line)}
+  h2{font-size:clamp(24px,3vw,32px);letter-spacing:-.01em;margin:0 0 10px;font-weight:700}
+  .section-lede{color:var(--ink-dim);max-width:640px;margin:0 0 32px}
+  /* mock dashboard */
+  .mock{margin-top:40px;background:var(--bg-elev);border:1px solid var(--line);border-radius:var(--radius);padding:18px;box-shadow:0 24px 64px rgba(0,0,0,.4)}
+  .mock-bar{display:flex;align-items:center;gap:8px;padding:0 4px 14px}
+  .mock-bar .dot{width:10px;height:10px;border-radius:50%;background:#2a323b}
+  .mock-bar .ttl{margin-left:8px;font-family:var(--mono);font-size:12px;color:var(--ink-dim)}
+  .tiles{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+  @media(max-width:720px){.tiles{grid-template-columns:1fr 1fr}}
+  @media(max-width:520px){.tiles{grid-template-columns:1fr}}
+  .tile{background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:14px;font-size:13px;color:var(--ink-dim);min-height:104px}
+  .tile b.hdr{display:block;color:var(--accent);font-size:11px;letter-spacing:.08em;text-transform:uppercase;margin-bottom:8px;font-weight:700}
+  .tile .big{color:var(--ink);font-weight:700;font-size:15px}
+  .tile .act{color:var(--accent-soft)}
+  .tile ul{margin:6px 0 0;padding-left:16px}
+  .tile li{margin-bottom:4px}
+  /* pains */
+  .pains{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:24px}
+  .pain{background:var(--bg-elev);border:1px solid var(--line);border-radius:var(--radius);padding:20px;color:var(--ink-dim);font-size:15px}
+  .pain b{color:var(--ink);display:block;margin-bottom:6px;font-size:15px}
+  @media(max-width:720px){.pains{grid-template-columns:1fr}}
+  /* modules */
+  .modules{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:8px}
+  @media(max-width:720px){.modules{grid-template-columns:1fr}}
+  .module{background:var(--bg-elev);border:1px solid var(--line);border-radius:var(--radius);padding:22px}
+  .module .ico{font-size:22px;line-height:1;margin-bottom:10px}
+  .module h3{margin:0 0 8px;font-size:17px;font-weight:700}
+  .module p{margin:0;color:var(--ink-dim);font-size:14.5px}
+  /* steps */
+  .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:8px}
+  .step{background:var(--bg-elev);border:1px solid var(--line);border-radius:var(--radius);padding:22px;position:relative}
+  .step .num{font-family:var(--mono);font-size:13px;color:var(--accent);font-weight:700;letter-spacing:.05em}
+  .step h3{margin:8px 0 8px;font-size:18px;font-weight:700}
+  .step p{margin:0;color:var(--ink-dim);font-size:14.5px}
+  @media(max-width:720px){.steps{grid-template-columns:1fr}}
+  /* EA section */
+  .ea{display:flex;gap:18px;align-items:flex-start;background:var(--bg-elev);border:1px solid var(--line);border-radius:var(--radius);padding:26px;margin-top:8px}
+  .ea .seal{font-size:34px;line-height:1}
+  .ea h3{margin:0 0 6px;font-size:19px}
+  .ea p{margin:0 0 10px;color:var(--ink-dim);font-size:15px}
+  .ea p:last-child{margin-bottom:0}
+  @media(max-width:560px){.ea{flex-direction:column;gap:12px}}
+  /* pricing */
+  .offer-box{background:linear-gradient(135deg,rgba(255,122,26,.07),rgba(255,122,26,.015));border:1px solid rgba(255,122,26,.28);border-radius:var(--radius);padding:28px;margin-top:8px}
+  .offer-box h3{margin:0 0 4px;font-size:20px;letter-spacing:-.01em}
+  .offer-box .sub{color:var(--ink-dim);margin:0 0 18px;font-size:14.5px}
+  .stack{list-style:none;margin:0;padding:0}
+  .stack li{display:flex;align-items:baseline;gap:10px;padding:11px 0;border-bottom:1px dashed var(--line);font-size:15px}
+  .stack li:last-of-type{border-bottom:0}
+  .stack .it{flex:1}
+  .stack .it b{color:var(--ink);font-weight:600}
+  .stack .it span{color:var(--ink-dim);display:block;font-size:13px;margin-top:2px}
+  .stack .check{color:var(--accent);font-weight:700;white-space:nowrap;font-size:14px}
+  .totals{margin-top:18px;padding-top:18px;border-top:1px solid var(--line)}
+  .totals .row{display:flex;justify-content:space-between;align-items:baseline;font-size:15px;margin-bottom:6px}
+  .totals .price{font-size:clamp(20px,3vw,26px);font-weight:800;color:var(--ink)}
+  .totals .price .accent{color:var(--accent)}
+  /* guarantee */
+  .guarantee{display:flex;gap:18px;align-items:flex-start;background:var(--bg-elev);border:1px solid rgba(255,122,26,.3);border-left:3px solid var(--accent);border-radius:var(--radius);padding:24px;margin-top:8px}
+  .guarantee .seal{font-size:34px;line-height:1}
+  .guarantee h3{margin:0 0 6px;font-size:19px}
+  .guarantee p{margin:0;color:var(--ink-dim);font-size:15px}
+  @media(max-width:560px){.guarantee{flex-direction:column;gap:12px}}
+  /* book */
+  .book{background:linear-gradient(135deg,rgba(255,122,26,.08),rgba(255,122,26,.02));border:1px solid rgba(255,122,26,.25);border-radius:var(--radius);padding:32px;text-align:center}
+  .book h2{margin-bottom:10px}
+  .book p{color:var(--ink-dim);margin:0 auto 22px;max-width:520px}
+  footer{padding:40px 0 60px;color:var(--ink-dim);font-size:14px;border-top:1px solid var(--line)}
+  footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px;align-items:center}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap">
+    <div class="brand"><span class="wave">👋</span> Hi, I'm Alex</div>
+    <span class="preview-chip">Concept preview</span>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap">
+    <span class="eyebrow">The CEO Dashboard · Built around one person: you</span>
+    <h1>Your company, your people, and your life. <span class="accent">One screen.</span> Five minutes a day.</h1>
+    <p class="lede">You already know AI could save you hours. You just don't have the time to sit down and learn it, and you shouldn't have to. The CEO Dashboard is a private page built around you. It reads your inbox, watches your projects and your team, and keeps your family and your health in view. You look at it each morning, handle what needs you, and go run the business.</p>
+    <div class="cta-row">
+      <a class="btn btn-primary btn-lg" href="#pricing">See what it costs ↓</a>
+    </div>
+    <p class="micro">Sample page. Booking is not open yet.</p>
+
+    <div class="mock" aria-label="Example dashboard">
+      <div class="mock-bar"><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="ttl">yourcompany.dashboard · Monday 7:04 AM</span></div>
+      <div class="tiles">
+        <div class="tile">
+          <b class="hdr">Inbox, distilled</b>
+          <span class="big">3 things need you today</span>
+          <ul>
+            <li>Sign the Acme renewal <span class="act">one click →</span></li>
+            <li>Reply to the bank on the credit line <span class="act">draft ready →</span></li>
+            <li>Approve Q4 budget <span class="act">review →</span></li>
+          </ul>
+        </div>
+        <div class="tile">
+          <b class="hdr">Company pulse</b>
+          <span class="big">Plastic resin up 40% this quarter</span>
+          <p style="margin:6px 0 0">This hits your Q4 packaging quote. Purchasing has been flagged.</p>
+        </div>
+        <div class="tile">
+          <b class="hdr">Your direct reports</b>
+          <ul style="margin-top:2px">
+            <li><b style="color:var(--ink)">Sarah, Ops:</b> 2 items due Friday</li>
+            <li><b style="color:var(--ink)">Mike, Sales:</b> pipeline review ready</li>
+            <li><b style="color:var(--ink)">Dana, Finance:</b> on track, nothing needed</li>
+          </ul>
+        </div>
+        <div class="tile">
+          <b class="hdr">Meetings you skipped</b>
+          <span class="big">2 covered by your note agent</span>
+          <p style="margin:6px 0 0">Vendor call and marketing sync. Summaries ready, one decision waiting on you.</p>
+        </div>
+        <div class="tile">
+          <b class="hdr">Family &amp; life</b>
+          <ul style="margin-top:2px">
+            <li>Emma's birthday is Friday. Gift idea saved.</li>
+            <li>Golf Sunday: calendar held, no conflicts.</li>
+            <li>Soccer with Jake, Friday 4 PM.</li>
+          </ul>
+        </div>
+        <div class="tile">
+          <b class="hdr">Health</b>
+          <ul style="margin-top:2px">
+            <li>Sleep: 7h 10m</li>
+            <li>Steps this week: trending up</li>
+            <li>Weight goal: 4 lbs to go, on pace</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="problem">
+  <div class="wrap">
+    <h2>The job keeps growing. The day doesn't.</h2>
+    <p class="section-lede">Every CEO we talk to has the same three problems. None of them are solved by another app you have to learn.</p>
+    <div class="pains">
+      <div class="pain"><b>The inbox owns your morning.</b>Two hundred emails, and maybe five of them actually need you. Finding those five is the job now.</div>
+      <div class="pain"><b>Meetings you attend out of duty.</b>Half your calendar is meetings where you listen, nod, and leave with nothing you couldn't have read in three lines.</div>
+      <div class="pain"><b>The personal stuff slips.</b>The kid's birthday, golf Sunday, the weight you said you'd work on. It all loses to whatever's on fire at work.</div>
+    </div>
+  </div>
+</section>
+
+<section id="modules">
+  <div class="wrap">
+    <h2>What's on your dashboard</h2>
+    <p class="section-lede">Every dashboard is built from scratch around one person. These are the pieces most CEOs start with. Yours will look like your life, not a template.</p>
+    <div class="modules">
+      <div class="module"><div class="ico">📬</div><h3>Your inbox, distilled</h3><p>Instead of 200 emails, you get a short list of what actually needs you, each with a direct link to handle it. Sign this, approve that, reply here. Done.</p></div>
+      <div class="module"><div class="ico">📈</div><h3>Company pulse</h3><p>What's moving across the business and outside it. If the price of plastic jumps 40% and that hits your margins, it's on your screen before it's in a meeting.</p></div>
+      <div class="module"><div class="ico">👥</div><h3>Your direct reports</h3><p>What each of your people owes you, what's due when, and what's stuck. You see it without chasing anyone for a status update.</p></div>
+      <div class="module"><div class="ico">🗂️</div><h3>Your existing tools, plugged in</h3><p>Asana, ClickUp, or whatever your team already runs. The dashboard reads from the systems you have. Nobody changes how they work.</p></div>
+      <div class="module"><div class="ico">🎙️</div><h3>Note agents for meetings</h3><p>For the meetings that don't truly need you in the room, an AI agent listens and hands you the notes and the decisions. You get the hour back.</p></div>
+      <div class="module"><div class="ico">🎯</div><h3>Your goals, mapped</h3><p>Personal goals, family goals, professional goals, all in one structure and wired to your calendar. Taking your son to soccer every Friday afternoon gets protected like a board meeting.</p></div>
+      <div class="module"><div class="ico">👨‍👩‍👧</div><h3>Family &amp; life</h3><p>Never miss a birthday, a recital, or golf Sunday again. The things that matter outside work get the same protection as the things inside it.</p></div>
+      <div class="module"><div class="ico">❤️</div><h3>Health, tracked</h3><p>That Apple Watch or Fitbit you got as a gift and never figured out? It finally earns its keep. Sleep, steps, and weight, right on the dashboard, so if you want to turn a trend around you watch it every morning without opening another app.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="how">
+  <div class="wrap">
+    <h2>How it works</h2>
+    <p class="section-lede">No forms. No questionnaire. No software to learn before we start.</p>
+    <div class="steps">
+      <div class="step">
+        <div class="num">01</div>
+        <h3>We sit down for an hour</h3>
+        <p>A real conversation, person to person. We go through a set of questions written for you, about your company, your people, your goals, and your life. Most CEOs haven't had anyone ask them these questions in years. We even ask what colors and imagery you love, because you'll look at this thing every day.</p>
+      </div>
+      <div class="step">
+        <div class="num">02</div>
+        <h3>We build your dashboard</h3>
+        <p>From that one conversation we build the whole thing: your modules, your integrations, your goal map. You don't lift a finger.</p>
+      </div>
+      <div class="step">
+        <div class="num">03</div>
+        <h3>You see it. Then you decide.</h3>
+        <p>We show you your dashboard, working, with your real data. If you like it, you pay and we wire up every integration for you, with four short trainings of 15 minutes each. If you don't, you owe nothing.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="ea">
+  <div class="wrap">
+    <h2>Your assistant runs it. You just read it.</h2>
+    <div class="ea">
+      <div class="seal">🤝</div>
+      <div>
+        <h3>Built for your EA too</h3>
+        <p>Your executive assistant gets full access to read, populate, and manage the dashboard. The morning brief they already put together for you now has a home, and they spend their time on judgment instead of copying and pasting.</p>
+        <p>Most EAs love this. It doesn't replace them. It makes them visibly better at their job.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="pricing">
+  <div class="wrap">
+    <h2>Simple pricing</h2>
+    <div class="offer-box">
+      <h3>The CEO Dashboard</h3>
+      <p class="sub">One setup fee, one monthly charge. That's the whole model.</p>
+      <ul class="stack">
+        <li><span class="it"><b>The one hour sit down</b><span>A real conversation about your company, your people, and your life.</span></span><span class="check">included</span></li>
+        <li><span class="it"><b>Your dashboard, built for you</b><span>Designed around your answers, your colors, your goals.</span></span><span class="check">included</span></li>
+        <li><span class="it"><b>Every integration set up for you</b><span>Email, calendar, Asana or ClickUp, health data. We do all of it.</span></span><span class="check">included</span></li>
+        <li><span class="it"><b>Four 15 minute trainings</b><span>Short sessions for you and your EA. No homework.</span></span><span class="check">included</span></li>
+        <li><span class="it"><b>Kept running, every month</b><span>Integrations maintained, modules updated, new requests handled.</span></span><span class="check">monthly</span></li>
+      </ul>
+      <div class="totals">
+        <div class="row"><span class="price">Setup</span><span class="price"><span class="accent">$1,000</span></span></div>
+        <div class="row"><span class="price">Then</span><span class="price"><span class="accent">$200</span> a month</span></div>
+      </div>
+      <p class="micro" style="text-align:center;margin-top:18px">Want deeper custom design or build work later? That's billed hourly. Want it grown into a full system for your whole company? We do that too.</p>
+    </div>
+  </div>
+</section>
+
+<section id="guarantee">
+  <div class="wrap">
+    <h2>You see it working before you pay.</h2>
+    <div class="guarantee">
+      <div class="seal">🛡️</div>
+      <div>
+        <h3>If you like it, you pay. If you don't, you walk.</h3>
+        <p>We build your dashboard first and show it to you with your real data on it. You only sign and pay once you've seen it and want it. No deposits, no risk, no awkward conversation.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="book">
+  <div class="wrap">
+    <div class="book">
+      <h2>The whole point is giving you your time back.</h2>
+      <p>One hour with us, and the noise of running your company gets compressed into one screen you check in five minutes. The rest of the day is yours again.</p>
+      <div class="cta-row" style="justify-content:center">
+        <a class="btn btn-primary btn-lg" href="#pricing">This is a sample page</a>
+      </div>
+      <p class="micro" style="margin-top:14px">Concept preview. Booking and payment are not open yet.</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div>© <span id="yr"></span> Hi, I'm Alex · Wyoming LLC</div>
+    <div>Concept preview page. Not a live offer.</div>
+  </div>
+</footer>
+
+<script>
+document.getElementById('yr').textContent=new Date().getFullYear();
+</script>
+</body>
+</html>
