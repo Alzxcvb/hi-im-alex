@@ -111,6 +111,23 @@
   .guarantee h3{margin:0 0 6px;font-size:19px}
   .guarantee p{margin:0;color:var(--ink-dim);font-size:15px}
   @media(max-width:560px){.guarantee{flex-direction:column;gap:12px}}
+  /* about */
+  .about{display:flex;gap:22px;align-items:center;background:var(--bg-elev);border:1px solid var(--line);border-radius:var(--radius);padding:26px}
+  .about img{width:104px;height:104px;border-radius:50%;object-fit:cover;border:2px solid var(--line);flex-shrink:0}
+  .about h3{margin:0 0 8px;font-size:19px}
+  .about p{margin:0 0 10px;color:var(--ink-dim);font-size:15px}
+  .about p:last-child{margin-bottom:0}
+  @media(max-width:560px){.about{flex-direction:column;text-align:center}}
+  /* fact callout */
+  .fact{background:var(--bg-elev);border:1px solid var(--line);border-left:3px solid var(--accent);border-radius:var(--radius);padding:18px 22px;margin-top:24px;font-size:14.5px;color:var(--ink-dim)}
+  .fact b{display:block;color:var(--accent);font-size:11px;letter-spacing:.08em;text-transform:uppercase;margin-bottom:6px;font-weight:700}
+  .fact .n{color:var(--ink);font-weight:700}
+  /* testimonials */
+  .testimonials{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:8px}
+  @media(max-width:720px){.testimonials{grid-template-columns:1fr}}
+  .quote{background:var(--bg-elev);border:1px solid var(--line);border-radius:var(--radius);padding:22px;color:var(--ink-dim);font-style:italic}
+  .quote cite{display:block;margin-top:12px;font-style:normal;color:var(--ink);font-weight:600;font-size:14px}
+  .quote cite span{display:block;color:var(--ink-dim);font-weight:400;font-size:12.5px;margin-top:2px}
   /* book */
   .book{background:linear-gradient(135deg,rgba(255,122,26,.08),rgba(255,122,26,.02));border:1px solid rgba(255,122,26,.25);border-radius:var(--radius);padding:32px;text-align:center}
   .book h2{margin-bottom:10px}
@@ -214,6 +231,7 @@
       <div class="pain"><b>Meetings you attend out of duty.</b>Half your calendar is meetings where you listen, nod, and leave with nothing you couldn't have read in three lines.</div>
       <div class="pain"><b>The personal stuff slips.</b>The kid's birthday, golf Sunday, the weight you said you'd work on. It all loses to whatever's on fire at work.</div>
     </div>
+    <div class="fact"><b>By the numbers</b>Industry surveys put executives at close to <span class="n">20 hours a week in meetings</span> and <span class="n">2.5+ hours a day on email</span>. Most of that time isn't decisions, it's triage.</div>
   </div>
 </section>
 
@@ -260,6 +278,31 @@
   </div>
 </section>
 
+<section id="about">
+  <div class="wrap">
+    <h2>Who's building this</h2>
+    <div class="about">
+      <img src="/alex.jpg" alt="Alex Coffman" width="104" height="104">
+      <div>
+        <h3>Alex Coffman</h3>
+        <p>I taught Claude Code at Network School, Balaji Srinivasan's program in Malaysia, to 300+ founders and operators, and did more than 50 hands on setups for people who'd never opened a terminal before.</p>
+        <p>The CEO Dashboard is the same approach pointed at a bigger problem. Instead of one AI agent for one task, we build the single screen that runs your whole day, sitting down with you in person to do it.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="testimonials">
+  <div class="wrap">
+    <h2>What people say about working with me</h2>
+    <p class="section-lede">These are about my Claude Code consulting work, not the dashboard itself. The dashboard is brand new, so there's no track record on it yet. These are the honest reviews I do have.</p>
+    <div class="testimonials">
+      <div class="quote">"Today, two months later, AI is the foundation of my business operations and has fundamentally changed how I work, with nearly 60 to 80% of my workdays spent directly in Claude. Absolutely revolutionary. … I would highly recommend his services."<cite>Brandon Rall<span>Founder, Novellus (digital marketing)</span></cite></div>
+      <div class="quote">"One of the best overviews I have seen on practical AI. … If you are a business owner who wants to understand how AI tools can work for you and how to get the most out of your AI subscriptions Alex is the one."<cite>Stephen Roberts<span>Managing Partner, ESO Venture Fund</span></cite></div>
+    </div>
+  </div>
+</section>
+
 <section id="ea">
   <div class="wrap">
     <h2>Your assistant runs it. You just read it.</h2>
@@ -271,6 +314,7 @@
         <p>Most EAs love this. It doesn't replace them. It makes them visibly better at their job.</p>
       </div>
     </div>
+    <div class="fact"><b>By the numbers</b>In one Microsoft 365 Copilot case study, executive assistants saved close to <span class="n">25 hours a month</span> on routine tasks. In a 2025 industry survey, 86% of EAs said AI makes them better at their job, not obsolete.</div>
   </div>
 </section>
 
@@ -332,7 +376,7 @@
       <h2>The whole point is giving you your time back.</h2>
       <p>One hour with us, and the noise of running your company gets compressed into one screen you check in five minutes. The rest of the day is yours again.</p>
       <div class="cta-row" style="justify-content:center">
-        <a class="btn btn-primary btn-lg" href="#pricing">This is a sample page</a>
+        <a class="btn btn-primary btn-lg" href="#pricing">Book a free 30 minute call</a>
       </div>
       <p class="micro" style="margin-top:14px">Concept preview. Booking and payment are not open yet.</p>
     </div>
