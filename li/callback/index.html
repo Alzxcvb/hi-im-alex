@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>LinkedIn connected</title>
+<meta name="robots" content="noindex,nofollow">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E👋%3C/text%3E%3C/svg%3E">
+<style>
+  :root{--bg:#0b0d10;--bg-elev:#12161b;--ink:#f5f6f7;--ink-dim:#a8b0b8;--line:#1f262e;--accent:#ff7a1a;--accent-soft:#ffb37a;
+        --font:ui-sans-serif,-apple-system,BlinkMacSystemFont,"Inter","Segoe UI",Roboto,sans-serif;
+        --mono:ui-monospace,"SF Mono",Menlo,Consolas,monospace}
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0;background:var(--bg);color:var(--ink);font-family:var(--font);line-height:1.6;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:640px;margin:0 auto;padding:56px 20px}
+  h1{font-size:26px;margin:0 0 6px}
+  p{color:var(--ink-dim)}
+  .card{background:var(--bg-elev);border:1px solid var(--line);border-radius:14px;padding:18px 20px;margin:22px 0}
+  code{font-family:var(--mono);font-size:13px;word-break:break-all;color:var(--ink);display:block;line-height:1.5}
+  button{background:var(--accent);color:#111;border:0;border-radius:10px;padding:11px 18px;font:inherit;font-weight:650;cursor:pointer;margin-top:14px}
+  button:hover{background:var(--accent-soft)}
+  .bad{border-color:#7a2b2b}
+  .bad h1{color:#ff8f8f}
+  .hint{font-size:14px}
+</style>
+</head>
+<body>
+<div class="wrap" id="root"></div>
+<script>
+// This page is the registered OAuth redirect target. LinkedIn requires an HTTPS
+// redirect URL, so the callback lives on the site rather than on localhost.
+// It does nothing but show the authorization code for copying. No secret ever
+// reaches this page, and the code is useless without the client secret, which
+// stays on Alex's machine. The code is single use and expires in 30 minutes.
+(function () {
+  var q = new URLSearchParams(window.location.search);
+  var code = q.get('code');
+  var err = q.get('error');
+  var errDesc = q.get('error_description');
+  var state = q.get('state');
+  var root = document.getElementById('root');
+
+  function esc(s) {
+    return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) {
+      return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
+    });
+  }
+
+  if (err) {
+    root.innerHTML =
+      '<h1>Not connected</h1>' +
+      '<p>LinkedIn declined the request. Nothing was changed.</p>' +
+      '<div class="card bad"><code>' + esc(err) + '</code>' +
+      (errDesc ? '<p class="hint">' + esc(errDesc) + '</p>' : '') + '</div>' +
+      '<p class="hint">Run the connect command again to retry.</p>';
+    return;
+  }
+
+  if (!code) {
+    root.innerHTML =
+      '<h1>Nothing to show</h1>' +
+      '<p>This page is the callback for the LinkedIn connection. Open it by running the connect command, not directly.</p>';
+    return;
+  }
+
+  root.innerHTML =
+    '<h1>Connected</h1>' +
+    '<p>Copy this code and paste it back into the terminal. It works once, and it expires in 30 minutes.</p>' +
+    '<div class="card"><code id="code">' + esc(code) + '</code>' +
+    '<button id="copy" type="button">Copy code</button></div>' +
+    (state ? '<p class="hint">state: <code>' + esc(state) + '</code></p>' : '') +
+    '<p class="hint">You can close this tab once it is pasted.</p>';
+
+  document.getElementById('copy').addEventListener('click', function () {
+    var btn = this;
+    var done = function () { btn.textContent = 'Copied'; setTimeout(function () { btn.textContent = 'Copy code'; }, 1600); };
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(code).then(done, done);
+    } else {
+      var r = document.createRange();
+      r.selectNode(document.getElementById('code'));
+      window.getSelection().removeAllRanges();
+      window.getSelection().addRange(r);
+      try { document.execCommand('copy'); } catch (e) {}
+      done();
+    }
+  });
+})();
+</script>
+</body>
+</html>
