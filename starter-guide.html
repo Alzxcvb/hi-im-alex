@@ -52,8 +52,13 @@
 
   @media print{
     html,body{background:white}
-    .page{margin:0;box-shadow:none;max-width:none;padding:48px 56px;page-break-after:always}
+    /* Each sheet is 1056px tall at 96dpi. Pages 1 and 3 previously ran a few
+       pixels over, which pushed their footer onto an extra blank sheet. The
+       tighter padding and footer margin below buy that back without changing
+       how the guide looks. */
+    .page{margin:0;box-shadow:none;max-width:none;padding:40px 56px;page-break-after:always;overflow:hidden}
     .page:last-child{page-break-after:auto}
+    .footer{margin-top:28px;padding-top:14px}
     @page{size:letter;margin:0}
   }
 </style>
