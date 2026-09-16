@@ -443,6 +443,9 @@
       <form class="magnet-form" action="/api/subscribe" method="POST">
         <input type="text" name="name" placeholder="Your name" autocomplete="name" required />
         <input type="email" name="email_address" placeholder="you@work.com" autocomplete="email" required />
+        <div aria-hidden="true" style="position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden">
+          <label>Company website<input type="text" name="company_website" tabindex="-1" autocomplete="off" /></label>
+        </div>
         <button class="btn btn-secondary" type="submit"><span>Send me the guide →</span></button>
         <p class="fineprint">Instant access. No spam.</p>
       </form>
