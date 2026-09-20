@@ -1,6 +1,12 @@
 const GFORM_URL = 'https://docs.google.com/forms/d/e/1FAIpQLScU9XIiJYrDDp0v9H0oobnZj2mXQbO4qS8aBzVrcP4sNEvuJA/formResponse';
 const GFORM_NAME_ENTRY = 'entry.42988216';
 const GFORM_EMAIL_ENTRY = 'entry.1779722930';
+// Added 2026-09-19. Vercel's Hobby plan keeps runtime logs for one hour, so the
+// submitter ip was being lost before anyone could look at it. Writing it into
+// the response sheet instead gives permanent retention of the one field that
+// matters, at no cost. Not required on the form, so it can never block a real
+// submission.
+const GFORM_DIAG_ENTRY = 'entry.1524134786';
 const TURNSTILE_VERIFY_URL = 'https://challenges.cloudflare.com/turnstile/v0/siteverify';
 
 function parseBody(req) {
@@ -19,11 +25,12 @@ function parseBody(req) {
 // Nothing is thrown away. Submissions that fail a check are still recorded,
 // they are just labelled so the real signups stay countable and the honest
 // number is always available: total submissions vs verified humans.
-async function recordToGForm(name, email) {
+async function recordToGForm(name, email, diagnostics) {
   const params = new URLSearchParams();
   if (name) params.set(GFORM_NAME_ENTRY, name);
   params.set(GFORM_EMAIL_ENTRY, email);
   params.set('emailAddress', email);
+  if (diagnostics) params.set(GFORM_DIAG_ENTRY, diagnostics);
   try {
     const gres = await fetch(GFORM_URL, {
       method: 'POST',
@@ -116,7 +123,17 @@ export default async function handler(req, res) {
   // Flagged rows are kept, with the reason written into the name column so the
   // spreadsheet itself says which submissions are trustworthy.
   const recordedName = suspected ? `[FLAGGED ${flags.join(' + ')}] ${name}`.slice(0, 200) : name;
-  await recordToGForm(recordedName, email);
+
+  // Provenance goes in its own column so it stays sortable and never has to be
+  // untangled from the name. Long values are trimmed to keep the cell readable.
+  const diagnostics = [
+    `ip=${ip || 'none'}`,
+    `ua=${ua ? ua.slice(0, 120) : 'none'}`,
+    `origin=${origin ? origin.slice(0, 80) : 'none'}`,
+    `flags=${flags.length ? flags.join('+') : 'none'}`,
+  ].join(' | ');
+
+  await recordToGForm(recordedName, email, diagnostics);
 
   res.writeHead(302, { Location: '/starter-guide.pdf' });
   res.end();
