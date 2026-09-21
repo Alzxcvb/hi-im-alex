@@ -3,16 +3,16 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Hi, I'm Alex: Get AI handling your repetitive work, installed and running, in one call</title>
-<meta name="description" content="I install Claude on your machine and build your own AI agent around the task that eats your week, live, on one call. It runs by the end, or I don't stop. $300.">
-<meta property="og:title" content="Walk away with your own AI agent. Built live, running, done. One call.">
-<meta property="og:description" content="Not theory, not a course. One Zoom call: I install Claude and build your own AI agent around your actual work. It runs by the end, or I don't stop until it does. $300.">
+<title>Hi, I'm Alex: your first AI agent, built with you in one call</title>
+<meta name="description" content="I install Claude on your machine and build your first AI agent around the task that eats your week, live, on one 90 minute call. It runs by the end, or I keep working free. $300.">
+<meta property="og:title" content="Your first AI agent, built with you in one 90 minute call.">
+<meta property="og:description" content="I taught Claude Code to 300+ founders at Network School. On one call I install it on your machine and we build your first agent together. It runs by the end, or I keep working free.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://hiimalex.ai">
 <meta property="og:image" content="https://hiimalex.ai/alex.jpg">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Walk away with your own AI agent. Built live, running, done. One call.">
-<meta name="twitter:description" content="Not theory, not a course. One Zoom call: I install Claude and build your own AI agent around your actual work. It runs by the end, or I don't stop until it does. $300.">
+<meta name="twitter:title" content="Your first AI agent, built with you in one 90 minute call.">
+<meta name="twitter:description" content="I taught Claude Code to 300+ founders at Network School. On one call I install it on your machine and we build your first agent together.">
 <meta name="twitter:image" content="https://hiimalex.ai/alex.jpg">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E👋%3C/text%3E%3C/svg%3E">
 <!-- Vercel Web Analytics -->
@@ -36,146 +36,95 @@
     --accent:#ff7a1a;
     --accent-soft:#ffb37a;
     --radius:14px;
-    --maxw:880px;
+    --maxw:820px;
     --font:ui-sans-serif,-apple-system,BlinkMacSystemFont,"Inter","Segoe UI",Roboto,sans-serif;
-    --mono:ui-monospace,"SF Mono",Menlo,Consolas,monospace;
   }
   *{box-sizing:border-box}
   html,body{margin:0;padding:0;background:var(--bg);color:var(--ink);font-family:var(--font);-webkit-font-smoothing:antialiased;line-height:1.55}
   a{color:var(--accent-soft);text-decoration:none}
   a:hover{color:var(--accent);text-decoration:underline}
   .wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px}
-  header.top{padding:22px 0;border-bottom:1px solid var(--line);position:sticky;top:0;background:rgba(11,13,16,.85);backdrop-filter:blur(8px);z-index:10}
+
+  header.top{padding:20px 0;border-bottom:1px solid var(--line)}
   header.top .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px}
   .brand{font-weight:700;letter-spacing:-.01em}
   .brand .wave{display:inline-block;transform-origin:70% 70%;animation:wave 2.4s ease-in-out infinite}
   @keyframes wave{0%,60%,100%{transform:rotate(0)}10%{transform:rotate(14deg)}20%{transform:rotate(-8deg)}30%{transform:rotate(14deg)}40%{transform:rotate(-4deg)}50%{transform:rotate(10deg)}}
-  .nav{display:flex;align-items:center}
-  .nav a{margin-left:18px;color:var(--ink-dim);font-size:14px}
-  .nav a:hover{color:var(--ink);text-decoration:none}
-  .nav a.nav-cta{color:var(--accent);font-weight:600}
-  @media(max-width:560px){.nav a:not(.nav-cta){display:none}}
-  .hero{padding:72px 0 40px}
-  .hero .wrap{display:grid;grid-template-columns:1fr auto;gap:48px;align-items:center}
-  .hero-photo{width:220px;height:220px;border-radius:50%;object-fit:cover;border:3px solid var(--line);box-shadow:0 16px 48px rgba(0,0,0,.35);justify-self:end}
-  @media(max-width:720px){.hero .wrap{grid-template-columns:1fr;gap:24px}.hero-photo{width:128px;height:128px;order:-1;justify-self:start}}
-  .eyebrow{display:inline-block;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);background:rgba(255,122,26,.1);border:1px solid rgba(255,122,26,.25);padding:6px 10px;border-radius:999px;margin-bottom:20px}
-  h1{font-size:clamp(34px,5.2vw,56px);line-height:1.08;letter-spacing:-.02em;margin:0 0 16px;font-weight:800}
+  header.top .nav-cta{color:var(--accent);font-weight:600;font-size:14.5px}
+
+  /* one button style, used everywhere */
+  .btn{display:inline-block;background:var(--accent);color:#0b0d10;font-weight:700;font-size:17px;padding:16px 30px;border-radius:12px;border:none;cursor:pointer;line-height:1.2;text-align:center}
+  .btn:hover{background:#ff8c3a;color:#0b0d10;text-decoration:none}
+  .cta-block{text-align:center;margin:30px 0 0}
+  .cta-note{color:var(--ink-dim);font-size:14px;margin:14px auto 0;max-width:460px}
+
+  .hero{padding:64px 0 48px}
+  .hero .wrap{display:grid;grid-template-columns:1fr auto;gap:44px;align-items:center}
+  h1{font-size:40px;line-height:1.13;letter-spacing:-.022em;margin:0 0 18px;font-weight:800}
   h1 .accent{color:var(--accent)}
-  .lede{font-size:clamp(17px,2.1vw,20px);color:var(--ink-dim);max-width:640px;margin:0 0 28px}
-  .cta-row{display:flex;flex-wrap:wrap;gap:12px;margin-top:10px}
-  .btn{display:inline-flex;align-items:center;gap:8px;padding:13px 20px;border-radius:10px;font-weight:600;font-size:15px;border:1px solid transparent;transition:transform .08s ease,background .2s;cursor:pointer}
-  .btn:active{transform:translateY(1px)}
-  .btn-primary{background:var(--accent);color:#0b0d10}
-  .btn-primary:hover{background:var(--accent-soft);text-decoration:none}
-  .btn-secondary{background:transparent;color:var(--ink);border-color:var(--line)}
-  .btn-secondary:hover{border-color:var(--ink-dim);text-decoration:none}
-  .btn-lg{padding:16px 26px;font-size:16px}
-  .micro{font-size:13px;color:var(--ink-dim);margin-top:10px}
-  .trust{margin-top:28px;font-size:14px;color:var(--ink-dim)}
-  .trust b{color:var(--ink);font-weight:600}
-  section{padding:56px 0;border-top:1px solid var(--line)}
-  h2{font-size:clamp(24px,3vw,32px);letter-spacing:-.01em;margin:0 0 10px;font-weight:700}
-  .section-lede{color:var(--ink-dim);max-width:620px;margin:0 0 32px}
-  /* problem */
-  .pains{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:24px}
-  .pain{background:var(--bg-elev);border:1px solid var(--line);border-radius:var(--radius);padding:20px;color:var(--ink-dim);font-size:15px}
-  .pain b{color:var(--ink);display:block;margin-bottom:6px;font-size:15px}
-  @media(max-width:720px){.pains{grid-template-columns:1fr}}
-  /* offer / how it works */
-  .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:8px}
-  .step{background:var(--bg-elev);border:1px solid var(--line);border-radius:var(--radius);padding:22px;position:relative}
-  .step .num{font-family:var(--mono);font-size:13px;color:var(--accent);font-weight:700;letter-spacing:.05em}
-  .step h3{margin:8px 0 8px;font-size:18px;font-weight:700}
-  .step p{margin:0;color:var(--ink-dim);font-size:14.5px}
-  @media(max-width:720px){.steps{grid-template-columns:1fr}}
-  /* value stack */
-  .offer-box{background:linear-gradient(135deg,rgba(255,122,26,.07),rgba(255,122,26,.015));border:1px solid rgba(255,122,26,.28);border-radius:var(--radius);padding:28px;margin-top:8px}
-  .offer-box h3{margin:0 0 4px;font-size:20px;letter-spacing:-.01em}
-  .offer-box .sub{color:var(--ink-dim);margin:0 0 18px;font-size:14.5px}
-  .stack{list-style:none;margin:0;padding:0}
-  .stack li{display:flex;align-items:baseline;gap:10px;padding:11px 0;border-bottom:1px dashed var(--line);font-size:15px}
-  .stack li:last-of-type{border-bottom:0}
-  .stack .it{flex:1}
-  .stack .it b{color:var(--ink);font-weight:600}
-  .stack .it span{color:var(--ink-dim);display:block;font-size:13px;margin-top:2px}
-  .stack .val{color:var(--ink-dim);font-variant-numeric:tabular-nums;white-space:nowrap;font-size:14px}
-  .stack .check{color:var(--accent);font-weight:700}
-  .totals{margin-top:18px;padding-top:18px;border-top:1px solid var(--line)}
-  .totals .row{display:flex;justify-content:space-between;align-items:baseline;font-size:15px;margin-bottom:6px}
-  .totals .anchor{color:var(--ink-dim)}
-  .totals .anchor s{opacity:.7}
-  .totals .price{font-size:clamp(22px,3vw,28px);font-weight:800;color:var(--ink)}
-  .totals .price .accent{color:var(--accent)}
-  .offer-cta{margin-top:22px;text-align:center}
-  /* guarantee */
-  .guarantee{display:flex;gap:18px;align-items:flex-start;background:var(--bg-elev);border:1px solid rgba(255,122,26,.3);border-left:3px solid var(--accent);border-radius:var(--radius);padding:24px;margin-top:8px}
-  .guarantee .seal{font-size:34px;line-height:1}
-  .guarantee h3{margin:0 0 6px;font-size:19px}
-  .guarantee p{margin:0;color:var(--ink-dim);font-size:15px}
-  @media(max-width:560px){.guarantee{flex-direction:column;gap:12px}}
+  .lede{color:var(--ink-dim);font-size:18px;margin:0 0 26px}
+  .hero-photo{width:190px;height:190px;border-radius:50%;object-fit:cover;border:3px solid var(--line);box-shadow:0 16px 48px rgba(0,0,0,.35)}
+  .credential{margin:26px 0 0;padding-top:20px;border-top:1px solid var(--line);color:var(--ink-dim);font-size:15px}
+  .credential b{color:var(--ink)}
+  .hero .btn{font-size:18px;padding:17px 34px}
+  .hero .cta-block{text-align:left;margin:0}
+  .hero .cta-note{margin-left:0;text-align:left}
+
+  section{padding:52px 0;border-top:1px solid var(--line)}
+  h2{font-size:27px;line-height:1.22;letter-spacing:-.018em;margin:0 0 10px;font-weight:750}
+  .section-lede{color:var(--ink-dim);margin:0 0 26px;font-size:16px}
+
+  /* the offer stack */
+  .offer{background:var(--bg-elev);border:1px solid var(--line);border-radius:var(--radius);padding:30px}
+  .stack{list-style:none;margin:20px 0 0;padding:0}
+  .stack li{display:flex;justify-content:space-between;gap:20px;padding:14px 0;border-bottom:1px dashed var(--line)}
+  .stack li:last-child{border-bottom:none}
+  .stack .it b{display:block;font-size:16px}
+  .stack .it span{display:block;color:var(--ink-dim);font-size:14.5px;margin-top:2px}
+  .stack .val{white-space:nowrap;color:var(--ink-dim);font-size:14.5px;padding-top:2px}
+  .stack .val.check{color:var(--accent)}
+  .totals{margin-top:22px;padding-top:18px;border-top:1px solid var(--line)}
+  .totals .row{display:flex;justify-content:space-between;align-items:baseline;gap:16px}
+  .totals .row.anchor{color:var(--ink-dim);font-size:15px;margin-bottom:8px}
+  .totals .price{font-size:26px;font-weight:800}
+  .totals .price .accent{color:var(--accent);font-size:32px}
+
   /* proof */
-  .pillars{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:24px}
-  .pillar{background:var(--bg-elev);border:1px solid var(--line);border-radius:var(--radius);padding:16px}
-  .pillar b{display:block;color:var(--accent);font-size:13px;letter-spacing:.05em;text-transform:uppercase;margin-bottom:4px}
-  .pillar span{color:var(--ink-dim);font-size:14px}
-  @media(max-width:720px){.pillars{grid-template-columns:repeat(2,1fr)}}
-  .stats{display:flex;flex-wrap:wrap;gap:14px;margin-top:18px}
-  .stat{flex:1;min-width:140px;background:var(--bg-elev);border:1px solid var(--line);border-radius:var(--radius);padding:18px;text-align:center}
-  .stat b{display:block;font-size:26px;font-weight:800;color:var(--ink);letter-spacing:-.01em}
-  .stat span{color:var(--ink-dim);font-size:13.5px}
-  /* testimonials */
-  .testimonials{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-top:8px}
-  .quote{background:var(--bg-elev);border:1px solid var(--line);border-radius:var(--radius);padding:22px;color:var(--ink-dim);font-style:italic}
-  .quote.placeholder{border-style:dashed;color:#6b7480;text-align:center;font-style:normal}
-  .quote cite{display:block;margin-top:12px;font-style:normal;color:var(--ink);font-weight:600;font-size:14px}
-  @media(max-width:720px){.testimonials{grid-template-columns:1fr}}
-  /* reviews carousel */
-  .reviews-strip{display:flex;gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;padding:8px 2px 18px;-webkit-overflow-scrolling:touch;scrollbar-width:thin}
-  .review{flex:0 0 320px;scroll-snap-align:start;background:var(--bg-elev);border:1px solid var(--line);border-radius:var(--radius);padding:20px;font-size:14.5px;color:var(--ink-dim);display:flex;flex-direction:column}
-  @media(max-width:560px){.review{flex-basis:270px}}
-  .review p{margin:0 0 14px;flex:1;font-style:italic}
-  .review cite{font-style:normal;color:var(--ink);font-weight:600;font-size:13.5px}
-  .review .role{display:block;color:var(--ink-dim);font-weight:400;font-size:12.5px;margin-top:2px}
-  .reviews-nav{display:flex;gap:10px;justify-content:flex-end;margin-top:4px}
-  .reviews-nav button{background:var(--bg-elev);border:1px solid var(--line);color:var(--ink);border-radius:8px;padding:8px 16px;cursor:pointer;font-size:16px}
-  .reviews-nav button:hover{border-color:var(--accent)}
-  /* after the call */
-  .after{background:var(--bg-elev);border:1px solid var(--line);border-radius:var(--radius);padding:26px}
-  .after p{color:var(--ink-dim);margin:0 0 12px;font-size:15.5px}
-  .after p:last-child{margin-bottom:0}
-  .after b{color:var(--ink)}
+  .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:0 0 28px}
+  .stat{background:var(--bg-elev);border:1px solid var(--line);border-radius:12px;padding:18px}
+  .stat b{display:block;font-size:24px;color:var(--accent);font-weight:800}
+  .stat span{display:block;color:var(--ink-dim);font-size:14px;margin-top:3px}
+  .review{background:var(--bg-elev);border:1px solid var(--line);border-radius:12px;padding:20px 22px;margin-bottom:14px}
+  .review p{margin:0 0 12px;font-size:15.5px}
+  .review cite{font-style:normal;font-weight:700;font-size:14.5px;display:block}
+  .review cite span{display:block;color:var(--ink-dim);font-weight:400;font-size:13.5px;margin-top:1px}
+
   /* faq */
-  .faq{margin-top:8px}
-  .faq details{border-bottom:1px solid var(--line);padding:6px 0}
-  .faq summary{cursor:pointer;list-style:none;padding:14px 0;font-weight:600;font-size:16px;color:var(--ink);display:flex;justify-content:space-between;align-items:center;gap:12px}
-  .faq summary::-webkit-details-marker{display:none}
-  .faq summary::after{content:"+";color:var(--accent);font-weight:700;font-size:20px;line-height:1}
-  .faq details[open] summary::after{content:"▲"}
-  .faq p{margin:0 0 16px;color:var(--ink-dim);font-size:15px}
-  /* book */
-  .book{background:linear-gradient(135deg,rgba(255,122,26,.08),rgba(255,122,26,.02));border:1px solid rgba(255,122,26,.25);border-radius:var(--radius);padding:32px;text-align:center}
-  .book h2{margin-bottom:10px}
-  .book p{color:var(--ink-dim);margin:0 auto 22px;max-width:520px}
-  .book .recap{display:inline-block;text-align:left;margin:0 auto 22px;color:var(--ink-dim);font-size:14.5px;line-height:1.85}
-  .book .recap b{color:var(--ink)}
-  /* magnet */
-  .magnet{background:var(--bg-elev);border:1px solid var(--line);border-radius:var(--radius);padding:28px;display:grid;grid-template-columns:1.2fr 1fr;gap:28px;align-items:center}
-  .magnet-text h3{margin:0 0 8px;font-size:22px;letter-spacing:-.01em}
-  .magnet-text p{color:var(--ink-dim);margin:0 0 6px;font-size:15px}
-  .magnet-text ul{margin:8px 0 0;padding-left:18px;color:var(--ink-dim);font-size:14.5px}
-  .magnet-form{display:flex;flex-direction:column;gap:10px}
-  .magnet-form input[type=email],.magnet-form input[type=text]{width:100%;padding:13px 14px;border-radius:10px;border:1px solid var(--line);background:var(--bg);color:var(--ink);font-size:15px;font-family:inherit}
-  .magnet-form input:focus{outline:none;border-color:var(--accent)}
-  .magnet-form button{width:100%}
-  .magnet-form .fineprint{font-size:12px;color:var(--ink-dim);text-align:center;margin:4px 0 0}
-  @media(max-width:720px){.magnet{grid-template-columns:1fr;gap:20px}}
-  footer{padding:40px 0 60px;color:var(--ink-dim);font-size:14px;border-top:1px solid var(--line)}
-  footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px;align-items:center}
-  footer a{color:var(--ink-dim)}
-  footer a:hover{color:var(--ink)}
-  .social a{margin-left:14px;display:inline-flex;align-items:center;gap:6px}
-  .social svg{vertical-align:middle}
+  details{border-bottom:1px solid var(--line);padding:16px 0}
+  summary{cursor:pointer;font-weight:650;font-size:16.5px;list-style:none}
+  summary::-webkit-details-marker{display:none}
+  summary::before{content:"+";color:var(--accent);font-weight:800;margin-right:10px}
+  details[open] summary::before{content:"–"}
+  details p{color:var(--ink-dim);margin:12px 0 0;font-size:15.5px}
+
+  footer{border-top:1px solid var(--line);padding:30px 0 44px;color:var(--ink-dim);font-size:14px}
+  footer .wrap{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;align-items:center}
+  footer .social a{margin-left:16px;color:var(--ink-dim)}
+  footer .social a:first-child{margin-left:0}
+  footer .social a:hover{color:var(--accent)}
+
+  @media(max-width:700px){
+    .hero{padding:44px 0 36px}
+    .hero .wrap{grid-template-columns:1fr;gap:28px}
+    .hero-photo{width:120px;height:120px;order:-1}
+    h1{font-size:31px}
+    .lede{font-size:16.5px}
+    .stats{grid-template-columns:1fr}
+    .btn{display:block;width:100%}
+    .offer{padding:22px}
+    .stack li{flex-direction:column;gap:4px}
+    .stack .val{padding-top:0}
+  }
 </style>
 </head>
 <body>
@@ -183,126 +132,46 @@
 <header class="top">
   <div class="wrap">
     <div class="brand"><span class="wave">👋</span> Hi, I'm Alex</div>
-    <nav class="nav">
-      <a href="#how">How it works</a>
-      <a href="#reviews">Reviews</a>
-      <a href="/score">Automation Score</a>
-      <a href="#faq">FAQ</a>
-      <a class="nav-cta" href="https://cal.com/hiimalex/15min" target="_blank" rel="noopener">Book a free 15 min call →</a>
-    </nav>
+    <a class="nav-cta" href="https://cal.com/hiimalex/15min" target="_blank" rel="noopener">Book a free 15 min call →</a>
   </div>
 </header>
 
 <section class="hero">
   <div class="wrap">
     <div class="hero-text">
-      <span class="eyebrow">Claude Code · Done with you · One call, 90 minutes</span>
-      <h1>Walk away with your own AI agent doing the work that's eating your week. <span class="accent">Built live, running, done.</span> One call.</h1>
-      <p class="lede">Most people who try Claude poke around for ten minutes and close the tab. Nothing changes. This is different: we get on Zoom, I install Claude on your machine, and we build your own AI agent around the task that's actually eating your week. Together, live. It's running by the time we hang up, or I keep going free.</p>
-      <div class="cta-row">
-        <a class="btn btn-primary btn-lg" href="https://cal.com/hiimalex/15min" target="_blank" rel="noopener">Book a free 15 min call →</a>
+      <h1>Your first AI agent, built with you in <span class="accent">one 90 minute call.</span></h1>
+      <p class="lede">I get on Zoom, install Claude on your machine, and we build an agent around the one task eating your week. It is running before we hang up, or I keep working free until it does.</p>
+      <div class="cta-block">
+        <a class="btn" href="https://cal.com/hiimalex/15min" target="_blank" rel="noopener">Book a free 15 min call →</a>
+        <p class="cta-note">Fifteen minutes, no charge, no pitch. We work out if this fits before you pay anything.</p>
       </div>
-      <p class="micro">One Zoom call, 90 minutes. Claude installed, your own AI agent built, cheat sheet yours to keep. It runs by the end or I don't stop. Ready for the Quick Start at $300? Email <a href="mailto:hiimalexllc@gmail.com">hiimalexllc@gmail.com</a> and I'll get you booked in.</p>
-      <p class="trust">I taught <b>Claude Code at Network School</b> (Balaji Srinivasan's program). <b>300+ founders trained, 50+ done-with-you setups.</b></p>
+      <p class="credential">I taught Claude Code at <b>Network School</b>, Balaji Srinivasan's program. <b>300+ founders trained. 50+ one to one setups.</b></p>
     </div>
-    <img class="hero-photo" src="alex.jpg" alt="Alex Coffman" width="220" height="220">
+    <img class="hero-photo" src="alex.jpg" alt="Alex Coffman" width="190" height="190">
   </div>
 </section>
 
-<section id="problem">
+<section id="offer">
   <div class="wrap">
-    <h2>You don't have an AI problem. You have a "now what?" problem.</h2>
-    <p class="section-lede">You've seen what AI can do. Maybe you even opened Claude or ChatGPT, poked around for ten minutes… and then the tab closed and your week looked exactly the same. The gap was never the technology. It's that nobody sat down and wired it into how <em>you</em> actually work.</p>
-    <div class="pains">
-      <div class="pain"><b>"Where do I even start?"</b>Endless videos and threads, zero of it pointed at your business.</div>
-      <div class="pain"><b>"I set it up and… nothing."</b>The app's installed, but your real work still gets done by hand.</div>
-      <div class="pain"><b>"I don't have time to learn this."</b>So the highest-leverage tool of the decade sits on the shelf.</div>
-    </div>
-  </div>
-</section>
-
-<section id="how">
-  <div class="wrap">
-    <h2>Start here: the Quick Start.</h2>
-    <p class="section-lede">Every Quick Start is built from scratch around your business and the one task quietly eating your week. Then we build an AI agent that does it for you, while you watch.</p>
-    <div class="steps">
-      <div class="step">
-        <div class="num">01</div>
-        <h3>We find the bottleneck</h3>
-        <p>First few minutes: we pick the repetitive, time-sucking task with the highest payoff to automate. Your call, your business.</p>
-      </div>
-      <div class="step">
-        <div class="num">02</div>
-        <h3>I get Claude running</h3>
-        <p>I install and configure Claude on your machine, with your tools. No "go watch this and figure it out." You're set up correctly the first time.</p>
-      </div>
-      <div class="step">
-        <div class="num">03</div>
-        <h3>We build your agent live</h3>
-        <p>We build your AI agent together so you can run it again Monday morning. You leave with it working, not with homework.</p>
-      </div>
-    </div>
-
-    <div class="offer-box">
-      <h3>What you walk away with</h3>
-      <p class="sub">One call, up to 90 minutes. Everything below is yours to keep.</p>
+    <h2>The Quick Start</h2>
+    <p class="section-lede">One call, up to 90 minutes. Everything below is yours to keep.</p>
+    <div class="offer">
       <ul class="stack">
-        <li><span class="it"><b>Claude installed &amp; configured</b><span>On your machine, wired to your tools, done right the first time.</span></span><span class="val">$300 value</span></li>
+        <li><span class="it"><b>Claude installed and configured</b><span>On your machine, wired to your tools, done right the first time.</span></span><span class="val">$300 value</span></li>
         <li><span class="it"><b>Your own AI agent, built live</b><span>Around a task you actually do every week, not a demo.</span></span><span class="val">$750 value</span></li>
         <li><span class="it"><b>A cheat sheet for your exact setup</b><span>So you can run it again, and go further, on your own.</span></span><span class="val">$150 value</span></li>
-        <li><span class="it"><b>7 days of email follow-up</b><span>Hit a snag after the call? Reply and I help you through it.</span></span><span class="val">$200 value</span></li>
-        <li><span class="it"><b>The Claude Code Quick Start guide</b><span>The same playbook I walk every client through, in PDF.</span></span><span class="val">$50 value</span></li>
-        <li><span class="it"><b>The "it runs or I don't stop" guarantee</b><span>You never pay for a maybe.</span></span><span class="val check">included</span></li>
+        <li><span class="it"><b>7 days of email follow up</b><span>Hit a snag after the call? Reply and I help you through it.</span></span><span class="val">$200 value</span></li>
+        <li><span class="it"><b>The Claude Code starter guide</b><span>The same playbook I walk every client through, in PDF.</span></span><span class="val">$50 value</span></li>
+        <li><span class="it"><b>It runs or I don't stop</b><span>If it is not working by the end, I keep going at no extra charge.</span></span><span class="val check">included</span></li>
       </ul>
       <div class="totals">
         <div class="row anchor"><span>Total value</span><span><s>$1,450+</s></span></div>
-        <div class="row"><span class="price">Your price today</span><span class="price"><span class="accent">$300</span></span></div>
-      </div>
-      <div class="offer-cta">
-        <div class="cta-row" style="justify-content:center">
-          <a class="btn btn-primary btn-lg" href="mailto:hiimalexllc@gmail.com?subject=Quick%20Start">Email me to book your Quick Start →</a>
-        </div>
-        <p class="micro">I take a handful each week so every setup gets my full focus. <a href="https://cal.com/hiimalex/15min" target="_blank" rel="noopener">Prefer a free 15 min call first? →</a></p>
+        <div class="row"><span class="price">Your price</span><span class="price"><span class="accent">$300</span></span></div>
       </div>
     </div>
-  </div>
-</section>
-
-<section id="guarantee">
-  <div class="wrap">
-    <h2>You take zero risk. I do.</h2>
-    <div class="guarantee">
-      <div class="seal">🛡️</div>
-      <div>
-        <h3>The "It Runs Or I Don't Stop" Guarantee</h3>
-        <p>If Claude isn't installed, configured, and running a real workflow on your machine by the end of our call, I keep working on my clock, at no extra charge, until it is. You're not paying for advice or a maybe. You're paying for it to actually work.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section id="agent-build">
-  <div class="wrap">
-    <h2>Want it done <em>for</em> you instead? The Agent Build.</h2>
-    <p class="section-lede">The Quick Start is done with you. The Agent Build is done for you: I design, build, and hand over a complete AI agent around your highest value workflow.</p>
-    <div class="offer-box">
-      <h3>The Agent Build</h3>
-      <p class="sub">Scoped together on a free call. Delivered within a week.</p>
-      <ul class="stack">
-        <li><span class="it"><b>Everything in the Quick Start</b><span>Install, configuration, cheat sheet, the guarantee.</span></span><span class="val check">included</span></li>
-        <li><span class="it"><b>One complete AI agent, built for you</b><span>I do the building around the workflow that matters most. You get the working result.</span></span><span class="val check">included</span></li>
-        <li><span class="it"><b>A live handover session</b><span>You and your team see exactly how to run it and how to change it.</span></span><span class="val check">included</span></li>
-        <li><span class="it"><b>30 days of email support</b><span>Anything breaks or needs a tweak, I handle it.</span></span><span class="val check">included</span></li>
-      </ul>
-      <div class="totals">
-        <div class="row"><span class="price">The Agent Build</span><span class="price"><span class="accent">$1,000</span></span></div>
-      </div>
-      <div class="offer-cta">
-        <div class="cta-row" style="justify-content:center">
-          <a class="btn btn-primary btn-lg" href="https://cal.com/hiimalex/15min" target="_blank" rel="noopener">Book a free 15 min scoping call →</a>
-        </div>
-        <p class="micro">We scope it together first, so you know exactly what you're getting before you pay anything.</p>
-      </div>
+    <div class="cta-block">
+      <a class="btn" href="https://cal.com/hiimalex/15min" target="_blank" rel="noopener">Book a free 15 min call →</a>
+      <p class="cta-note">Start with the free call. If it is a fit, we book your Quick Start from there.</p>
     </div>
   </div>
 </section>
@@ -310,174 +179,76 @@
 <section id="proof">
   <div class="wrap">
     <h2>Why me</h2>
-    <p class="section-lede">Most people talking about AI haven't actually installed it for someone else's business. I've done it 50+ times, for founders who'd never opened a terminal before. I taught at Network School, ran group workshops for 300+ people, and did 1:1 setups until Claude was running on their machine. The approach on this call is the same one that worked every time.</p>
+    <p class="section-lede">Most people talking about AI have never installed it for someone else's business. I have done it 50+ times, for founders who had never opened a terminal.</p>
     <div class="stats">
       <div class="stat"><b>300+</b><span>founders trained at Network School</span></div>
-      <div class="stat"><b>50+</b><span>done-with-you 1:1 setups</span></div>
+      <div class="stat"><b>50+</b><span>done with you one to one setups</span></div>
       <div class="stat"><b>1 call</b><span>from "heard of it" to "it's running"</span></div>
     </div>
-    <div class="pillars">
-      <div class="pillar"><b>Practical</b><span>I open a terminal and make it work.</span></div>
-      <div class="pillar"><b>Patient</b><span>I've taught complete beginners. No jargon.</span></div>
-      <div class="pillar"><b>Proven</b><span>Classes, installs, and builds at Network School.</span></div>
-      <div class="pillar"><b>Global</b><span>Works across cultures, countries, time zones.</span></div>
+    <div class="review">
+      <p>"Today, two months later, AI is the foundation of my business operations and has fundamentally changed how I work, with nearly 60-80% of my workdays spent directly in Claude. Absolutely revolutionary. … I would highly recommend his services."</p>
+      <cite>Brandon Rall<span>Founder, Novellus (digital marketing)</span></cite>
     </div>
-  </div>
-</section>
-
-
-<section id="reviews">
-  <div class="wrap">
-    <h2>What clients say</h2>
-    <p class="section-lede">Straight from LinkedIn, in their own words. Swipe through, or <a href="https://www.linkedin.com/in/alexdcoffman/details/recommendations/" target="_blank" rel="noopener">read the full versions on LinkedIn →</a></p>
-    <div class="reviews-strip" id="reviews-strip">
-      <div class="review">
-        <p>"Today, two months later, AI is the foundation of my business operations and has fundamentally changed how I work, with nearly 60-80% of my workdays spent directly in Claude. Absolutely revolutionary. … I would highly recommend his services."</p>
-        <cite>Brandon Rall<span class="role">Founder, Novellus (digital marketing)</span></cite>
-      </div>
-      <div class="review">
-        <p>"One of the best overviews I have seen on practical AI. … If you are a business owner who wants to understand how AI tools can work for you and how to get the most out of your AI subscriptions Alex is the one."</p>
-        <cite>Stephen Roberts<span class="role">Managing Partner, ESO Venture Fund</span></cite>
-      </div>
-      <div class="review">
-        <p>"He taught me how to use agents to manage repetitive research projects necessary for outreach with my company … very practical about what's possible and what isn't."</p>
-        <cite>Bailey Lammon<span class="role">Author and Travel Advisor</span></cite>
-      </div>
-      <div class="review">
-        <p>"He's genuinely great to learn from if you're overwhelmed with Claude. … If you're looking for someone to help with Claude automation/workflows, Alex is the one."</p>
-        <cite>Shriti Singh<span class="role">Ghostwriter, Personal Branding</span></cite>
-      </div>
-      <div class="review">
-        <p>"He has a rare ability to explain a technical topic in a way that feels clear and genuinely approachable. … I'd highly recommend Alex to anyone looking to understand AI agents and their practical applications."</p>
-        <cite>Patricia de Llano<span class="role">Principal Product Designer</span></cite>
-      </div>
-      <div class="review">
-        <p>"Alex gave solid strategies to be able to use Claude efficiently and effectively. As a power user, it is very easy to burn out your tokens quickly and he shows you ways to be able to stretch out your credits much longer."</p>
-        <cite>Stephen Yeh<span class="role">VP, Debt Capital Markets, Kadenwood Group</span></cite>
-      </div>
-      <div class="review">
-        <p>"Full of very useful info on multiple best practice principles. Like context separation, memory, token usage. I would highly recommend it for anyone looking to use Claude."</p>
-        <cite>Peter Donaldson<span class="role">Founder, Web3 Business Development</span></cite>
-      </div>
-      <div class="review">
-        <p>"He did an incredible job … how to prompt better to claude so that it understands the context better."</p>
-        <cite>Insha Ramin<span class="role">Growth Marketer</span></cite>
-      </div>
+    <div class="review">
+      <p>"One of the best overviews I have seen on practical AI. … If you are a business owner who wants to understand how AI tools can work for you and how to get the most out of your AI subscriptions Alex is the one."</p>
+      <cite>Stephen Roberts<span>Managing Partner, ESO Venture Fund</span></cite>
     </div>
-    <div class="reviews-nav">
-      <button id="rev-prev" aria-label="Previous reviews">←</button>
-      <button id="rev-next" aria-label="Next reviews">→</button>
+    <div class="review">
+      <p>"He has a rare ability to explain a technical topic in a way that feels clear and genuinely approachable. … I'd highly recommend Alex to anyone looking to understand AI agents and their practical applications."</p>
+      <cite>Patricia de Llano<span>Principal Product Designer</span></cite>
     </div>
+    <p class="section-lede" style="margin:18px 0 0"><a href="https://www.linkedin.com/in/alexdcoffman/details/recommendations/" target="_blank" rel="noopener">Read the full versions on LinkedIn →</a></p>
   </div>
 </section>
 
 <section id="faq">
   <div class="wrap">
-    <h2>Questions, answered</h2>
-    <div class="faq">
-      <details>
-        <summary>I'm not technical at all. Will I be lost?</summary>
-        <p>That's exactly who this is built for. I've taught complete beginners who'd never opened a terminal, and they left with Claude running. No jargon, no "you should already know this." I do the technical part. You watch and learn the parts that matter for your work.</p>
-      </details>
-      <details>
-        <summary>Will this actually work for <em>my</em> business?</summary>
-        <p>Every Quick Start is built around your specific workflow. We start by finding the highest-leverage task <em>you</em> do, then automate that one. Whether you're in finance, real estate, agencies, e-commerce, or something niche, the approach is the same: point Claude at real, repetitive work and make it disappear.</p>
-      </details>
-      <details>
-        <summary>What if it doesn't work by the end of the call?</summary>
-        <p>Then I keep working, at no extra charge, until it does. If Claude isn't installed, configured, and running a real workflow on your machine by the end, you haven't gotten what you paid for, and I treat it that way.</p>
-      </details>
-      <details>
-        <summary>What does it cost after the call? Am I signing up for something?</summary>
-        <p>No. $300 is the whole thing: one call, everything above, done. Ongoing work (the Agent Build, retainers) only happens if you want it and we scope it together. The Quick Start is complete on its own.</p>
-      </details>
-      <details>
-        <summary>What do I need before we start?</summary>
-        <p>Just your laptop and one task that eats your time every week. That's it. I'll handle the rest on the call.</p>
-      </details>
-      <details>
-        <summary>Why $300 and not free?</summary>
-        <p>Because your time is worth something and so is mine. A free session is easy to book and easier to skip. At $300, you show up ready, we get the real work done, and you walk away with your own AI agent actually running. Not notes from a "discovery call" you never act on. It's also a fraction of what an IT consultant charges for a single day.</p>
-      </details>
-      <details>
-        <summary>What happens after the Quick Start?</summary>
-        <p>You leave with Claude installed, one real automation running, and a cheat sheet so you can go further on your own. That's the whole thing. No required next steps, no hidden subscription. If you later want deeper automations, a team rollout, or an ongoing build partner, we can scope that together. But the Quick Start is complete on its own.</p>
-      </details>
-    </div>
+    <h2>Questions</h2>
+    <details>
+      <summary>I'm not technical at all. Will I be lost?</summary>
+      <p>No. Most of the 50+ people I have set up had never opened a terminal. I share my screen, you share yours, and I go at your pace. There is no jargon and no homework.</p>
+    </details>
+    <details>
+      <summary>What if it isn't working by the end of the call?</summary>
+      <p>Then I keep working on my own clock, at no extra charge, until it is. You are not paying for advice or a maybe. You are paying for it to actually run.</p>
+    </details>
+    <details>
+      <summary>What do I need before we start?</summary>
+      <p>A laptop, an internet connection, and one repetitive task that annoys you. That is genuinely it. We pick the task together in the first few minutes.</p>
+    </details>
+    <details>
+      <summary>What does it cost after the call? Am I signing up for something?</summary>
+      <p>Nothing, and no. The Quick Start is $300, once, and it is complete on its own. No subscription, no retainer, no upsell you have to decline.</p>
+    </details>
+    <details>
+      <summary>What if I want it built for me instead of with me?</summary>
+      <p>That is the Agent Build, $1,000, where I design and deliver the whole agent and hand it over. We scope it on the same free call, so start there either way.</p>
+    </details>
   </div>
 </section>
 
 <section id="book">
-  <div class="wrap">
-    <div class="book">
-      <h2>Ready to get Claude actually running?</h2>
-      <p>By the end of one call, Claude is installed, configured, and doing real work on your machine. Not theory, not screenshots. Your actual setup doing your actual work.</p>
-      <div class="recap">
-        What the Quick Start includes:<br>
-        ✅ <b>Up to 90 min 1:1 over Zoom</b>, install + configure on your machine<br>
-        ✅ <b>Your own AI agent</b> built live around your weekly task<br>
-        ✅ <b>Personalized cheat sheet</b> you keep<br>
-        ✅ <b>7 days of email follow-up</b> after the call<br>
-        ✅ <b>Guarantee:</b> it runs by the end, or I keep working free
-      </div>
-      <div class="cta-row" style="justify-content:center">
-        <a class="btn btn-primary btn-lg" href="https://cal.com/hiimalex/15min" target="_blank" rel="noopener">Book a free 15 min call →</a>
-      </div>
-      <p style="margin-top:14px;font-size:13px">Ready for the Quick Start at $300? Email <a href="mailto:hiimalexllc@gmail.com?subject=Quick%20Start">hiimalexllc@gmail.com</a> and I'll get you booked in.</p>
-    </div>
-  </div>
-</section>
-
-<section id="starter-guide">
-  <div class="wrap">
-    <div class="magnet">
-      <div class="magnet-text">
-        <h3>Not ready to book? Start with the free guide.</h3>
-        <p>The same path I walk every client through, in PDF form. What Claude Code is, three high leverage automations you can run this week, and the exact install steps for Mac and Windows.</p>
-        <ul>
-          <li>What Claude Code actually is, in plain English</li>
-          <li>3 high leverage automations you can run today</li>
-          <li>The exact install steps for Mac and Windows</li>
-        </ul>
-      </div>
-      <form class="magnet-form" action="/api/subscribe" method="POST">
-        <input type="text" name="name" placeholder="Your name" autocomplete="name" required />
-        <input type="email" name="email_address" placeholder="you@work.com" autocomplete="email" required />
-        <div aria-hidden="true" style="position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden">
-          <label>Company website<input type="text" name="company_website" tabindex="-1" autocomplete="off" /></label>
-        </div>
-        <button class="btn btn-secondary" type="submit"><span>Send me the guide →</span></button>
-        <p class="fineprint">Instant access. No spam.</p>
-      </form>
+  <div class="wrap" style="text-align:center">
+    <h2>Ready when you are.</h2>
+    <p class="section-lede" style="margin-left:auto;margin-right:auto;max-width:480px">Fifteen minutes to see if this fits. If it does not, I will tell you.</p>
+    <div class="cta-block" style="margin-top:0">
+      <a class="btn" href="https://cal.com/hiimalex/15min" target="_blank" rel="noopener">Book a free 15 min call →</a>
+      <p class="cta-note">Prefer email? <a href="mailto:hiimalexllc@gmail.com">hiimalexllc@gmail.com</a></p>
     </div>
   </div>
 </section>
 
 <footer>
   <div class="wrap">
-    <div>© <span id="yr"></span> Hi, I'm Alex · Wyoming LLC</div>
+    <div>© <span id="yr"></span> Hi, I'm Alex · Wyoming LLC · <a href="/score">Automation Score</a> · <a href="/starter-guide.pdf">Free guide</a> · <a href="/privacy/">Privacy</a></div>
     <div class="social">
-      <a href="https://www.linkedin.com/in/alexdcoffman/" target="_blank" rel="noopener" aria-label="LinkedIn">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20.5 2h-17A1.5 1.5 0 002 3.5v17A1.5 1.5 0 003.5 22h17a1.5 1.5 0 001.5-1.5v-17A1.5 1.5 0 0020.5 2zM8 19H5v-9h3zM6.5 8.25A1.75 1.75 0 118.3 6.5a1.78 1.78 0 01-1.8 1.75zM19 19h-3v-4.74c0-1.42-.6-1.93-1.38-1.93A1.74 1.74 0 0013 14.19a.66.66 0 000 .14V19h-3v-9h2.9v1.3a3.11 3.11 0 012.7-1.4c1.55 0 3.36.86 3.36 3.66z"/></svg>
-        LinkedIn
-      </a>
-      <a href="https://x.com/hiimalexllc" target="_blank" rel="noopener" aria-label="X (Twitter)">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
-        X
-      </a>
+      <a href="https://www.linkedin.com/in/alexdcoffman/" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="https://x.com/hiimalexllc" target="_blank" rel="noopener">X</a>
       <a href="mailto:hiimalexllc@gmail.com">Email</a>
     </div>
   </div>
 </footer>
 
-<script>
-document.getElementById('yr').textContent=new Date().getFullYear();
-(function(){
-  var strip=document.getElementById('reviews-strip');
-  if(!strip)return;
-  document.getElementById('rev-prev').addEventListener('click',function(){strip.scrollBy({left:-340,behavior:'smooth'})});
-  document.getElementById('rev-next').addEventListener('click',function(){strip.scrollBy({left:340,behavior:'smooth'})});
-})();
-</script>
+<script>document.getElementById('yr').textContent=new Date().getFullYear();</script>
 </body>
 </html>
