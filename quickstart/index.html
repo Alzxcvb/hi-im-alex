@@ -44,9 +44,14 @@
   input::placeholder{color:#6b7684}
   input:focus{outline:none;border-color:var(--accent)}
 
-  /* PayPal renders its card inputs inside these. They are iframes owned by
-     PayPal, which is why card data never reaches this site's server. */
-  .pp-field{height:48px;border:1px solid var(--line);border-radius:9px;background:#0b0d10;padding:0 6px}
+  /* PayPal renders its card inputs inside these as iframes it owns, which is why
+     card data never reaches this site's server. Those iframes paint their own
+     white background and we cannot override it, so the containers are light on
+     purpose and the input text is set dark to match. Height is fixed and the
+     iframe pinned to it, otherwise the iframe's natural height overflows and
+     the fields overlap the pay button. */
+  .pp-field{height:46px;border:1px solid #cfd6dd;border-radius:9px;background:#fff;padding:0 10px;overflow:hidden;display:block}
+  .pp-field iframe{width:100%!important;height:46px!important;border:0!important;display:block}
   .row2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
 
   button.pay{width:100%;margin-top:22px;background:var(--accent);color:#0b0d10;font-weight:800;font-size:17px;font-family:inherit;padding:16px;border-radius:10px;border:none;cursor:pointer}
@@ -231,10 +236,13 @@ function loadSdk(cfg) {
 
   document.getElementById('pp-wrap').hidden = false;
 
+  // The card field iframes paint a white background we cannot override, so the
+  // text has to be DARK. It was near-white here, which made typed card numbers
+  // invisible against the field.
   const style = {
-    input: { 'font-size': '15.5px', 'font-family': 'system-ui, sans-serif', color: '#f5f6f7' },
-    ':focus': { color: '#f5f6f7' },
-    '.invalid': { color: '#ff8080' },
+    input: { 'font-size': '15.5px', 'font-family': 'system-ui, sans-serif', color: '#1a1d22' },
+    ':focus': { color: '#1a1d22' },
+    '.invalid': { color: '#c0392b' },
   };
 
   try {
