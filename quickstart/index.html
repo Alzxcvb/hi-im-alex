@@ -29,12 +29,19 @@
   h1 .accent{color:var(--accent)}
   .lede{color:var(--ink-dim);font-size:16.5px;margin:0 0 24px}
   .stack{list-style:none;margin:0;padding:0}
-  .stack li{padding:11px 0;border-bottom:1px dashed var(--line)}
+  .stack li{padding:11px 0;border-bottom:1px dashed var(--line);display:flex;justify-content:space-between;align-items:flex-start;gap:16px}
   .stack li:last-child{border-bottom:none}
+  .stack .it{flex:1}
   .stack b{display:block;font-size:15.5px}
   .stack span{display:block;color:var(--ink-dim);font-size:14px;margin-top:2px}
-  .totals{margin-top:18px;padding-top:16px;border-top:1px solid var(--line);display:flex;justify-content:space-between;align-items:baseline}
+  .stack .val{flex-shrink:0;white-space:nowrap;color:var(--ink-dim);font-size:14px;padding-top:1px}
+  .stack .val.check{color:var(--accent)}
+  .totals{margin-top:18px;padding-top:16px;border-top:1px solid var(--line)}
+  .totals .row{display:flex;justify-content:space-between;align-items:baseline}
+  .totals .row.anchor{color:var(--ink-dim);font-size:15px;margin-bottom:8px}
+  .totals .row.anchor s{color:var(--ink-dim)}
   .totals .price{font-size:28px;font-weight:800;color:var(--accent)}
+  .totals .plabel{font-size:19px;font-weight:800}
   .guarantee{margin-top:20px;padding:14px 16px;background:var(--bg-elev);border:1px solid var(--line);border-left:3px solid var(--accent);border-radius:8px;font-size:14.5px;color:var(--ink-dim)}
 
   .panel{background:var(--bg-elev);border:1px solid var(--line);border-radius:14px;padding:26px}
@@ -86,12 +93,17 @@
       <h1>The Claude <span class="accent">Quick Start.</span></h1>
       <p class="lede">One call, up to 90 minutes. I install AI properly on your computer and we put it to work on a real task from your week, together, while you watch.</p>
       <ul class="stack">
-        <li><b>AI installed and set up on your computer</b><span>Wired to the tools you already use, done right the first time.</span></li>
-        <li><b>One real task from your week, handled</b><span>Something you actually do every week, not a demo.</span></li>
-        <li><b>A cheat sheet for your exact setup</b><span>So you can run it again on your own.</span></li>
-        <li><b>7 days of email follow up</b><span>Hit a snag afterwards, reply and I help you through it.</span></li>
+        <li><span class="it"><b>AI installed and set up on your computer</b><span>Wired to the tools you already use, done right the first time.</span></span><span class="val">$300 value</span></li>
+        <li><span class="it"><b>One real task from your week, handled</b><span>Something you actually do every week, not a demo.</span></span><span class="val">$750 value</span></li>
+        <li><span class="it"><b>A cheat sheet for your exact setup</b><span>So you can run it again on your own.</span></span><span class="val">$150 value</span></li>
+        <li><span class="it"><b>7 days of email follow up</b><span>Hit a snag afterwards, reply and I help you through it.</span></span><span class="val">$200 value</span></li>
+        <li><span class="it"><b>The Claude Code starter guide</b><span>The same playbook I walk every client through, in PDF.</span></span><span class="val">$50 value</span></li>
+        <li><span class="it"><b>It runs or I don't stop</b><span>If it is not working by the end, I keep going at no extra charge.</span></span><span class="val check">included</span></li>
       </ul>
-      <div class="totals"><span>Your price</span><span class="price">$300</span></div>
+      <div class="totals">
+        <div class="row anchor"><span>Total value</span><span><s>$1,450+</s></span></div>
+        <div class="row"><span class="plabel">Your price</span><span class="price">$300</span></div>
+      </div>
       <div class="guarantee"><b style="color:var(--ink)">It runs or I don't stop.</b> If it is not working by the end of the call, I keep going at no extra charge until it is.</div>
     </div>
 
