@@ -418,6 +418,23 @@
   var end = new Date(data.endAt || data.startAt);
   if (isNaN(start)) return;
 
+  // Every call to action that points at the webinar. While the session is
+  // actually running, "Save my spot" reads as if the reader already missed it,
+  // so each one swaps to a join label and swaps back afterwards.
+  var ctas = [].slice.call(
+    document.querySelectorAll('a.btn[href="/webinar"], a.nav-cta[href="/webinar"], .tb-cta')
+  );
+  ctas.forEach(function (el) {
+    el.setAttribute('data-idle', el.textContent);
+    el.setAttribute('data-live', el.classList.contains('btn') ? 'Join the live session →' : 'Join now →');
+  });
+  function setCtas(live) {
+    ctas.forEach(function (el) {
+      var next = el.getAttribute(live ? 'data-live' : 'data-idle');
+      if (next && el.textContent !== next) el.textContent = next;
+    });
+  }
+
   var whenText;
   try {
     whenText =
@@ -437,8 +454,10 @@
       countEl.className = 'live';
       countEl.textContent = 'Live right now. Come in.';
       if (barCount) barCount.textContent = 'Live now';
+      setCtas(true);
       return;
     }
+    setCtas(false);
     var secs = Math.floor((start.getTime() - now) / 1000);
     if (secs < 0) {
       countEl.textContent = '';
