@@ -22,8 +22,14 @@ async function nextOccurrence() {
     'https://api.luma.com/calendar/get-items' +
     `?calendar_api_id=${CALENDAR_ID}&period=future&pagination_limit=100`;
 
+  // Luma screens some user agents: a default Python-urllib UA gets a 403 while
+  // curl, an empty UA and this one all get a 200. Sending an identifiable UA
+  // keeps the request attributable and off any scraper denylist.
   const r = await fetch(url, {
-    headers: { accept: 'application/json' },
+    headers: {
+      accept: 'application/json',
+      'user-agent': 'hiimalex.ai/1.0 (+https://hiimalex.ai/webinar)',
+    },
     signal: AbortSignal.timeout(4000),
   });
   if (!r.ok) return null;
