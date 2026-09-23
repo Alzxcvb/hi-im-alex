@@ -1,5 +1,6 @@
 {
   "rewrites": [
-    { "source": "/s", "destination": "/api/s" }
+    { "source": "/s", "destination": "/api/s" },
+    { "source": "/webinar", "destination": "/api/webinar" }
   ]
 }
