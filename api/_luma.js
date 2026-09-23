@@ -7,7 +7,14 @@
 // point at different weeks.
 
 const CALENDAR_ID = 'cal-kd2PhGmXRtOy4pa'; // Alex's personal Luma calendar
-const TITLE_MATCH = /zero to ai/i; // the calendar also holds unrelated events
+// The calendar also holds unrelated events, so occurrences are matched by title.
+// This deliberately accepts BOTH the old "Zero to AI" name and any "... masterclass
+// ..." title, so the series can be renamed on Luma without the redirect and the
+// homepage countdown silently falling back to the profile page mid transition.
+// If the series is ever renamed to something matching neither, update this first,
+// deploy, and only then rename on Luma. Getting that order wrong breaks the only
+// registration path on the site, and it fails silently.
+const TITLE_MATCH = /zero to ai|masterclass/i;
 const SLUG = /^[A-Za-z0-9_-]{3,40}$/; // validated before it reaches a URL
 
 // Luma's public profile page, which always lists the upcoming occurrences.
