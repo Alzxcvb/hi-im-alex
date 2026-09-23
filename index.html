@@ -58,6 +58,16 @@
   .cta-block{text-align:center;margin:30px 0 0}
   .cta-note{color:var(--ink-dim);font-size:14px;margin:14px auto 0;max-width:460px}
 
+  /* Next session date and countdown. Hidden until the Luma lookup fills it, so a
+     failed lookup shows nothing rather than an empty or wrong date. */
+  .when{display:none;flex-direction:column;gap:3px;margin:0 0 16px;padding:11px 16px;
+        border:1px solid var(--line);border-left:3px solid var(--accent);
+        border-radius:10px;background:var(--bg-elev);text-align:left}
+  .when.on{display:inline-flex}
+  .when b{font-size:15.5px;letter-spacing:-.01em}
+  .when span{color:var(--ink-dim);font-size:13.5px;font-variant-numeric:tabular-nums}
+  .when span.live{color:var(--accent);font-weight:700}
+
   .hero{padding:64px 0 48px}
   .hero .wrap{display:grid;grid-template-columns:1fr auto;gap:44px;align-items:center}
   h1{font-size:40px;line-height:1.13;letter-spacing:-.022em;margin:0 0 18px;font-weight:800}
@@ -141,7 +151,7 @@
 <header class="top">
   <div class="wrap">
     <div class="brand"><span class="wave">👋</span> Hi, I'm Alex</div>
-    <a class="nav-cta" href="/webinar">Join the free session →</a>
+    <a class="nav-cta" href="/webinar">Save my spot →</a>
   </div>
 </header>
 
@@ -151,8 +161,9 @@
       <h1>Get AI actually working for your business. <span class="accent">Start free, this Wednesday.</span></h1>
       <p class="lede">Most people open an AI tool, poke around for ten minutes, and close the tab. Nothing changes. Every Wednesday I run a free live hour on what AI genuinely does for a small business, in plain English: the jobs it does well, the ones it still does badly, and where to start. No jargon, nothing to install, nothing to prepare.</p>
       <div class="cta-block">
+        <p class="when" id="when"><b id="when-date"></b><span id="when-count"></span></p>
         <a class="btn" href="/webinar">Save my spot, it's free →</a>
-        <p class="cta-note">"Zero to AI", live on Zoom every Wednesday. One hour. Bring a question if you have one.</p>
+        <p class="cta-note">"Zero to AI", live on Zoom. One hour. Bring a question if you have one.</p>
       </div>
       <p class="credential">I taught Claude at <b>Network School</b>, Balaji Srinivasan's program. <b>300+ founders trained, 50+ one to one setups</b>, plenty of them with people who had never opened a terminal in their life.</p>
     </div>
@@ -237,8 +248,8 @@
       <p>It runs every Wednesday, so take the next one. The link above always sends you to whichever session is coming up next.</p>
     </details>
     <details>
-      <summary>And if I do want help afterwards, what does that cost?</summary>
-      <p>Two options, both a single payment with no subscription. The <b>Quick Start</b> is $300 for one call where I install AI on your computer and we put it to work on a real task from your week. The <b>Business Workflow Audit</b> is $1,000 for a two hour session going through how your business runs, plus a written report with three to five specific recommendations and a roadmap you keep. Come to the free hour first and decide afterwards.</p>
+      <summary>And if I do want help afterwards?</summary>
+      <p>There are a couple of ways to work with me, and I will walk through them in the last two minutes of the session so you can decide with everything in front of you. Both are a single payment with no subscription and no retainer. Nothing is decided on this page, and you are welcome to take the free hour and nothing else.</p>
     </details>
   </div>
 </section>
@@ -266,5 +277,62 @@
 </footer>
 
 <script>document.getElementById('yr').textContent=new Date().getFullYear();</script>
+<script>
+// Show the real date of the next session plus a live countdown.
+// "Every Wednesday" tells a reader they can always catch the next one, so they
+// never book this one. A specific moment is what converts. The date comes from
+// Luma via /next-webinar, so it can never go stale.
+// Everything is rendered in the VIEWER's own timezone, which matters because the
+// audience spans the US, Europe and Southeast Asia.
+(async function () {
+  var box = document.getElementById('when');
+  var dateEl = document.getElementById('when-date');
+  var countEl = document.getElementById('when-count');
+  if (!box || !dateEl || !countEl) return;
+
+  var data;
+  try {
+    var r = await fetch('/next-webinar', { headers: { accept: 'application/json' } });
+    if (!r.ok) return;
+    data = await r.json();
+  } catch (e) { return; }
+  if (!data || !data.ok || !data.startAt) return;
+
+  var start = new Date(data.startAt);
+  var end = new Date(data.endAt || data.startAt);
+  if (isNaN(start)) return;
+
+  try {
+    dateEl.textContent =
+      start.toLocaleDateString(undefined, { weekday: 'long', month: 'long', day: 'numeric' }) +
+      ' · ' +
+      start.toLocaleTimeString(undefined, { hour: 'numeric', minute: '2-digit', timeZoneName: 'short' });
+  } catch (e) {
+    dateEl.textContent = start.toUTCString();
+  }
+  box.className = 'when on';
+
+  function tick() {
+    var now = Date.now();
+    if (now >= start.getTime() && now < end.getTime()) {
+      countEl.className = 'live';
+      countEl.textContent = 'Live right now. Come in.';
+      return;
+    }
+    var secs = Math.floor((start.getTime() - now) / 1000);
+    if (secs < 0) { countEl.textContent = ''; return; }
+    var d = Math.floor(secs / 86400); secs -= d * 86400;
+    var h = Math.floor(secs / 3600); secs -= h * 3600;
+    var m = Math.floor(secs / 60); var s = secs - m * 60;
+    var parts = d > 0 ? [d + 'd', h + 'h', m + 'm']
+              : h > 0 ? [h + 'h', m + 'm', s + 's']
+              :         [m + 'm', s + 's'];
+    countEl.className = '';
+    countEl.textContent = 'Starts in ' + parts.join(' ');
+  }
+  tick();
+  setInterval(tick, 1000);
+})();
+</script>
 </body>
 </html>
