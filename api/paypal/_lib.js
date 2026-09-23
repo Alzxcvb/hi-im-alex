@@ -27,6 +27,18 @@ export const OFFERS = {
     name: 'The Agent Build',
     description: 'Designed, built and handed over working, plus a live handover session and 30 days of email support.',
   },
+  // $1 live proving charge, reached only via /quickstart?test=1.
+  // Purpose: prove the real money path (card accepted, funds land, they are
+  // really Alex's) without burning the fee on a $300 refund. PayPal does not
+  // return the original fee on a refund, so a $300 test-and-refund costs about
+  // $11 and puts a 100% refund rate on a brand new account. This costs about
+  // 53 cents, needs NO refund at all because Alex is paying himself, and
+  // therefore leaves no refund on the record.
+  'test-1': {
+    amount: '1.00',
+    name: 'Integration test, not a product',
+    description: 'A one dollar live test of the payment path. Not for sale to anyone.',
+  },
 };
 
 export function isConfigured() {

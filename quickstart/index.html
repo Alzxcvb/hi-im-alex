@@ -138,7 +138,26 @@ document.getElementById('yr').textContent = new Date().getFullYear();
 
 const msg = document.getElementById('msg');
 const payBtn = document.getElementById('pay-btn');
-const OFFER = 'quickstart';
+
+// /quickstart?test=1 switches to the $1 proving charge. It loudly relabels the
+// page so a real visitor can never mistake it for the product, and the price
+// still comes from the server, not from here.
+const TEST_MODE = new URLSearchParams(location.search).get('test') === '1';
+const OFFER = TEST_MODE ? 'test-1' : 'quickstart';
+
+// Single source of truth for the button label, so the error handlers cannot
+// reset it to "$300" while the page is actually charging $1.
+const PAY_LABEL = TEST_MODE ? 'Pay $1 (live test) →' : 'Pay $300 and book →';
+
+if (TEST_MODE) {
+  document.title = 'TEST MODE, $1 charge';
+  const banner = document.createElement('div');
+  banner.style.cssText = 'background:#ff7a1a;color:#0b0d10;font-weight:800;text-align:center;padding:10px;font-size:14.5px';
+  banner.textContent = 'TEST MODE. This charges $1, not $300. Not a product.';
+  document.body.insertBefore(banner, document.body.firstChild);
+  document.querySelectorAll('.price').forEach(el => { el.textContent = '$1'; });
+  payBtn.textContent = PAY_LABEL;
+}
 
 function say(text, kind) {
   msg.className = kind || 'info';
@@ -192,7 +211,7 @@ async function onApprove(data) {
       : 'The payment did not go through. Nothing has been charged.';
     say(hint, 'err');
     payBtn.disabled = false;
-    payBtn.textContent = 'Pay $300 and book →';
+    payBtn.textContent = PAY_LABEL;
     return;
   }
   const b = buyer();
@@ -204,7 +223,7 @@ function onError(err) {
   console.error('[checkout]', err);
   say('Something went wrong and nothing was charged. Email <a href="mailto:hiimalexllc@gmail.com?subject=Quick%20Start">hiimalexllc@gmail.com</a> and I will sort it out.', 'err');
   payBtn.disabled = false;
-  payBtn.textContent = 'Pay $300 and book →';
+  payBtn.textContent = PAY_LABEL;
 }
 
 function loadSdk(cfg) {
