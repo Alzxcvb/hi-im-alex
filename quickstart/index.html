@@ -59,6 +59,10 @@
      the fields overlap the pay button. */
   .pp-field{height:46px;border:1px solid #cfd6dd;border-radius:9px;background:#fff;padding:0 10px;overflow:hidden;display:block}
   .pp-field iframe{width:100%!important;height:46px!important;border:0!important;display:block}
+  /* Square paints its own card inputs inside this container, same reasoning as
+     the PayPal fields above: the iframe background is white and cannot be
+     overridden, so the container is light on purpose. */
+  #sq-card{background:#fff;border:1px solid #cfd6dd;border-radius:9px;padding:2px 10px;min-height:46px}
   .row2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
 
   button.pay{width:100%;margin-top:22px;background:var(--accent);color:#0b0d10;font-weight:800;font-size:17px;font-family:inherit;padding:16px;border-radius:10px;border:none;cursor:pointer}
@@ -135,6 +139,16 @@
         <div id="pp-buttons"></div>
       </div>
 
+      <!-- The Square rail. Only one of these two wraps is ever shown, decided by
+           /api/pay/config. Square renders all three card inputs into one element
+           rather than three, which is why the markup differs from PayPal's. -->
+      <div id="sq-wrap" hidden>
+        <label>Card details</label>
+        <div id="sq-card"></div>
+        <button class="pay" id="sq-pay-btn" type="button">Pay $300 and book →</button>
+        <p class="fineprint">Secure payment. Card details go straight to Square and never touch this site.</p>
+      </div>
+
       <div id="msg"></div>
     </div>
 
@@ -149,7 +163,9 @@
 document.getElementById('yr').textContent = new Date().getFullYear();
 
 const msg = document.getElementById('msg');
-const payBtn = document.getElementById('pay-btn');
+// Reassigned to the Square button if that rail is the one serving today. Every
+// handler below talks to whichever button is actually on screen.
+let payBtn = document.getElementById('pay-btn');
 
 // /quickstart?test=1 switches to the $1 proving charge. It loudly relabels the
 // page so a real visitor can never mistake it for the product, and the price
@@ -177,9 +193,10 @@ function say(text, kind) {
 }
 
 function fallback(reason) {
-  // Unconfigured or PayPal unreachable. Never show a dead card form: give the
-  // visitor a way to buy that definitely works.
+  // No usable rail. Never show a dead card form: give the visitor a way to buy
+  // that definitely works.
   document.getElementById('pp-wrap').hidden = true;
+  document.getElementById('sq-wrap').hidden = true;
   say('Card payment is not switched on yet. Email <a href="mailto:hiimalexllc@gmail.com?subject=Quick%20Start">hiimalexllc@gmail.com</a> and I will get you booked in straight away.', 'info');
   if (reason) console.warn('[checkout]', reason);
 }
@@ -253,14 +270,79 @@ function loadSdk(cfg) {
   });
 }
 
+function loadScript(src) {
+  return new Promise((resolve, reject) => {
+    const s = document.createElement('script');
+    s.src = src;
+    s.onload = resolve;
+    s.onerror = () => reject(new Error('script failed to load: ' + src));
+    document.head.appendChild(s);
+  });
+}
+
+// The Square rail. One tokenize call in the browser, one charge on the server,
+// unlike PayPal's create-then-capture. The card number never reaches this site.
+async function startSquare(cfg) {
+  try { await loadScript(cfg.sdkUrl); } catch (e) { return fallback(e.message); }
+  if (!window.Square) return fallback('square sdk missing');
+
+  let card;
+  try {
+    const payments = window.Square.payments(cfg.appId, cfg.locationId);
+    card = await payments.card();
+    await card.attach('#sq-card');
+  } catch (e) { return fallback('square card init: ' + (e && e.message)); }
+
+  document.getElementById('sq-wrap').hidden = false;
+  payBtn = document.getElementById('sq-pay-btn');
+  payBtn.textContent = PAY_LABEL;
+
+  payBtn.addEventListener('click', async () => {
+    if (!validBuyer()) return;
+    payBtn.disabled = true;
+    payBtn.textContent = 'Processing...';
+    say('', '');
+    try {
+      const result = await card.tokenize();
+      if (result.status !== 'OK' || !result.token) {
+        const first = (result.errors && result.errors[0]) || {};
+        say(first.message || 'Please check the card details and try again.', 'err');
+        payBtn.disabled = false;
+        payBtn.textContent = PAY_LABEL;
+        return;
+      }
+      say('Taking payment, one moment...', 'info');
+      const b = buyer();
+      const r = await fetch('/api/square/create-payment', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        // Only an offer KEY and the single use card token. Never an amount.
+        body: JSON.stringify({ offer: OFFER, token: result.token, email: b.email }),
+      });
+      const d = await r.json().catch(() => ({}));
+      if (!r.ok || !d.ok) {
+        say('The payment did not go through and nothing has been charged. Try another card, or email <a href="mailto:hiimalexllc@gmail.com?subject=Quick%20Start">hiimalexllc@gmail.com</a>.', 'err');
+        payBtn.disabled = false;
+        payBtn.textContent = PAY_LABEL;
+        return;
+      }
+      say('Paid. Thank you, ' + (b.name.split(' ')[0] || 'and welcome') + '. Check your email for the receipt, and I will be in touch within one business day to book your call.', 'ok');
+      payBtn.style.display = 'none';
+    } catch (e) { onError(e); }
+  });
+}
+
 (async function start() {
   let cfg;
   try {
-    const r = await fetch('/api/paypal/config');
+    // Provider aware. Answers with whichever rail is live today, so switching
+    // from PayPal to Square is an environment variable and not a code change.
+    const r = await fetch('/api/pay/config');
     cfg = await r.json();
   } catch (e) { return fallback('config fetch failed'); }
 
   if (!cfg || !cfg.configured) return fallback('not configured');
+  if (cfg.provider === 'square') return startSquare(cfg);
 
   try { await loadSdk(cfg); } catch (e) { return fallback(e.message); }
   if (!window.paypal) return fallback('sdk missing');
