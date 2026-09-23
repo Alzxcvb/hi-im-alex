@@ -99,6 +99,15 @@
   .review cite{font-style:normal;font-weight:700;font-size:14.5px;display:block}
   .review cite span{display:block;color:var(--ink-dim);font-weight:400;font-size:13.5px;margin-top:1px}
 
+  /* Real LinkedIn screenshots. They are light on a dark page on purpose: a
+     screenshot that looks like a screenshot is the whole point of the proof. */
+  .shots{display:grid;gap:14px}
+  .shot{margin:0}
+  .shot a{display:block;border-radius:12px;overflow:hidden;border:1px solid var(--line);background:#fff;transition:border-color .15s}
+  .shot a:hover{border-color:var(--accent);text-decoration:none}
+  .shot img{display:block;width:100%;height:auto}
+  .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+
   /* faq */
   details{border-bottom:1px solid var(--line);padding:16px 0}
   summary{cursor:pointer;font-weight:650;font-size:16.5px;list-style:none}
@@ -170,26 +179,37 @@
 
 <section id="proof">
   <div class="wrap">
-    <h2>Why me</h2>
-    <p class="section-lede">Most people talking about AI have never installed it for someone else's business. I have done it 50+ times, for founders who had never opened a terminal.</p>
+    <h2>What people said after sitting in the room</h2>
+    <p class="section-lede">These are unedited LinkedIn recommendations from people who came to one of my sessions. Click any of them to read it on LinkedIn.</p>
     <div class="stats">
       <div class="stat"><b>300+</b><span>founders trained at Network School</span></div>
       <div class="stat"><b>50+</b><span>done with you one to one setups</span></div>
       <div class="stat"><b>1 call</b><span>from "heard of it" to "it's running"</span></div>
     </div>
-    <div class="review">
-      <p>"Today, two months later, AI is the foundation of my business operations and has fundamentally changed how I work, with nearly 60-80% of my workdays spent directly in Claude. Absolutely revolutionary. … I would highly recommend his services."</p>
-      <cite>Brandon Rall<span>Founder, Novellus (digital marketing)</span></cite>
+    <div class="shots">
+      <figure class="shot">
+        <a href="https://www.linkedin.com/in/alexdcoffman/details/recommendations/" target="_blank" rel="noopener">
+          <img src="/testimonials/stephen-roberts.webp" width="1584" height="684" loading="lazy" decoding="async"
+               alt="LinkedIn recommendation from Stephen Roberts, Managing Partner at ESO Venture Fund, about Alex's Claude Code workshop at Network School.">
+        </a>
+        <figcaption class="sr-only">Stephen Roberts, Managing Partner at ESO Venture Fund: I attended Alex's Claude Code workshop at Network School and it was one of the best overviews I have seen on practical AI. He taught a full room of founders and operators how to get Claude actually working in their day to day work, and by the end people were building real automations from scratch.</figcaption>
+      </figure>
+      <figure class="shot">
+        <a href="https://www.linkedin.com/in/alexdcoffman/details/recommendations/" target="_blank" rel="noopener">
+          <img src="/testimonials/patricia-de-llano.webp" width="1584" height="705" loading="lazy" decoding="async"
+               alt="LinkedIn recommendation from Patricia de Llano, Principal Product Designer, about Alex's AI agents workshop at Network School.">
+        </a>
+        <figcaption class="sr-only">Patricia de Llano, Principal Product Designer: I attended Alex's workshop on AI agents at Network School and really enjoyed it. He has a rare ability to explain a technical topic in a way that feels clear and genuinely approachable. I came in curious but slightly overwhelmed by the whole agents world, and left with a much clearer sense of what is possible and where to go next.</figcaption>
+      </figure>
+      <figure class="shot">
+        <a href="https://www.linkedin.com/in/alexdcoffman/details/recommendations/" target="_blank" rel="noopener">
+          <img src="/testimonials/shriti-singh.webp" width="1584" height="422" loading="lazy" decoding="async"
+               alt="LinkedIn recommendation from Shriti Singh about Alex's session on Claude at Network School.">
+        </a>
+        <figcaption class="sr-only">Shriti Singh: Attended Alex's session on Claude tips and tricks and AI agents at Network School. He's genuinely great to learn from if you're overwhelmed with Claude. He covered all the foundational stuff you need to get set up.</figcaption>
+      </figure>
     </div>
-    <div class="review">
-      <p>"One of the best overviews I have seen on practical AI. … If you are a business owner who wants to understand how AI tools can work for you and how to get the most out of your AI subscriptions Alex is the one."</p>
-      <cite>Stephen Roberts<span>Managing Partner, ESO Venture Fund</span></cite>
-    </div>
-    <div class="review">
-      <p>"He has a rare ability to explain a technical topic in a way that feels clear and genuinely approachable. … I'd highly recommend Alex to anyone looking to understand AI agents and their practical applications."</p>
-      <cite>Patricia de Llano<span>Principal Product Designer</span></cite>
-    </div>
-    <p class="section-lede" style="margin:18px 0 0"><a href="https://www.linkedin.com/in/alexdcoffman/details/recommendations/" target="_blank" rel="noopener">Read the full versions on LinkedIn →</a></p>
+    <p class="section-lede" style="margin:18px 0 0"><a href="https://www.linkedin.com/in/alexdcoffman/details/recommendations/" target="_blank" rel="noopener">See all seven on LinkedIn →</a></p>
   </div>
 </section>
 

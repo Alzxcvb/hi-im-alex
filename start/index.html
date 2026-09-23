@@ -94,6 +94,14 @@
   .review cite{font-style:normal;font-size:13.5px;color:var(--ink-dim);display:block}
   .review cite span{display:block}
 
+  /* Real LinkedIn screenshots, light on a dark page on purpose. */
+  .shots{display:grid;gap:14px}
+  .shot{margin:0}
+  .shot a{display:block;border-radius:12px;overflow:hidden;border:1px solid var(--line);background:#fff;transition:border-color .15s}
+  .shot a:hover{border-color:var(--accent);text-decoration:none}
+  .shot img{display:block;width:100%;height:auto}
+  .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+
   details{border-top:1px solid var(--line);padding:16px 0}
   details summary{cursor:pointer;font-weight:600;font-size:16.5px;list-style:none}
   details summary::-webkit-details-marker{display:none}
@@ -185,14 +193,23 @@
 
 <section>
   <div class="wrap">
-    <h2>What people said afterwards</h2>
-    <div class="review">
-      <p>"Today, two months later, AI is the foundation of my business operations and has fundamentally changed how I work, with nearly 60-80% of my workdays spent directly in Claude. Absolutely revolutionary. … I would highly recommend his services."</p>
-      <cite>Brandon Rall<span>Founder, Novellus (digital marketing)</span></cite>
-    </div>
-    <div class="review">
-      <p>"One of the best overviews I have seen on practical AI. … If you are a business owner who wants to understand how AI tools can work for you and how to get the most out of your AI subscriptions Alex is the one."</p>
-      <cite>Stephen Roberts<span>Managing Partner, ESO Venture Fund</span></cite>
+    <h2>What happened to people who did this</h2>
+    <p class="lede" style="text-align:left;margin:0 0 16px;font-size:16px">Unedited LinkedIn recommendations from people I worked with one to one. Click either to read it on LinkedIn.</p>
+    <div class="shots">
+      <figure class="shot">
+        <a href="https://www.linkedin.com/in/alexdcoffman/details/recommendations/" target="_blank" rel="noopener">
+          <img src="/testimonials/brandon-rall.webp" width="1584" height="630" loading="lazy" decoding="async"
+               alt="LinkedIn recommendation from Brandon Rall, Founder at Novellus, about working with Alex on Claude.">
+        </a>
+        <figcaption class="sr-only">Brandon Rall, Founder at Novellus: Today, two months later, AI is the foundation of my business operations and has fundamentally changed how I work, with nearly 60-80% of my workdays spent directly in Claude. Absolutely revolutionary. I would highly recommend his services.</figcaption>
+      </figure>
+      <figure class="shot">
+        <a href="https://www.linkedin.com/in/alexdcoffman/details/recommendations/" target="_blank" rel="noopener">
+          <img src="/testimonials/bailey-lammon.webp" width="1584" height="490" loading="lazy" decoding="async"
+               alt="LinkedIn recommendation from Bailey Lammon about a one to one Claude coaching session with Alex.">
+        </a>
+        <figcaption class="sr-only">Bailey Lammon: I met Alex at Network School. I attended one of his presentations on Claude and I sat down with him for a 1:1 Claude coaching session. He taught me how to use agents to manage repetitive research projects. Alex has a lot of knowledge and a very calm demeanor, making it easy to work through solutions.</figcaption>
+      </figure>
     </div>
   </div>
 </section>
