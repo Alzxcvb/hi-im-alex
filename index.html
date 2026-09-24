@@ -161,6 +161,21 @@
   .shot img{display:block;width:100%;height:auto}
   .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
 
+  /* Free guide capture, deliberately the last thing on the page so it never
+     competes with the webinar CTA above it. */
+  .guide{background:var(--bg-elev);border:1px solid var(--line);border-radius:var(--radius);padding:26px;text-align:center}
+  .guide h2{font-size:22px;margin:0 0 8px}
+  .guide p{color:var(--ink-dim);margin:0 auto 18px;max-width:520px;font-size:16px}
+  .guide form{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin:0 auto;max-width:560px}
+  .guide input[type=text],.guide input[type=email]{flex:1;min-width:180px;padding:13px 14px;font-size:15.5px;font-family:inherit;
+    border-radius:10px;border:1px solid var(--line);background:var(--bg);color:var(--ink)}
+  .guide input::placeholder{color:#6b7684}
+  .guide input:focus{outline:none;border-color:var(--accent)}
+  .guide button{background:var(--accent);color:#0b0d10;font-weight:700;font-size:16px;font-family:inherit;
+    padding:13px 24px;border-radius:10px;border:none;cursor:pointer;white-space:nowrap}
+  .guide button:hover{background:#ff8c3a}
+  .guide .fineprint{color:var(--ink-dim);font-size:13px;margin:14px 0 0}
+
   /* faq */
   details{border-bottom:1px solid var(--line);padding:16px 0}
   summary{cursor:pointer;font-weight:650;font-size:16.5px;list-style:none}
@@ -374,6 +389,25 @@
     <div class="cta-block" style="margin-top:0">
       <a class="btn" href="/webinar">Save my spot, it's free →</a>
       <p class="cta-note">Prefer email? <a href="mailto:hiimalexllc@gmail.com">hiimalexllc@gmail.com</a></p>
+    </div>
+  </div>
+</section>
+
+<section id="guide">
+  <div class="wrap">
+    <div class="guide">
+      <h2>Not ready to sit in a live session?</h2>
+      <p>Take the written version instead. The same Claude starter guide I walk every client through, as a PDF. Free, and nothing to sit through.</p>
+      <form action="/api/subscribe" method="POST">
+        <input type="text" name="name" placeholder="Your first name" autocomplete="given-name" required />
+        <input type="email" name="email_address" placeholder="you@work.com" autocomplete="email" required />
+        <input type="hidden" name="src" value="home-footer" />
+        <div aria-hidden="true" style="position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden">
+          <label>Company website<input type="text" name="company_website" tabindex="-1" autocomplete="off" /></label>
+        </div>
+        <button type="submit">Send me the guide →</button>
+      </form>
+      <p class="fineprint">Opens straight away, no waiting on an email.</p>
     </div>
   </div>
 </section>

@@ -126,7 +126,16 @@ export default async function handler(req, res) {
 
   // Provenance goes in its own column so it stays sortable and never has to be
   // untangled from the name. Long values are trimmed to keep the cell readable.
+  // Which form this came from. The Origin header only carries the host, so
+  // without this a homepage submission and a /setup submission are identical in
+  // the sheet. Each form ships a hidden src value.
+  // The most informative value is the absence of one: src=none means the caller
+  // never rendered either page and posted straight at the API, which is exactly
+  // what the August bot did.
+  const src = String(body.src || '').replace(/[^a-z0-9_-]/gi, '').slice(0, 24);
+
   const diagnostics = [
+    `src=${src || 'none'}`,
     `ip=${ip || 'none'}`,
     `ua=${ua ? ua.slice(0, 120) : 'none'}`,
     `origin=${origin ? origin.slice(0, 80) : 'none'}`,
