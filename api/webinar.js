@@ -1,4 +1,4 @@
-import { nextOccurrence, FALLBACK } from './_luma.js';
+import { nextOccurrence, FALLBACK, PAUSED } from './_luma.js';
 
 // Permanent link to the NEXT "Zero to AI" webinar. Reached via the /webinar
 // rewrite (vercel.json), so the site only ever links to hiimalex.ai/webinar.
@@ -11,6 +11,18 @@ import { nextOccurrence, FALLBACK } from './_luma.js';
 // registration, reminders, the calendar invite and the Zoom link.
 
 export default async function handler(req, res) {
+  // While the series is paused this link must not reach Luma at all. It is
+  // already printed in the starter guide PDF that people have downloaded, and
+  // linked from /setup, /score and /start, so it has to land somewhere honest
+  // rather than on a registration page for a session that will not run.
+  if (PAUSED) {
+    res.setHeader('Cache-Control', 's-maxage=300, stale-while-revalidate=3600');
+    res.setHeader('X-Webinar-Source', 'paused');
+    res.writeHead(302, { Location: '/#guide' });
+    res.end();
+    return;
+  }
+
   let target = FALLBACK;
   let source = 'fallback';
 
