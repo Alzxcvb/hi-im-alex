@@ -20,26 +20,7 @@ const SLUG = /^[A-Za-z0-9_-]{3,40}$/; // validated before it reaches a URL
 // Luma's public profile page, which always lists the upcoming occurrences.
 export const FALLBACK = 'https://luma.com/user/usr-zFyZdIXNWsf3zfb';
 
-// PAUSED 2026-09-26. Alex is keeping the webinar but retiming it off Wednesday
-// 9am Pacific, and had not picked the new slot yet. Every occurrence had zero
-// registrants, so nothing was cancelled and nobody had to be told.
-//
-// While this is true:
-//   /next-webinar  returns {ok:false}, so the homepage countdown and the sticky
-//                  bar hide themselves and no date is ever shown
-//   /webinar       stops sending anyone to Luma and lands them on the homepage
-//                  notify form instead
-//
-// The 14 Luma occurrences are left untouched and still exist, so restarting is
-// this flag plus the copy swap, not a rebuild. Set to false when a new time is
-// live on the calendar.
-export const PAUSED = true;
-
 export async function nextOccurrence() {
-  // One switch turns the whole series off everywhere at once, so the date shown
-  // on the page and the event the button opens can never disagree about it.
-  if (PAUSED) return null;
-
   const url =
     'https://api.luma.com/calendar/get-items' +
     `?calendar_api_id=${CALENDAR_ID}&period=future&pagination_limit=100`;
