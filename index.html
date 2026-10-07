@@ -3,16 +3,17 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Zero to AI: a free live hour on what AI actually does for your business</title>
-<meta name="description" content="Everyone says you should be using AI. Almost nobody tells you what it actually does for a business like yours. A free live hour, in plain English. Nothing to install, nothing to prepare.">
-<meta property="og:title" content="Zero to AI: a free live hour on what AI actually does for your business">
-<meta property="og:description" content="I taught Claude to 300+ founders at Network School, plenty of whom had never opened a terminal. In this free hour I explain what AI genuinely does for a small business, what it is still bad at, and where to start. Free, one hour, nothing to install.">
+<!-- build basics-v2 2026-10-06 -->
+<title>Hi, I'm Alex. I get Claude running for your business.</title>
+<meta name="description" content="One Zoom call. By the end, AI is installed on your own computer and doing one real job from your week. Quick Start, $300. Email hiimalexllc@gmail.com to set one up.">
+<meta property="og:title" content="Hi, I'm Alex. I get Claude running for your business.">
+<meta property="og:description" content="One Zoom call. By the end, AI is installed on your own computer and doing one real job from your week. I taught Claude to 300+ founders at Network School. Quick Start, $300.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://hiimalex.ai">
 <meta property="og:image" content="https://hiimalex.ai/alex.jpg">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Zero to AI: a free live hour on what AI actually does for your business">
-<meta name="twitter:description" content="I explain what AI genuinely does for a small business, what it is still bad at, and where to start. Free, one hour, in plain English, nothing to install.">
+<meta name="twitter:title" content="Hi, I'm Alex. I get Claude running for your business.">
+<meta name="twitter:description" content="One Zoom call. By the end, AI is installed on your own computer and doing one real job from your week. Quick Start, $300.">
 <meta name="twitter:image" content="https://hiimalex.ai/alex.jpg">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E👋%3C/text%3E%3C/svg%3E">
 <!-- Vercel Web Analytics -->
@@ -46,70 +47,14 @@
   .wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px}
 
   header.top{padding:20px 0;border-bottom:1px solid var(--line)}
-  header.top .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px}
   .brand{font-weight:700;letter-spacing:-.01em}
   .brand .wave{display:inline-block;transform-origin:70% 70%;animation:wave 2.4s ease-in-out infinite}
   @keyframes wave{0%,60%,100%{transform:rotate(0)}10%{transform:rotate(14deg)}20%{transform:rotate(-8deg)}30%{transform:rotate(14deg)}40%{transform:rotate(-4deg)}50%{transform:rotate(10deg)}}
-  header.top .nav-cta{color:var(--accent);font-weight:600;font-size:14.5px}
 
-  /* one button style, used everywhere */
-  .btn{display:inline-block;background:var(--accent);color:#0b0d10;font-weight:700;font-size:17px;padding:16px 30px;border-radius:12px;border:none;cursor:pointer;line-height:1.2;text-align:center}
+  .btn{display:inline-block;background:var(--accent);color:#0b0d10;font-weight:700;font-size:18px;padding:17px 34px;border-radius:12px;border:none;cursor:pointer;line-height:1.2;text-align:center}
   .btn:hover{background:#ff8c3a;color:#0b0d10;text-decoration:none}
-  .cta-block{text-align:center;margin:30px 0 0}
-  .cta-note{color:var(--ink-dim);font-size:14px;margin:14px auto 0;max-width:460px}
-
-  /* Next session date and countdown. Hidden until the Luma lookup fills it, so a
-     failed lookup shows nothing rather than an empty or wrong date. */
-  .when{display:none;flex-direction:column;gap:3px;margin:0 0 16px;padding:11px 16px;
-        border:1px solid var(--line);border-left:3px solid var(--accent);
-        border-radius:10px;background:var(--bg-elev);text-align:left}
-  .when.on{display:inline-flex}
-  .when b{font-size:15.5px;letter-spacing:-.01em}
-  .when span{color:var(--ink-dim);font-size:13.5px;font-variant-numeric:tabular-nums}
-  .when span.live{color:var(--accent);font-weight:700}
-
-  /* Sticky countdown bar. Hidden until the Luma lookup fills it, like .when.
-     Sticky rather than static so the one CTA stays reachable down the page. */
-  .topbar{display:none;position:sticky;top:0;z-index:50;align-items:center;gap:10px;
-          padding:9px 24px;background:#1a1206;border-bottom:1px solid rgba(255,122,26,.4);
-          color:var(--ink);font-size:14px;text-decoration:none}
-  .topbar.on{display:flex}
-  .topbar:hover{background:#221708;text-decoration:none;color:var(--ink)}
-  .tb-dot{width:8px;height:8px;border-radius:50%;background:var(--accent);flex:0 0 auto;animation:tbpulse 2s ease-in-out infinite}
-  @keyframes tbpulse{0%,100%{opacity:1}50%{opacity:.3}}
-  .tb-long{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-  .tb-short{display:none;flex:1}
-  .tb-count{font-variant-numeric:tabular-nums;color:var(--accent);font-weight:700;white-space:nowrap}
-  .tb-cta{font-weight:700;color:var(--accent);white-space:nowrap}
-  /* When the sticky bar is live it already carries the CTA, so the identical
-     header button directly beneath it would just be noise. If the Luma lookup
-     fails the bar stays hidden and the header button remains as the fallback. */
-  .topbar.on ~ header.top .nav-cta{display:none}
-
-  /* Before and after. Topics are features; the reader buys the after. */
-  .ba{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:8px}
-  .ba-col{background:var(--bg-elev);border:1px solid var(--line);border-radius:var(--radius);padding:22px}
-  .ba-col.after{border-color:rgba(255,122,26,.45)}
-  .ba-col h3{margin:0 0 14px;font-size:15px;letter-spacing:.04em;text-transform:uppercase;color:var(--ink-dim)}
-  .ba-col.after h3{color:var(--accent)}
-  .ba-col ul{list-style:none;margin:0;padding:0}
-  .ba-col li{position:relative;padding-left:24px;margin-bottom:12px;font-size:15.5px;color:var(--ink-dim)}
-  .ba-col li:last-child{margin-bottom:0}
-  .ba-col li:before{content:"✕";position:absolute;left:0;color:#6b7684;font-weight:700}
-  .ba-col.after li{color:var(--ink)}
-  .ba-col.after li:before{content:"✓";color:var(--accent)}
-
-  /* Who it is and is not for. The disqualifiers do more work than the list of
-     who it suits: they signal confidence and filter people who would churn. */
-  .fit{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:8px}
-  .fit-col{background:var(--bg-elev);border:1px solid var(--line);border-radius:var(--radius);padding:22px}
-  .fit-col h3{margin:0 0 14px;font-size:17px;letter-spacing:-.01em}
-  .fit-col ul{list-style:none;margin:0;padding:0}
-  .fit-col li{position:relative;padding-left:26px;margin-bottom:12px;font-size:15.5px}
-  .fit-col li:last-child{margin-bottom:0}
-  .fit-col.yes li:before{content:"✓";position:absolute;left:0;color:var(--accent);font-weight:700}
-  .fit-col.no li{color:var(--ink-dim)}
-  .fit-col.no li:before{content:"✕";position:absolute;left:0;color:#6b7684;font-weight:700}
+  .cta-note{color:var(--ink-dim);font-size:14.5px;margin:14px 0 0;max-width:460px}
+  .cta-note a{color:var(--ink)}
 
   .hero{padding:64px 0 48px}
   .hero .wrap{display:grid;grid-template-columns:1fr auto;gap:44px;align-items:center}
@@ -119,70 +64,29 @@
   .hero-photo{width:190px;height:190px;border-radius:50%;object-fit:cover;border:3px solid var(--line);box-shadow:0 16px 48px rgba(0,0,0,.35)}
   .credential{margin:26px 0 0;padding-top:20px;border-top:1px solid var(--line);color:var(--ink-dim);font-size:15px}
   .credential b{color:var(--ink)}
-  .hero .btn{font-size:18px;padding:17px 34px}
-  .hero .cta-block{text-align:left;margin:0}
-  .hero .cta-note{margin-left:0;text-align:left}
 
   section{padding:52px 0;border-top:1px solid var(--line)}
   h2{font-size:27px;line-height:1.22;letter-spacing:-.018em;margin:0 0 10px;font-weight:750}
   .section-lede{color:var(--ink-dim);margin:0 0 26px;font-size:16px}
 
-  /* the offer stack */
-  .offer{background:var(--bg-elev);border:1px solid var(--line);border-radius:var(--radius);padding:30px}
-  .stack{list-style:none;margin:20px 0 0;padding:0}
-  .stack li{display:flex;justify-content:space-between;gap:20px;padding:14px 0;border-bottom:1px dashed var(--line)}
-  .stack li:last-child{border-bottom:none}
-  .stack .it b{display:block;font-size:16px}
-  .stack .it span{display:block;color:var(--ink-dim);font-size:14.5px;margin-top:2px}
-  .stack .val{white-space:nowrap;color:var(--ink-dim);font-size:14.5px;padding-top:2px}
-  .stack .val.check{color:var(--accent)}
-  .totals{margin-top:22px;padding-top:18px;border-top:1px solid var(--line)}
-  .totals .row{display:flex;justify-content:space-between;align-items:baseline;gap:16px}
-  .totals .row.anchor{color:var(--ink-dim);font-size:15px;margin-bottom:8px}
-  .totals .price{font-size:26px;font-weight:800}
-  .totals .price .accent{color:var(--accent);font-size:32px}
+  /* the three services */
+  .services{list-style:none;margin:0;padding:0}
+  .services li{background:var(--bg-elev);border:1px solid var(--line);border-radius:var(--radius);padding:22px 24px;margin-bottom:14px}
+  .services li.featured{border-color:rgba(255,122,26,.55)}
+  .services .head{display:flex;justify-content:space-between;align-items:baseline;gap:16px;flex-wrap:wrap;margin-bottom:8px}
+  .services h3{margin:0;font-size:20px;letter-spacing:-.012em}
+  .services .price{font-size:22px;font-weight:800;color:var(--accent);white-space:nowrap}
+  .services p{margin:0;color:var(--ink-dim);font-size:15.5px}
+  .paying{color:var(--ink-dim);font-size:15px;margin:22px 0 0}
+  .paying a.go{color:var(--accent);font-weight:700}
 
-  /* proof */
-  .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:0 0 28px}
-  .stat{background:var(--bg-elev);border:1px solid var(--line);border-radius:12px;padding:18px}
-  .stat b{display:block;font-size:24px;color:var(--accent);font-weight:800}
-  .stat span{display:block;color:var(--ink-dim);font-size:14px;margin-top:3px}
-  .review{background:var(--bg-elev);border:1px solid var(--line);border-radius:12px;padding:20px 22px;margin-bottom:14px}
-  .review p{margin:0 0 12px;font-size:15.5px}
-  .review cite{font-style:normal;font-weight:700;font-size:14.5px;display:block}
-  .review cite span{display:block;color:var(--ink-dim);font-weight:400;font-size:13.5px;margin-top:1px}
-
-  /* Real LinkedIn screenshots. They are light on a dark page on purpose: a
-     screenshot that looks like a screenshot is the whole point of the proof. */
+  /* real LinkedIn screenshots, light on a dark page on purpose */
   .shots{display:grid;gap:14px}
   .shot{margin:0}
   .shot a{display:block;border-radius:12px;overflow:hidden;border:1px solid var(--line);background:#fff;transition:border-color .15s}
   .shot a:hover{border-color:var(--accent);text-decoration:none}
   .shot img{display:block;width:100%;height:auto}
   .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
-
-  /* Free guide capture, deliberately the last thing on the page so it never
-     competes with the webinar CTA above it. */
-  .guide{background:var(--bg-elev);border:1px solid var(--line);border-radius:var(--radius);padding:26px;text-align:center}
-  .guide h2{font-size:22px;margin:0 0 8px}
-  .guide p{color:var(--ink-dim);margin:0 auto 18px;max-width:520px;font-size:16px}
-  .guide form{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin:0 auto;max-width:560px}
-  .guide input[type=text],.guide input[type=email]{flex:1;min-width:180px;padding:13px 14px;font-size:15.5px;font-family:inherit;
-    border-radius:10px;border:1px solid var(--line);background:var(--bg);color:var(--ink)}
-  .guide input::placeholder{color:#6b7684}
-  .guide input:focus{outline:none;border-color:var(--accent)}
-  .guide button{background:var(--accent);color:#0b0d10;font-weight:700;font-size:16px;font-family:inherit;
-    padding:13px 24px;border-radius:10px;border:none;cursor:pointer;white-space:nowrap}
-  .guide button:hover{background:#ff8c3a}
-  .guide .fineprint{color:var(--ink-dim);font-size:13px;margin:14px 0 0}
-
-  /* faq */
-  details{border-bottom:1px solid var(--line);padding:16px 0}
-  summary{cursor:pointer;font-weight:650;font-size:16.5px;list-style:none}
-  summary::-webkit-details-marker{display:none}
-  summary::before{content:"+";color:var(--accent);font-weight:800;margin-right:10px}
-  details[open] summary::before{content:"–"}
-  details p{color:var(--ink-dim);margin:12px 0 0;font-size:15.5px}
 
   footer{border-top:1px solid var(--line);padding:30px 0 44px;color:var(--ink-dim);font-size:14px}
   footer .wrap{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;align-items:center}
@@ -196,44 +100,27 @@
     .hero-photo{width:120px;height:120px;order:-1}
     h1{font-size:31px}
     .lede{font-size:16.5px}
-    .topbar{padding:8px 16px;gap:8px;font-size:13px}
-    .tb-long{display:none}
-    .tb-short{display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-    .ba,.fit{grid-template-columns:1fr}
-    .stats{grid-template-columns:1fr}
     .btn{display:block;width:100%}
-    .offer{padding:22px}
-    .stack li{flex-direction:column;gap:4px}
-    .stack .val{padding-top:0}
+    .services li{padding:20px}
   }
 </style>
 </head>
 <body>
 
-<a class="topbar" id="topbar" href="/webinar">
-  <span class="tb-dot"></span>
-  <span class="tb-long">Free live session, "Zero to AI": <b id="tb-date"></b></span>
-  <span class="tb-short">Free session: "Zero to AI"</span>
-  <span class="tb-count" id="tb-count"></span>
-  <span class="tb-cta">Save my spot →</span>
-</a>
-
 <header class="top">
   <div class="wrap">
     <div class="brand"><span class="wave">👋</span> Hi, I'm Alex</div>
-    <a class="nav-cta" href="/webinar">Save my spot →</a>
   </div>
 </header>
 
 <section class="hero">
   <div class="wrap">
     <div class="hero-text">
-      <h1>Get AI actually working for your business. <span class="accent">Start free, this Wednesday.</span></h1>
-      <p class="lede">Most people open an AI tool, poke around for ten minutes, and close the tab. Nothing changes. This is a free live hour on what AI genuinely does for a small business, in plain English: the jobs it does well, the ones it still does badly, and where to start. No jargon, nothing to install, nothing to prepare.</p>
+      <h1>Hi, I'm Alex. <span class="accent">I get Claude running for your business.</span></h1>
+      <p class="lede">One Zoom call. By the end of it, AI is installed on your own computer and doing one real job from your week, while you watch. No jargon, and you do not need to be technical.</p>
       <div class="cta-block">
-        <p class="when" id="when"><b id="when-date"></b><span id="when-count"></span></p>
-        <a class="btn" href="/webinar">Save my spot, it's free →</a>
-        <p class="cta-note">"Zero to AI", live on Zoom. One hour. Bring a question if you have one.</p>
+        <a class="btn" href="mailto:hiimalexllc@gmail.com?subject=Quick%20Start&amp;body=Hi%20Alex%2C%0A%0AI%20would%20like%20to%20set%20up%20a%20Quick%20Start.%20A%20bit%20about%20my%20business%20and%20the%20job%20that%20eats%20my%20week%3A%0A%0A">Email me to set up a Quick Start →</a>
+        <p class="cta-note"><a href="mailto:hiimalexllc@gmail.com?subject=Quick%20Start">hiimalexllc@gmail.com</a><br>Tell me what eats your week. I reply with a couple of times that work.</p>
       </div>
       <p class="credential">I taught Claude at <b>Network School</b>, Balaji Srinivasan's program. <b>300+ founders trained, 50+ one to one setups</b>, plenty of them with people who had never opened a terminal in their life.</p>
     </div>
@@ -241,91 +128,47 @@
   </div>
 </section>
 
-<section id="offer">
+<section id="services">
   <div class="wrap">
-    <h2>What the hour covers</h2>
-    <p class="section-lede">"Zero to AI", live on Zoom. One hour, in plain English, no jargon.</p>
-    <div class="offer">
-      <ul class="stack">
-        <li><span class="it"><b>What AI can actually do for a business like yours</b><span>Real examples from real small businesses, not demos and not hype.</span></span></li>
-        <li><span class="it"><b>The jobs it does well, and the ones it still does badly</b><span>Knowing the difference is most of the value. I will tell you both.</span></span></li>
-        <li><span class="it"><b>What it looks like when it works</b><span>The quiet, repetitive tasks that stop eating your week.</span></span></li>
-        <li><span class="it"><b>Why most people try it and give up in ten minutes</b><span>This is the part almost nobody explains, and it is the whole reason nothing changed for you last time.</span></span></li>
-        <li><span class="it"><b>Where to start, if you decide it is worth your time</b><span>A clear first step you can take on your own that evening.</span></span></li>
-      </ul>
-    </div>
-    <p class="section-lede" style="margin-top:22px">You need nothing to attend. No laptop, no account, no software. Turn up and listen, and bring a question if you have one.</p>
-  </div>
-</section>
-
-<section id="change">
-  <div class="wrap">
-    <h2>Where you are, and where you leave</h2>
-    <p class="section-lede">One hour does not make you an expert. It does end the guessing.</p>
-    <div class="ba">
-      <div class="ba-col">
-        <h3>Right now</h3>
-        <ul>
-          <li>You have heard about AI for two years and nothing in your week has actually changed.</li>
-          <li>You opened it once, poked around for ten minutes, and quietly closed the tab.</li>
-          <li>You cannot tell the difference between the hype and the part that genuinely works.</li>
-          <li>You have no idea what it would even do for a business like yours.</li>
-          <li>Everyone around you sounds like they get it, which makes asking feel worse.</li>
-        </ul>
-      </div>
-      <div class="ba-col after">
-        <h3>After the hour</h3>
-        <ul>
-          <li>You know the handful of jobs it does genuinely well, and the ones it is still bad at.</li>
-          <li>You know why nothing happened last time, and that it was not because of you.</li>
-          <li>You can tell hype from useful in about a sentence.</li>
-          <li>You have one concrete first step, for your business, that you could take that evening.</li>
-          <li>You can hold your own in the conversation instead of nodding along.</li>
-        </ul>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section id="fit">
-  <div class="wrap">
-    <h2>Is this for you?</h2>
-    <p class="section-lede">I would rather you skip it than sit through an hour that was never meant for you.</p>
-    <div class="fit">
-      <div class="fit-col yes">
-        <h3>Come along if</h3>
-        <ul>
-          <li>You run a business, or part of one, and you are not technical.</li>
-          <li>You have been meaning to "figure out AI" for a while and never have.</li>
-          <li>You want plain English, and someone who will not make you feel stupid for asking.</li>
-          <li>You would rather understand this properly than be sold a shortcut.</li>
-          <li>You have an hour and a question.</li>
-        </ul>
-      </div>
-      <div class="fit-col no">
-        <h3>Give it a miss if</h3>
-        <ul>
-          <li>You already use Claude or ChatGPT most days. You know this already and you will be bored.</li>
-          <li>You write code for a living. This is deliberately not a technical session.</li>
-          <li>You want a list of prompts to copy and paste. I am teaching a way of working, not a cheat sheet.</li>
-          <li>You want someone to just build the whole thing for you without you understanding any of it. This session is about you understanding it.</li>
-          <li>You are hoping to be told AI will fix the business by itself. It will not, and I will say so out loud.</li>
-        </ul>
-      </div>
-    </div>
+    <h2>Three ways to work with me</h2>
+    <p class="section-lede">Each one is a single payment. No subscription, no retainer.</p>
+    <ul class="services">
+      <li class="featured">
+        <div class="head"><h3>Quick Start</h3><div class="price">$300</div></div>
+        <p>Up to 90 minutes on Zoom. Claude installed and set up on your computer, one real task from your week handled by AI while you watch, a cheat sheet for your exact setup so you can run it again on your own, and 7 days of email follow up. If it is not working by the end, I keep going at no extra charge.</p>
+      </li>
+      <li>
+        <div class="head"><h3>Business Workflow Audit</h3><div class="price">$1,000</div></div>
+        <p>A two hour session going through how your business actually runs, job by job, then a written report you keep: three to five specific recommendations, ranked, and a roadmap in order. Best if you run a team or several moving parts and want to know where AI is worth the bother before you change anything.</p>
+      </li>
+      <li>
+        <div class="head"><h3>Audit + Build</h3><div class="price">$2,000</div></div>
+        <p>Everything in the Audit, plus one or two of the recommended workflows built and running in your business, your team trained on them, and two weeks of email support.</p>
+      </li>
+    </ul>
+    <p class="paying">How paying works: you email me, we pick a time, and I send a PayPal invoice. The session is paid before it starts. Cancel at least 24 hours ahead for a full refund. The details are on the <a href="/refunds/">refunds page</a>.</p>
   </div>
 </section>
 
 <section id="proof">
   <div class="wrap">
-    <h2>What people said after sitting in the room</h2>
-    <p class="section-lede">These are unedited LinkedIn recommendations from people who came to one of my sessions. Click any of them to read it on LinkedIn.</p>
-    <div class="stats">
-      <div class="stat"><b>300+</b><span>founders trained at Network School</span></div>
-      <div class="stat"><b>50+</b><span>done with you one to one setups</span></div>
-      <div class="stat"><b>1 call</b><span>from "heard of it" to "it's running"</span></div>
-    </div>
+    <h2>What people said afterwards</h2>
+    <p class="section-lede">Unedited LinkedIn recommendations from people I worked with. Click any of them to read it on LinkedIn.</p>
     <div class="shots">
+      <figure class="shot">
+        <a href="https://www.linkedin.com/in/alexdcoffman/details/recommendations/" target="_blank" rel="noopener">
+          <img src="/testimonials/brandon-rall.webp" width="1584" height="630" loading="lazy" decoding="async"
+               alt="LinkedIn recommendation from Brandon Rall, Founder at Novellus, about working with Alex on Claude.">
+        </a>
+        <figcaption class="sr-only">Brandon Rall, Founder at Novellus: Today, two months later, AI is the foundation of my business operations and has fundamentally changed how I work, with nearly 60-80% of my workdays spent directly in Claude. Absolutely revolutionary. I would highly recommend his services.</figcaption>
+      </figure>
+      <figure class="shot">
+        <a href="https://www.linkedin.com/in/alexdcoffman/details/recommendations/" target="_blank" rel="noopener">
+          <img src="/testimonials/bailey-lammon.webp" width="1584" height="490" loading="lazy" decoding="async"
+               alt="LinkedIn recommendation from Bailey Lammon about a one to one Claude coaching session with Alex.">
+        </a>
+        <figcaption class="sr-only">Bailey Lammon: I met Alex at Network School. I attended one of his presentations on Claude and I sat down with him for a 1:1 Claude coaching session. He taught me how to use agents to manage repetitive research projects. Alex has a lot of knowledge and a very calm demeanor, making it easy to work through solutions.</figcaption>
+      </figure>
       <figure class="shot">
         <a href="https://www.linkedin.com/in/alexdcoffman/details/recommendations/" target="_blank" rel="noopener">
           <img src="/testimonials/stephen-roberts.webp" width="1584" height="684" loading="lazy" decoding="async"
@@ -333,176 +176,21 @@
         </a>
         <figcaption class="sr-only">Stephen Roberts, Managing Partner at ESO Venture Fund: I attended Alex's Claude Code workshop at Network School and it was one of the best overviews I have seen on practical AI. He taught a full room of founders and operators how to get Claude actually working in their day to day work, and by the end people were building real automations from scratch.</figcaption>
       </figure>
-      <figure class="shot">
-        <a href="https://www.linkedin.com/in/alexdcoffman/details/recommendations/" target="_blank" rel="noopener">
-          <img src="/testimonials/patricia-de-llano.webp" width="1584" height="705" loading="lazy" decoding="async"
-               alt="LinkedIn recommendation from Patricia de Llano, Principal Product Designer, about Alex's AI agents workshop at Network School.">
-        </a>
-        <figcaption class="sr-only">Patricia de Llano, Principal Product Designer: I attended Alex's workshop on AI agents at Network School and really enjoyed it. He has a rare ability to explain a technical topic in a way that feels clear and genuinely approachable. I came in curious but slightly overwhelmed by the whole agents world, and left with a much clearer sense of what is possible and where to go next.</figcaption>
-      </figure>
-      <figure class="shot">
-        <a href="https://www.linkedin.com/in/alexdcoffman/details/recommendations/" target="_blank" rel="noopener">
-          <img src="/testimonials/shriti-singh.webp" width="1584" height="422" loading="lazy" decoding="async"
-               alt="LinkedIn recommendation from Shriti Singh about Alex's session on Claude at Network School.">
-        </a>
-        <figcaption class="sr-only">Shriti Singh: Attended Alex's session on Claude tips and tricks and AI agents at Network School. He's genuinely great to learn from if you're overwhelmed with Claude. He covered all the foundational stuff you need to get set up.</figcaption>
-      </figure>
     </div>
     <p class="section-lede" style="margin:18px 0 0"><a href="https://www.linkedin.com/in/alexdcoffman/details/recommendations/" target="_blank" rel="noopener">See all of them on LinkedIn →</a></p>
   </div>
 </section>
 
-<section id="faq">
-  <div class="wrap">
-    <h2>Questions</h2>
-    <details>
-      <summary>Is it really free?</summary>
-      <p>Completely. No card, no catch, and nothing you have to buy to get the value out of the hour.</p>
-    </details>
-    <details>
-      <summary>I'm not technical at all. Will I be lost?</summary>
-      <p>No. I taught this to 300+ founders at Network School and plenty of them had never opened a terminal in their life. There is no jargon, nothing to install, and nothing you need to already know.</p>
-    </details>
-    <details>
-      <summary>What do I need to attend?</summary>
-      <p>Nothing at all. No laptop, no account, no software, no preparation. You can listen on your phone while you do something else. Bring a question if you have one.</p>
-    </details>
-    <details>
-      <summary>Do I have to turn my camera on?</summary>
-      <p>No. Plenty of people just listen, and that is completely fine.</p>
-    </details>
-  </div>
-</section>
-
-<section id="book">
-  <div class="wrap" style="text-align:center">
-    <h2>Start with the free hour.</h2>
-    <p class="section-lede" style="margin-left:auto;margin-right:auto;max-width:480px">See how I explain this before you spend anything. If it is not for you, you have lost an hour and learned where AI actually helps.</p>
-    <div class="cta-block" style="margin-top:0">
-      <a class="btn" href="/webinar">Save my spot, it's free →</a>
-      <p class="cta-note">Prefer email? <a href="mailto:hiimalexllc@gmail.com">hiimalexllc@gmail.com</a></p>
-    </div>
-  </div>
-</section>
-
-<section id="guide">
-  <div class="wrap">
-    <div class="guide">
-      <h2>Not ready to sit in a live session?</h2>
-      <p>Take the written version instead. The same Claude starter guide I walk every client through, as a PDF. Free, and nothing to sit through.</p>
-      <form action="/api/subscribe" method="POST">
-        <input type="text" name="name" placeholder="Your first name" autocomplete="given-name" required />
-        <input type="email" name="email_address" placeholder="you@work.com" autocomplete="email" required />
-        <input type="hidden" name="src" value="home-footer" />
-        <div aria-hidden="true" style="position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden">
-          <label>Company website<input type="text" name="company_website" tabindex="-1" autocomplete="off" /></label>
-        </div>
-        <button type="submit">Send me the guide →</button>
-      </form>
-      <p class="fineprint">Opens straight away, no waiting on an email.</p>
-    </div>
-  </div>
-</section>
-
 <footer>
   <div class="wrap">
-    <div>© <span id="yr"></span> Hi, I'm Alex · Wyoming LLC · <a href="/start">Work with me</a> · <a href="/score">Automation Score</a> · <a href="/setup">Free guide</a> · <a href="/privacy/">Privacy</a></div>
+    <div>© <span id="yr"></span> Hi I'm Alex LLC · Wyoming · <a href="mailto:hiimalexllc@gmail.com">hiimalexllc@gmail.com</a> · <a href="/score">Automation Score</a> · <a href="/setup">Free guide</a> · <a href="/refunds/">Refunds</a> · <a href="/terms/">Terms</a> · <a href="/privacy/">Privacy</a></div>
     <div class="social">
       <a href="https://www.linkedin.com/in/alexdcoffman/" target="_blank" rel="noopener">LinkedIn</a>
       <a href="https://x.com/hiimalexllc" target="_blank" rel="noopener">X</a>
-      <a href="mailto:hiimalexllc@gmail.com">Email</a>
     </div>
   </div>
 </footer>
 
 <script>document.getElementById('yr').textContent=new Date().getFullYear();</script>
-<script>
-// Show the real date of the next session plus a live countdown.
-// "Every Wednesday" tells a reader they can always catch the next one, so they
-// never book this one. A specific moment is what converts. The date comes from
-// Luma via /next-webinar, so it can never go stale.
-// Everything is rendered in the VIEWER's own timezone, which matters because the
-// audience spans the US, Europe and Southeast Asia.
-(async function () {
-  var box = document.getElementById('when');
-  var dateEl = document.getElementById('when-date');
-  var countEl = document.getElementById('when-count');
-  var bar = document.getElementById('topbar');
-  var barDate = document.getElementById('tb-date');
-  var barCount = document.getElementById('tb-count');
-  if (!box || !dateEl || !countEl) return;
-
-  var data;
-  try {
-    var r = await fetch('/next-webinar', { headers: { accept: 'application/json' } });
-    if (!r.ok) return;
-    data = await r.json();
-  } catch (e) { return; }
-  if (!data || !data.ok || !data.startAt) return;
-
-  var start = new Date(data.startAt);
-  var end = new Date(data.endAt || data.startAt);
-  if (isNaN(start)) return;
-
-  // Every call to action that points at the webinar. While the session is
-  // actually running, "Save my spot" reads as if the reader already missed it,
-  // so each one swaps to a join label and swaps back afterwards.
-  var ctas = [].slice.call(
-    document.querySelectorAll('a.btn[href="/webinar"], a.nav-cta[href="/webinar"], .tb-cta')
-  );
-  ctas.forEach(function (el) {
-    el.setAttribute('data-idle', el.textContent);
-    el.setAttribute('data-live', el.classList.contains('btn') ? 'Join the live session →' : 'Join now →');
-  });
-  function setCtas(live) {
-    ctas.forEach(function (el) {
-      var next = el.getAttribute(live ? 'data-live' : 'data-idle');
-      if (next && el.textContent !== next) el.textContent = next;
-    });
-  }
-
-  var whenText;
-  try {
-    whenText =
-      start.toLocaleDateString(undefined, { weekday: 'long', month: 'long', day: 'numeric' }) +
-      ' · ' +
-      start.toLocaleTimeString(undefined, { hour: 'numeric', minute: '2-digit', timeZoneName: 'short' });
-  } catch (e) {
-    whenText = start.toUTCString();
-  }
-  dateEl.textContent = whenText;
-  box.className = 'when on';
-  if (bar && barDate) { barDate.textContent = whenText; bar.className = 'topbar on'; }
-
-  function tick() {
-    var now = Date.now();
-    if (now >= start.getTime() && now < end.getTime()) {
-      countEl.className = 'live';
-      countEl.textContent = 'Live right now. Come in.';
-      if (barCount) barCount.textContent = 'Live now';
-      setCtas(true);
-      return;
-    }
-    setCtas(false);
-    var secs = Math.floor((start.getTime() - now) / 1000);
-    if (secs < 0) {
-      countEl.textContent = '';
-      if (barCount) barCount.textContent = '';
-      return;
-    }
-    var d = Math.floor(secs / 86400); secs -= d * 86400;
-    var h = Math.floor(secs / 3600); secs -= h * 3600;
-    var m = Math.floor(secs / 60); var s = secs - m * 60;
-    var parts = d > 0 ? [d + 'd', h + 'h', m + 'm']
-              : h > 0 ? [h + 'h', m + 'm', s + 's']
-              :         [m + 'm', s + 's'];
-    countEl.className = '';
-    countEl.textContent = 'Starts in ' + parts.join(' ');
-    if (barCount) barCount.textContent = 'in ' + parts.join(' ');
-  }
-  tick();
-  setInterval(tick, 1000);
-})();
-</script>
 </body>
 </html>
