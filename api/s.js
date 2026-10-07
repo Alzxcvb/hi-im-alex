@@ -72,7 +72,7 @@ export default async function handler(req, res) {
   <h1>How much of <em>your</em> work can AI already do?</h1>
   <p class="sub">Someone scored ${s}%. Paste your job description or list what fills your week, and find out where you land. Free, 60 seconds, no signup.</p>
   <a class="btn btn-primary" href="/score">Get your Automation Score →</a>
-  <p class="micro">Want AI doing that work for you instead? <a href="mailto:hiimalexllc@gmail.com?subject=Quick%20Start">Email me to set up a Quick Start, $300 →</a></p>
+  <p class="micro">Want AI doing that work for you instead? <a href="${base}/book">Book a Quick Start, $300 →</a></p>
 </div>
 </body>
 </html>`;

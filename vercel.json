@@ -3,6 +3,7 @@
     { "source": "/s", "destination": "/api/s" }
   ],
   "redirects": [
+    { "source": "/book", "destination": "https://cal.com/hiimalex/quickstart", "permanent": false },
     { "source": "/webinar", "destination": "/", "permanent": false },
     { "source": "/start", "destination": "/", "permanent": false }
   ]
