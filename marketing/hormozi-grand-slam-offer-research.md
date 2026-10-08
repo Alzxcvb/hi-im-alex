@@ -167,3 +167,16 @@ What Hormozi says about real vs fake, and what the page can claim.
 - T7 .../part-4-post-free-content-100m-leads-book
 - T8 .../part-2-engage-your-leads-100m-leads-book
 - T9 .../part-9-ten-years-in-ten-minutes-100m-money-models-audiobook
+
+## Addendum, 7 October 2026: price order and anchoring
+
+Added after Alex's correction that the page must anchor high and show the $300 price only once, after the value stack. Sources were read directly; the podscripts pages are machine transcripts of Hormozi reading $100M Offers aloud, so small wording errors are possible.
+
+- Bonus checklist, verbatim: "Present after price is said", next to "Always ascribe a price tag to them and justify it". Source: https://www.acquisition.com/hubfs/Offer%20Checklists%20-%20PDF%20Downloads/Bonus-Creation-Checklist.pdf
+- The context for that line is a live sales conversation. Part 6: "When selling 101, you ask for the sale first before offering the bonuses. If they say yes, then after they have signed up, you let them know the additional bonuses they're going to get... if the person does not buy after the first ask, then you present a bonus that matches their perceived obstacle, then ask again." Source: https://podscripts.co/podcasts/the-game-with-alex-hormozi/part-6-100m-offers-book
+- "Anchor" in his usage means tying the price to the core offer, then widening the gap with bonuses. Part 6: "We anchor the price we tell them to the core offer. Then with each increasingly valuable bonus, that discrepancy grows wider and wider until it's too big to bear". His term for the gap is "price-to-value discrepancy".
+- His written example of a stack lists each item with "$X value", then: "Total value, $4,351, all for only $599." and "You want them to think to themselves, I get all this for only that?" It is followed by "That being said, it's unlikely we would present it this way. Depending on whether we sell one-on-one or one-to-many, we would present this differently." Source: https://podscripts.co/podcasts/the-game-with-alex-hormozi/part-4-100m-offers-book
+- Never discount the core offer. Part 6: "Whenever trying to close a deal, never discount the main offer. It teaches your customers that your prices are negotiable."
+- NOT FOUND in any primary source read: a rule for how often to mention the price on a page, a crossed out (strikethrough) layout, or the terms "price reveal", "decoy" and "value before price". The acquisition.com/training/offers lesson pages are videos with no transcript text.
+
+How this applies to the homepage: Hormozi's price first order is for a live conversation, where the price is said and bonuses answer each objection in turn. A page cannot hear an objection, so it follows his written example instead: every item with its value, the total, then the price once. That is also the owner's instruction.
