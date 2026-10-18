@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<!-- build offer-v20 2026-10-18 -->
+<!-- build offer-v21 2026-10-18 -->
 <title>Claude for engineering and construction firms with 5 to 50 people</title>
 <meta name="description" content="One 60 minute video call: I install Claude Code on your computer, connect the apps you already use, and show you how to use it. For owners of engineering and construction firms with 5 to 50 people, from a licensed Professional Engineer.">
 <meta property="og:title" content="Claude for engineering and construction firms with 5 to 50 people">
@@ -336,8 +336,8 @@
     <p class="section-lede">I do every Quick Start myself. Every week your firm is not using AI while others are, you fall further behind.</p>
     <ul class="limits">
       <li><b>Quick Start:</b> <span id="qs-spots">3 spots a week.</span> One spot each Monday, Wednesday and Friday.</li>
-      <li><b>Audit:</b> 2 spots a week.</li>
-      <li><b>Build:</b> 1 spot this month. After that I have to hire and train another engineer.</li>
+      <li><b>Audit:</b> <span id="audit-spots">2 spots a week.</span></li>
+      <li><b>Build:</b> <span id="build-spots">1 spot this month.</span> After that I have to hire and train another engineer.</li>
     </ul>
     <div class="countdown" role="status" aria-live="polite">
       <span id="cd-text">These deals end December 18, 2026, Pacific time.<span id="cd-left"></span></span>
@@ -474,23 +474,32 @@
     }
     tick(); setInterval(tick, 30000);
   })();
-  // Quick Start spots: one each Monday, Wednesday and Friday, counted in Pacific time.
-  // On Saturday and Sunday it shows the coming week's three.
+  // Live spot counts, in Pacific time. A spot on a day that has passed is gone.
+  // Quick Start: one each Monday, Wednesday and Friday. Audit: one each Tuesday and Thursday.
+  // Once a week's last spot day has passed, the line shows the coming week.
+  // Build: one a month, named by the current month.
   (function(){
-    var el = document.getElementById('qs-spots');
-    if (!el || !window.Intl) return;
+    if (!window.Intl) return;
     var parts = {};
     new Intl.DateTimeFormat('en-US', {timeZone:'America/Los_Angeles', weekday:'short', year:'numeric', month:'numeric', day:'numeric'})
       .formatToParts(new Date()).forEach(function(p){ parts[p.type] = p.value; });
     var dow = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'].indexOf(parts.weekday);
-    if (dow === 0 || dow === 6) {
-      var monday = new Date(Date.UTC(+parts.year, +parts.month - 1, +parts.day + (dow === 0 ? 1 : 2)));
+    function spots(id, days){
+      var el = document.getElementById(id);
+      if (!el) return;
+      var left = dow === 0 ? 0 : days.filter(function(d){ return d >= dow; }).length;
+      if (left) {
+        el.textContent = 'Only ' + left + (left === 1 ? ' spot' : ' spots') + ' left this week.';
+        return;
+      }
+      var monday = new Date(Date.UTC(+parts.year, +parts.month - 1, +parts.day + (8 - dow) % 7));
       var label = new Intl.DateTimeFormat('en-US', {timeZone:'UTC', month:'long', day:'numeric'}).format(monday);
-      el.textContent = '3 spots for the week starting Monday, ' + label + '.';
-      return;
+      el.textContent = days.length + ' spots open for the week starting Monday, ' + label + '.';
     }
-    var left = [1,3,5].filter(function(d){ return d >= dow; }).length;
-    el.textContent = 'Only ' + left + (left === 1 ? ' spot' : ' spots') + ' left this week.';
+    spots('qs-spots', [1,3,5]);
+    spots('audit-spots', [2,4]);
+    var build = document.getElementById('build-spots');
+    if (build) build.textContent = 'Only 1 spot left for ' + new Intl.DateTimeFormat('en-US', {timeZone:'America/Los_Angeles', month:'long'}).format(new Date()) + '.';
   })();
 </script>
 </body>
