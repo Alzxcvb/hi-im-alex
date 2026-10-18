@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<!-- build offer-v23 2026-10-18 -->
+<!-- build offer-v24 2026-10-18 -->
 <title>Claude for engineering and construction firms with 5 to 50 people</title>
 <meta name="description" content="One 60 minute video call: I install Claude Code on your computer, connect the apps you already use, and show you how to use it. For owners of engineering and construction firms with 5 to 50 people, from a licensed Professional Engineer.">
 <meta property="og:title" content="Claude for engineering and construction firms with 5 to 50 people">
@@ -339,7 +339,7 @@
     <h2>Limited spots</h2>
     <p class="section-lede">I do every Quick Start myself. Every week your firm is not using AI while others are, you fall further behind.</p>
     <ul class="limits">
-      <li><b>Quick Start:</b> <span id="qs-spots">3 spots a week.</span> One spot each Monday, Wednesday and Friday.</li>
+      <li><b>Quick Start:</b> <span id="qs-spots">Up to 3 spots a week.</span> Monday to Friday, 9 to 5 Pacific, one a day. Book at least one day ahead so I can send you a few things to do first.</li>
       <li><b>Audit:</b> <span id="audit-spots">2 spots a week.</span></li>
       <li><b>Build:</b> <span id="build-spots">1 spot this month.</span> After that I have to hire and train another engineer.</li>
     </ul>
@@ -420,7 +420,7 @@
     <h2>One hour, and Claude Code is running on your computer.</h2>
     <p class="section-lede">Everything in the hour is worth $700, and the bonuses come on top.</p>
     <a class="btn" href="/book">Book your Quick Start →</a>
-    <p class="cta-note"><b>Spots are limited.</b> Pick a time and pay when you book.</p>
+    <p class="cta-note"><b>Spots are limited.</b> Pick a time at least one day ahead and pay when you book.</p>
   </div>
 </section>
 
@@ -497,8 +497,9 @@
     tick(); setInterval(tick, 30000);
   })();
   // Live spot counts, in Pacific time. A spot on a day that has passed is gone.
-  // Quick Start: one each Monday, Wednesday and Friday. Audit: one each Tuesday and Thursday.
-  // Once a week's last spot day has passed, the line shows the coming week.
+  // Quick Start: up to 3 a week, one a day, Monday to Friday, booked at least a day ahead
+  // (matches the Cal.com limits), so only days after today count. Audit: one each Tuesday and Thursday.
+  // Once a week has no spot days left, the line shows the coming week.
   // Build: one a month, named by the current month.
   (function(){
     if (!window.Intl) return;
@@ -506,20 +507,20 @@
     new Intl.DateTimeFormat('en-US', {timeZone:'America/Los_Angeles', weekday:'short', year:'numeric', month:'numeric', day:'numeric'})
       .formatToParts(new Date()).forEach(function(p){ parts[p.type] = p.value; });
     var dow = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'].indexOf(parts.weekday);
-    function spots(id, days){
+    function spots(id, days, cap, ahead){
       var el = document.getElementById(id);
       if (!el) return;
-      var left = dow === 0 ? 0 : days.filter(function(d){ return d >= dow; }).length;
+      var left = dow === 0 ? 0 : Math.min(cap, days.filter(function(d){ return ahead ? d > dow : d >= dow; }).length);
       if (left) {
         el.textContent = 'Only ' + left + (left === 1 ? ' spot' : ' spots') + ' left this week.';
         return;
       }
       var monday = new Date(Date.UTC(+parts.year, +parts.month - 1, +parts.day + (8 - dow) % 7));
       var label = new Intl.DateTimeFormat('en-US', {timeZone:'UTC', month:'long', day:'numeric'}).format(monday);
-      el.textContent = days.length + ' spots open for the week starting Monday, ' + label + '.';
+      el.textContent = cap + ' spots open for the week starting Monday, ' + label + '.';
     }
-    spots('qs-spots', [1,3,5]);
-    spots('audit-spots', [2,4]);
+    spots('qs-spots', [1,2,3,4,5], 3, true);
+    spots('audit-spots', [2,4], 2, false);
     var build = document.getElementById('build-spots');
     if (build) build.textContent = 'Only 1 spot left for ' + new Intl.DateTimeFormat('en-US', {timeZone:'America/Los_Angeles', month:'long'}).format(new Date()) + '.';
   })();
