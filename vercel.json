@@ -4,7 +4,6 @@
     { "source": "/home", "destination": "/home.html" }
   ],
   "redirects": [
-    { "source": "/", "destination": "https://docs.google.com/forms/d/e/1FAIpQLScx_peUFRembOj_L1_O3np5U1Z35SgGVJ1t0u4dVWyNRgLX7A/viewform", "permanent": false },
     { "source": "/book", "destination": "https://cal.com/hiimalex/quickstart", "permanent": false },
     { "source": "/survey", "destination": "https://docs.google.com/forms/d/e/1FAIpQLScx_peUFRembOj_L1_O3np5U1Z35SgGVJ1t0u4dVWyNRgLX7A/viewform", "permanent": false },
     { "source": "/webinar", "destination": "/home", "permanent": false },
